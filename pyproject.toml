@@ -1,0 +1,26 @@
+[project]
+name = "simscale_sdk_v1"
+version = "0.1.0"
+description = "SimScale Python SDK v1"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx >=0.28.1",
+    "isodate >=0.7",
+    "pydantic >=2.0",
+]
+
+[dependency-groups]
+build = [
+    "jinja2 >=3.1",
+    "pyyaml >=6.0",
+]
+lint = [
+    "ruff >=0.11",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=80", "wheel"]
+build-backend = "setuptools.build_meta"

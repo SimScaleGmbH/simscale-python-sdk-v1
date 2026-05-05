@@ -1,0 +1,8 @@
+from __future__ import annotations
+
+from simscale_sdk_v1._base import SimScaleModel
+
+
+class InterpolationParameter(SimScaleModel):
+    value: float
+    unit: str

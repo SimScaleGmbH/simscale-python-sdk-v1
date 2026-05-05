@@ -1,0 +1,20 @@
+from __future__ import annotations
+
+from pydantic import Field
+
+from simscale_sdk_v1._base import SimScaleModel
+
+
+class CelllimitedGaussLinearGradientScheme(SimScaleModel):
+    type_: str = Field(
+        validation_alias="type",
+        serialization_alias="type",
+        default="CELLLIMITED_GAUSS_LINEAR",
+        description="Schema name: CelllimitedGaussLinearGradientScheme",
+    )
+    limiter_coefficient: float | None = Field(
+        validation_alias="limiterCoefficient",
+        serialization_alias="limiterCoefficient",
+        default=1,
+        description="This property defines a limiter coefficient for the scheme. 1 ensures boundedness while 0 applies no limiting.",
+    )

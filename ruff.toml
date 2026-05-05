@@ -1,0 +1,10 @@
+line-length = 120
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+
+[lint.per-file-ignores]
+# Generated code: suppress style rules that are inherent in generated output
+"src/simscale_sdk_v1/models/**" = ["E501", "F401", "I001", "UP007", "RUF001", "RUF002", "RUF005"]
+"src/simscale_sdk_v1/resources/**" = ["E501", "F401", "I001", "RUF002"]
+"src/simscale_sdk_v1/sdk.py" = ["E501", "I001"]
