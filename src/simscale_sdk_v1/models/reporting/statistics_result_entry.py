@@ -4,12 +4,11 @@ from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.reporting.statistics_centroid_metric import StatisticsCentroidMetric
+from simscale_sdk_v1.models.reporting.statistics_cutting_plane_region_entry import StatisticsCuttingPlaneRegionEntry
 from simscale_sdk_v1.models.reporting.statistics_metric import StatisticsMetric
 
 
 class StatisticsResultEntry(SimScaleModel):
-    """Bulk statistical values computed for a single part, part group, or cutting plane. Each numeric metric is an object with a 'value' and a 'unit' field. Integral metrics carry composite units; all others carry the plain scalar field unit."""
-
     element_min: StatisticsMetric | None = Field(
         validation_alias="elementMin", serialization_alias="elementMin", default=None
     )
@@ -48,3 +47,13 @@ class StatisticsResultEntry(SimScaleModel):
         validation_alias="volumeElementMax", serialization_alias="volumeElementMax", default=None
     )
     centroid: StatisticsCentroidMetric | None = Field(default=None)
+    bounding_box_min: StatisticsCentroidMetric | None = Field(
+        validation_alias="boundingBoxMin", serialization_alias="boundingBoxMin", default=None
+    )
+    bounding_box_max: StatisticsCentroidMetric | None = Field(
+        validation_alias="boundingBoxMax", serialization_alias="boundingBoxMax", default=None
+    )
+    regions: list[StatisticsCuttingPlaneRegionEntry] | None = Field(
+        default=None,
+        description="For a cutting plane, the per-region breakdown: one entry per distinct area produced by the cut (one per intersected part, or several when a single part is cut in more than one place). The enclosing entry's own metrics remain the whole-plane aggregate over all regions; this array only adds the per-region split. Absent for part and part-group entries.",
+    )

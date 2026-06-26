@@ -10,6 +10,8 @@ from simscale_sdk_v1.resources.ai_models import AiModels
 from simscale_sdk_v1.resources.cad_features import CadFeatures
 from simscale_sdk_v1.resources.cad_imports import CadImports
 from simscale_sdk_v1.resources.cads import Cads
+from simscale_sdk_v1.resources.component_registry import ComponentRegistry
+from simscale_sdk_v1.resources.data_repository import DataRepository
 from simscale_sdk_v1.resources.export import Export
 from simscale_sdk_v1.resources.folders import Folders
 from simscale_sdk_v1.resources.materials import Materials
@@ -27,6 +29,8 @@ from simscale_sdk_v1.resources.storage import Storage
 from simscale_sdk_v1.resources.table_imports import TableImports
 from simscale_sdk_v1.resources.users import Users
 from simscale_sdk_v1.resources.wind import Wind
+from simscale_sdk_v1.resources.workflow_repository import WorkflowRepository
+from simscale_sdk_v1.resources.workflow_runner import WorkflowRunner
 
 _DEFAULT_URL = "https://api.simscale.com"
 
@@ -43,6 +47,8 @@ class SimScaleSDK(SimScaleHelpers):
         self.cad_features = CadFeatures(self._client)
         self.cad_imports = CadImports(self._client)
         self.cads = Cads(self._client)
+        self.component_registry = ComponentRegistry(self._client)
+        self.data_repository = DataRepository(self._client)
         self.export = Export(self._client)
         self.folders = Folders(self._client)
         self.materials = Materials(self._client)
@@ -60,3 +66,5 @@ class SimScaleSDK(SimScaleHelpers):
         self.table_imports = TableImports(self._client)
         self.users = Users(self._client)
         self.wind = Wind(self._client)
+        self.workflow_repository = WorkflowRepository(self._client)
+        self.workflow_runner = WorkflowRunner(self._client)

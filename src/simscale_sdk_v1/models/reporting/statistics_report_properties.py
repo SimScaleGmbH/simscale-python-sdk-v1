@@ -9,14 +9,14 @@ from simscale_sdk_v1.models.reporting.statistics_part_group import StatisticsPar
 
 
 class StatisticsReportProperties(SimScaleModel):
-    """Configuration for a statistics (bulk calculation) report. Computes scalar field statistics (minimum, maximum, average, integral, and area/volume-weighted equivalents) over model geometry at a chosen time step. At least one of partIdentifiers, partGroupIdentifiers, or cuttingPlanes must be provided. Parts are named surfaces or volumes that exist in the simulation result (e.g. wall patches in a CFD model or solid bodies in a structural model). Use partIdentifiers to get independent results per part, or partGroupIdentifiers to combine several parts into one aggregated result. Cutting planes are user-defined infinite planes that slice through the model geometry. They are specified by a point on the plane and a normal vector, and statistics are computed over the intersection."""
+    """Configuration for a statistics (bulk calculation) report. Computes scalar field statistics (minimum, maximum, average, integral, and area/volume-weighted equivalents) over model geometry at a chosen time step. Also carries the server-resolved resolution hints (cadAssociations, topologyLabelByName) that postproc-manager populates and postproc-result-query consumes; these hints are stripped from the public API response, which uses the reduced StatisticsReportPropertiesPublic projection. At least one of partIdentifiers, partGroupIdentifiers, or cuttingPlanes must be provided."""
 
     report_type: str = Field(validation_alias="reportType", serialization_alias="reportType", default="STATISTICS")
     part_identifiers: list[str] | None = Field(
         validation_alias="partIdentifiers",
         serialization_alias="partIdentifiers",
         default=None,
-        description="Names of individual model parts for which to compute statistics independently. Each name must exactly match a part name present in the simulation result. Each part produces a separate entry in the statisticsResult, keyed by part name.",
+        description="Names of individual model parts for which to compute statistics independently. Each name must exactly match a part name present in the simulation result model. Each part produces a separate entry in the statisticsResult, keyed by part name.",
     )
     part_group_identifiers: list[StatisticsPartGroup] | None = Field(
         validation_alias="partGroupIdentifiers",
@@ -42,4 +42,10 @@ class StatisticsReportProperties(SimScaleModel):
         serialization_alias="cadAssociations",
         default=None,
         description='Filtered CAD-Mesh name mapping for the requested parts only. Each key is a CAD entity name provided by the user and each value is the list of mesh names it maps to. A value of "" means the CAD entity has no mesh equivalent. Absent when no CAD-Mesh mapping is available or when all requested names are already mesh names.',
+    )
+    topology_label_by_name: dict[str, str] | None = Field(
+        validation_alias="topologyLabelByName",
+        serialization_alias="topologyLabelByName",
+        default=None,
+        description='Mesh-part-name to user-facing label mapping for the mesh topology, used to label cutting-plane regions with a human-readable name (e.g. "region4" -> "Air domain"). Populated only for cutting-plane requests; absent otherwise.',
     )

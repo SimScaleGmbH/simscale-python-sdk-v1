@@ -36,6 +36,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.create_export_response import CreateExportResponse
     from simscale_sdk_v1.models.create_saved_selection_request import CreateSavedSelectionRequest
     from simscale_sdk_v1.models.create_saved_selection_response import CreateSavedSelectionResponse
+    from simscale_sdk_v1.models.data_id import DataId
     from simscale_sdk_v1.models.download_original_cad_response import DownloadOriginalCadResponse
     from simscale_sdk_v1.models.duration import Duration
     from simscale_sdk_v1.models.entity_attribute import EntityAttribute
@@ -114,6 +115,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.user_signup_response import UserSignupResponse
     from simscale_sdk_v1.models.wind_data import WindData
     from simscale_sdk_v1.models.wind_rose_response import WindRoseResponse
+    from simscale_sdk_v1.models.workflow_id import WorkflowId
+    from simscale_sdk_v1.models.workflow_run_id import WorkflowRunId
+    from simscale_sdk_v1.models.workflow_version_id import WorkflowVersionId
     from simscale_sdk_v1._base import SimScaleModel
 
 _NAMES: dict[str, tuple[str, str]] = {
@@ -154,6 +158,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.create_saved_selection_response",
         "CreateSavedSelectionResponse",
     ),
+    "DataId": ("simscale_sdk_v1.models.data_id", "DataId"),
     "DownloadOriginalCadResponse": (
         "simscale_sdk_v1.models.download_original_cad_response",
         "DownloadOriginalCadResponse",
@@ -265,11 +270,16 @@ _NAMES: dict[str, tuple[str, str]] = {
     "UserSignupResponse": ("simscale_sdk_v1.models.user_signup_response", "UserSignupResponse"),
     "WindData": ("simscale_sdk_v1.models.wind_data", "WindData"),
     "WindRoseResponse": ("simscale_sdk_v1.models.wind_rose_response", "WindRoseResponse"),
+    "WorkflowId": ("simscale_sdk_v1.models.workflow_id", "WorkflowId"),
+    "WorkflowRunId": ("simscale_sdk_v1.models.workflow_run_id", "WorkflowRunId"),
+    "WorkflowVersionId": ("simscale_sdk_v1.models.workflow_version_id", "WorkflowVersionId"),
     "SimScaleModel": ("simscale_sdk_v1._base", "SimScaleModel"),
 }
 
 # Namespace submodules
 # models.cad
+# models.component_registry
+# models.data_repository
 # models.geometry_primitive
 # models.material
 # models.meshing
@@ -277,6 +287,9 @@ _NAMES: dict[str, tuple[str, str]] = {
 # models.postprocessing
 # models.reporting
 # models.simulation
+# models.workflow_repository
+# models.workflow_runner
+# models.workflows
 
 
 def __getattr__(name: str):
@@ -288,6 +301,14 @@ def __getattr__(name: str):
         return value
     if name == "cad":
         mod = importlib.import_module("simscale_sdk_v1.models.cad")
+        globals()[name] = mod
+        return mod
+    if name == "component_registry":
+        mod = importlib.import_module("simscale_sdk_v1.models.component_registry")
+        globals()[name] = mod
+        return mod
+    if name == "data_repository":
+        mod = importlib.import_module("simscale_sdk_v1.models.data_repository")
         globals()[name] = mod
         return mod
     if name == "geometry_primitive":
@@ -318,12 +339,26 @@ def __getattr__(name: str):
         mod = importlib.import_module("simscale_sdk_v1.models.simulation")
         globals()[name] = mod
         return mod
+    if name == "workflow_repository":
+        mod = importlib.import_module("simscale_sdk_v1.models.workflow_repository")
+        globals()[name] = mod
+        return mod
+    if name == "workflow_runner":
+        mod = importlib.import_module("simscale_sdk_v1.models.workflow_runner")
+        globals()[name] = mod
+        return mod
+    if name == "workflows":
+        mod = importlib.import_module("simscale_sdk_v1.models.workflows")
+        globals()[name] = mod
+        return mod
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 def __dir__():
     return list(_NAMES.keys()) + [
         "cad",
+        "component_registry",
+        "data_repository",
         "geometry_primitive",
         "material",
         "meshing",
@@ -331,4 +366,7 @@ def __dir__():
         "postprocessing",
         "reporting",
         "simulation",
+        "workflow_repository",
+        "workflow_runner",
+        "workflows",
     ]

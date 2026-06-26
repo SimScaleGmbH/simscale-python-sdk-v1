@@ -13,19 +13,19 @@ class Postprocessing:
         project_id: str,
         result_id: str,
     ) -> list[models.postprocessing.StateResponse]:
-        data = self._client.request(
+        return self._client.request(
             "GET",
             f"/projects/{project_id}/postprocessing/results/{result_id}/automatic-postprocessor-states",
+            response_type=list[models.postprocessing.StateResponse],
         )
-        return [models.postprocessing.StateResponse.model_validate(item) for item in data]
 
     def get_manual_states(
         self,
         project_id: str,
         result_id: str,
     ) -> list[models.postprocessing.StateResponse]:
-        data = self._client.request(
+        return self._client.request(
             "GET",
             f"/projects/{project_id}/postprocessing/results/{result_id}/manual-postprocessor-states",
+            response_type=list[models.postprocessing.StateResponse],
         )
-        return [models.postprocessing.StateResponse.model_validate(item) for item in data]

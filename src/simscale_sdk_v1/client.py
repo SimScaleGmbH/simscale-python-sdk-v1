@@ -6,7 +6,7 @@ import time
 from collections.abc import Callable
 from importlib.metadata import version
 from pathlib import Path
-from typing import Any, Generic, TypeVar
+from typing import Any, BinaryIO, Generic, TypeVar
 
 import httpx
 from pydantic import BaseModel, TypeAdapter
@@ -170,9 +170,12 @@ class SimScaleClient:
         path: str,
         *,
         json_body: BaseModel | dict | list | None = None,
+        binary_body: bytes | BinaryIO | Path | None = None,
+        content_type: str | None = None,
         query_params: dict[str, Any] | None = None,
         response_type: type[T] | None = None,
-    ) -> T | dict | None:
+        response_binary: bool = False,
+    ) -> T | dict | bytes | None:
         """Send an HTTP request and optionally parse the JSON response into *response_type*.
 
         Accepts any 2xx status. Raises SimScaleAPIError on 4xx/5xx.
@@ -190,10 +193,45 @@ class SimScaleClient:
             else:
                 json_data = json_body
 
+        if json_body is not None and binary_body is not None:
+            raise ValueError("json_body and binary_body cannot be used together")
+
         # Strip None values from query params
         params = {k: v for k, v in (query_params or {}).items() if v is not None}
 
-        resp = self._with_retry(method, lambda: self._http.request(method, path, json=json_data, params=params or None))
+        headers = {"Content-Type": content_type} if content_type is not None else None
+        if isinstance(binary_body, Path):
+
+            def send_binary_file() -> httpx.Response:
+                with binary_body.open("rb") as f:
+                    return self._http.request(
+                        method,
+                        path,
+                        content=f,
+                        headers=headers,
+                        params=params or None,
+                    )
+
+            resp = self._with_retry(method, send_binary_file)
+        elif binary_body is not None:
+
+            def send_binary_content() -> httpx.Response:
+                if hasattr(binary_body, "seek"):
+                    binary_body.seek(0)
+                return self._http.request(
+                    method,
+                    path,
+                    content=binary_body,
+                    headers=headers,
+                    params=params or None,
+                )
+
+            resp = self._with_retry(method, send_binary_content)
+        else:
+            resp = self._with_retry(
+                method,
+                lambda: self._http.request(method, path, json=json_data, params=params or None),
+            )
 
         if not (200 <= resp.status_code < 300):
             try:
@@ -204,6 +242,9 @@ class SimScaleClient:
 
         if resp.status_code == 204 or not resp.content:
             return None
+
+        if response_binary:
+            return resp.content
 
         data = resp.json()
         if response_type is None:

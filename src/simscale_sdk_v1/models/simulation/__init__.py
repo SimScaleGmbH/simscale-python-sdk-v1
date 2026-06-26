@@ -491,6 +491,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.electrical_steel_core_loss import ElectricalSteelCoreLoss
     from simscale_sdk_v1.models.simulation.electromagnetic_advanced_concepts import ElectromagneticAdvancedConcepts
     from simscale_sdk_v1.models.simulation.electromagnetic_analysis import ElectromagneticAnalysis
+    from simscale_sdk_v1.models.simulation.electromagnetic_circuit import ElectromagneticCircuit
     from simscale_sdk_v1.models.simulation.electromagnetic_current_type_constant import (
         ElectromagneticCurrentTypeConstant,
     )
@@ -2469,6 +2470,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__time_differentiation_schemes_for_default import (
         OneOf_TimeDifferentiationSchemesForDefault,
     )
+    from simscale_sdk_v1.models.simulation.one_of__time_harmonic_magnetics_time_dependency import (
+        OneOf_TimeHarmonicMagneticsTimeDependency,
+    )
     from simscale_sdk_v1.models.simulation.one_of__transient_result_control_write_control import (
         OneOf_TransientResultControlWriteControl,
     )
@@ -2944,6 +2948,10 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.variable_group_relaxation_time import VariableGroup_RELAXATION_TIME
     from simscale_sdk_v1.models.simulation.variable_group_strain import VariableGroup_STRAIN
     from simscale_sdk_v1.models.simulation.variable_group_temp import VariableGroup_TEMP
+    from simscale_sdk_v1.models.simulation.variable_group_temp_engineering_strain import (
+        VariableGroup_TEMP_ENGINEERING_STRAIN,
+    )
+    from simscale_sdk_v1.models.simulation.variable_group_temp_plastic_strain import VariableGroup_TEMP_PLASTIC_STRAIN
     from simscale_sdk_v1.models.simulation.variable_group_temp_pressure import VariableGroup_TEMP_PRESSURE
     from simscale_sdk_v1.models.simulation.variable_group_temp_strain import VariableGroup_TEMP_STRAIN
     from simscale_sdk_v1.models.simulation.variable_group_time import VariableGroup_TIME
@@ -4006,6 +4014,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.electromagnetic_analysis",
         "ElectromagneticAnalysis",
     ),
+    "ElectromagneticCircuit": ("simscale_sdk_v1.models.simulation.electromagnetic_circuit", "ElectromagneticCircuit"),
     "ElectromagneticCurrentTypeConstant": (
         "simscale_sdk_v1.models.simulation.electromagnetic_current_type_constant",
         "ElectromagneticCurrentTypeConstant",
@@ -7148,6 +7157,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__time_differentiation_schemes_for_default",
         "OneOf_TimeDifferentiationSchemesForDefault",
     ),
+    "OneOf_TimeHarmonicMagneticsTimeDependency": (
+        "simscale_sdk_v1.models.simulation.one_of__time_harmonic_magnetics_time_dependency",
+        "OneOf_TimeHarmonicMagneticsTimeDependency",
+    ),
     "OneOf_TransientResultControlWriteControl": (
         "simscale_sdk_v1.models.simulation.one_of__transient_result_control_write_control",
         "OneOf_TransientResultControlWriteControl",
@@ -8041,6 +8054,14 @@ _NAMES: dict[str, tuple[str, str]] = {
     ),
     "VariableGroup_STRAIN": ("simscale_sdk_v1.models.simulation.variable_group_strain", "VariableGroup_STRAIN"),
     "VariableGroup_TEMP": ("simscale_sdk_v1.models.simulation.variable_group_temp", "VariableGroup_TEMP"),
+    "VariableGroup_TEMP_ENGINEERING_STRAIN": (
+        "simscale_sdk_v1.models.simulation.variable_group_temp_engineering_strain",
+        "VariableGroup_TEMP_ENGINEERING_STRAIN",
+    ),
+    "VariableGroup_TEMP_PLASTIC_STRAIN": (
+        "simscale_sdk_v1.models.simulation.variable_group_temp_plastic_strain",
+        "VariableGroup_TEMP_PLASTIC_STRAIN",
+    ),
     "VariableGroup_TEMP_PRESSURE": (
         "simscale_sdk_v1.models.simulation.variable_group_temp_pressure",
         "VariableGroup_TEMP_PRESSURE",

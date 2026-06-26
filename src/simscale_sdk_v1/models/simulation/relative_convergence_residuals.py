@@ -22,5 +22,8 @@ class RelativeConvergenceResiduals(SimScaleModel):
         validation_alias="relativeMomentTolerance", serialization_alias="relativeMomentTolerance", default=0.0
     )
     relative_residual_auto_switch: bool | None = Field(
-        validation_alias="relativeResidualAutoSwitch", serialization_alias="relativeResidualAutoSwitch", default=True
+        validation_alias="relativeResidualAutoSwitch",
+        serialization_alias="relativeResidualAutoSwitch",
+        default=True,
+        description="Auto switch method: Automatically toggles the convergence criteria between residual, displacement, or energy methods if the primary method becomes numerically unstable due to near-zero reactions or displacements. It is recommended for complex nonlinear assemblies to maintain progress without manually relaxing the tolerances.",
     )

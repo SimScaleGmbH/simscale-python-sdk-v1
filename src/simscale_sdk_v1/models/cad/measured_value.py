@@ -12,4 +12,4 @@ class MeasuredValue(SimScaleModel):
     unit: str = Field(description="Unit of measurement.")
     value: float | None = Field(default=None, description="Value of the measurement in the correct unit.")
     vector_value: Vector | None = Field(validation_alias="vectorValue", serialization_alias="vectorValue", default=None)
-    hit_line: PointPair | None = Field(validation_alias="hitLine", serialization_alias="hitLine", default=None)
+    hint_line: PointPair | None = Field(validation_alias="hintLine", serialization_alias="hintLine", default=None)

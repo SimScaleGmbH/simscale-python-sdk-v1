@@ -9,7 +9,7 @@ from pydantic import Field
 from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.reporting.download_info import DownloadInfo
 from simscale_sdk_v1.models.reporting.report_from_state_properties import ReportFromStateProperties
-from simscale_sdk_v1.models.reporting.report_properties import ReportProperties
+from simscale_sdk_v1.models.reporting.report_properties_public import ReportPropertiesPublic
 from simscale_sdk_v1.models.reporting.statistics_result_entry import StatisticsResultEntry
 
 
@@ -43,7 +43,7 @@ class ReportResponse(SimScaleModel):
         default=None,
         description="The resultIds the report has been created for.",
     )
-    report_properties: ReportProperties | None = Field(
+    report_properties: ReportPropertiesPublic | None = Field(
         validation_alias="reportProperties", serialization_alias="reportProperties", default=None
     )
     report_from_state_properties: ReportFromStateProperties | None = Field(

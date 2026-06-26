@@ -27,7 +27,7 @@ class MarcAnalysis(SimScaleModel):
         validation_alias="thermalEffects",
         serialization_alias="thermalEffects",
         default=False,
-        description="Choose whether thermal effects should be included in the analysis, such as heat conduction, thermal loads, temperature fields, thermal expansion, and temperature-dependent material properties. When thermal effects are disabled, the analysis is purely mechanical and assumes constant temperature.",
+        description="Choose whether thermal effects should be included in the analysis, such as heat conduction, thermal loads, temperature fields, thermal expansion, and temperature-dependent material properties. When thermal effects are disabled, the analysis is purely mechanical and assumes constant temperature.Note: Changing this setting will delete all existing material definitions.",
     )
     connection_groups: list[MarcConnectionGroup] | None = Field(
         validation_alias="connectionGroups", serialization_alias="connectionGroups", default=None

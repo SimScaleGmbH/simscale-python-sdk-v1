@@ -157,10 +157,11 @@ mesh_op = sdk.wait_until_done(
 ```
 
 Parameters:
-- `poll_fn` — function that fetches the current state (must return an object with a `.status` attribute)
+- `poll_fn` — function that fetches the current state
 - `timeout` — maximum time to wait in seconds (default: 3600)
 - `interval` — polling interval in seconds (default: 30)
 - `raise_on_failure` — raise `SimScaleOperationError` on failure (default: True)
+- `get_status` — function that extracts the status string from the result (default: `.status`)
 
 ### get_material
 
@@ -181,6 +182,7 @@ The `examples/` folder contains complete, runnable scripts:
 | `incompressible_lbm_example.py` | Incompressible LBM (Pacefish): table imports (CSV inlet profiles, probe points), flow domain boundaries, geometry primitives, mesh refinement regions, transient/statistical/snapshot result controls, forces/moments tracking, and screenshot report |
 | `pedestrian_wind_comfort_example.py` | Pedestrian Wind Comfort (PWC): wind rose data, geographical location, region of interest, comfort surfaces, Wind API integration, and additional wind data for reusing directional results |
 | `folders_and_spaces_example.py` | Space and folder management: creation, listing, moving, and deletion |
+| `workflow_mesh_and_result_import_example.py` | Workflow public API: upload VTU data, create and run the mesh-and-result-import workflow, and export the imported result |
 
 ### Running Examples
 
@@ -223,4 +225,3 @@ print(code)
 ```
 
 The generated code uses the same namespace aliases as the examples (`sim.`, `mesh.`, `geo.`, etc.) and includes the necessary import statements.
-

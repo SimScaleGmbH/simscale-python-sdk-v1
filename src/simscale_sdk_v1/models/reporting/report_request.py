@@ -4,6 +4,7 @@ from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.reporting.report_properties import ReportProperties
+from simscale_sdk_v1.models.reporting.report_trigger import ReportTrigger
 
 
 class ReportRequest(SimScaleModel):
@@ -23,3 +24,4 @@ class ReportRequest(SimScaleModel):
         default=None,
         description="If provided, the newly created report will have this value for its UUID.",
     )
+    trigger: ReportTrigger | None = Field(default=None)
