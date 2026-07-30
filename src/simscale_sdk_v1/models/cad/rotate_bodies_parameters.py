@@ -11,5 +11,5 @@ class RotateBodiesParameters(SimScaleModel):
     axis: Axis
     angle: float = Field(description="Angle or rotation in degrees.")
     copy_bodies: bool = Field(
-        description="If this option is selected, the operation will create new bodies instead of modifying the selected ones."
+        description="If true, the operation creates new bodies instead of modifying the selected ones; if false, the selected bodies are modified in place."
     )

@@ -24,6 +24,7 @@ class ComponentVersionMetadata(SimScaleModel):
         validation_alias="multiLanguageName", serialization_alias="multiLanguageName", default=None
     )
     name: str | None = Field(default=None)
+    release_notes: str | None = Field(validation_alias="releaseNotes", serialization_alias="releaseNotes", default=None)
     state: Literal["SNAPSHOT", "RELEASE_CANDIDATE", "RELEASED", "DEPRECATED", "ARCHIVED"] | None = Field(
         default=None, description="Possible states of a component version."
     )

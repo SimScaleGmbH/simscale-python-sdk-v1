@@ -19,17 +19,15 @@ pip install git+https://github.com/SimScaleGmbH/simscale-python-sdk-v1.git
 ```python
 from simscale_sdk_v1 import SimScaleSDK, models
 
-sdk = SimScaleSDK()  # reads SIMSCALE_API_KEY from environment
-
-# Create a project
-project = sdk.projects.create_project(
-    models.Project(
-        name="My Project",
-        description="Created via SDK",
-        measurement_system="SI",
+with SimScaleSDK() as sdk:  # reads SIMSCALE_API_KEY from environment
+    project = sdk.projects.create_project(
+        models.Project(
+            name="My Project",
+            description="Created via SDK",
+            measurement_system="SI",
+        )
     )
-)
-print(f"Created project: {project.project_id}")
+    print(f"Created project: {project.project_id}")
 ```
 
 ## Configuration
@@ -57,6 +55,24 @@ export SIMSCALE_API_KEY="your-api-key"
 ```
 
 On Windows, use `set SIMSCALE_API_KEY=your-api-key` (CMD) or `$env:SIMSCALE_API_KEY="your-api-key"` (PowerShell).
+
+### HTTP client, retries, and lifecycle
+
+Construct **one `SimScaleSDK` per process and reuse it** (don't create one per call). It owns a pooled `httpx` client; use it as a context manager, or call `close()` when done. Tune it via constructor arguments:
+
+| Argument | Default | Description |
+|---|---|---|
+| `timeout` | `60.0` | Per-request read timeout, seconds. Lower it for faster failure on quick calls; raise it for long-running requests. |
+| `max_retries` | `5` | Retries on network errors / 5xx (idempotent methods) and 429 (any method). |
+| `max_connections` | `100` | httpx connection-pool size. |
+| `max_requests_per_second` | `None` | Optional client-side rate limiter (paces outbound requests). `None` disables it. Set it to stay under the server's per-IP rate limit when running many concurrent calls. |
+
+```python
+with SimScaleSDK(timeout=90, max_requests_per_second=10) as sdk:
+    sdk.projects.get_projects()
+```
+
+Failures are surfaced, never silent: a request that exhausts its retries on a client timeout raises `SimScaleTimeoutError` (with method, URL, elapsed and attempt count); each retry is logged via the `simscale_sdk_v1` logger.
 
 ## SDK Structure
 

@@ -38,6 +38,9 @@ class ExternalDataInfo(SimScaleModel):
         default=None,
         description="Identifies the origin of data creation: - `USER_UPLOAD`: data was uploaded or registered directly by a user through the API - `WORKFLOW_EXECUTION`: data was created as a result of a workflow run",
     )
+    original_file_name: str | None = Field(
+        validation_alias="originalFileName", serialization_alias="originalFileName", default=None
+    )
     project_id: str | None = Field(validation_alias="projectId", serialization_alias="projectId", default=None)
     external_reference: str | None = Field(
         validation_alias="externalReference", serialization_alias="externalReference", default=None

@@ -15,3 +15,6 @@ class CreateUploadSessionRequest(SimScaleModel):
         default=None,
         description="Reference to a component version.  Components are organized into a group hierarchy which serves as a qualification mechanism to avoid collisions and also to group components semantically.  Component versions follow the convention of semantic versioning.  The fully qualified reference of a component version follows the following syntax: `[component_group]:[component]:[component_version]`.",
     )
+    original_file_name: str | None = Field(
+        validation_alias="originalFileName", serialization_alias="originalFileName", default=None
+    )

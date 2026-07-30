@@ -10,5 +10,5 @@ class TranslateBodiesParameters(SimScaleModel):
     occurrences: list[str] | None = Field(default=None, description="List of solid regions and/or sheet bodies.")
     translation_method: TranslateGroupParameter
     copy_bodies: bool = Field(
-        description="If this option is selected, the operation will create new bodies instead of modifying the selected ones."
+        description="If true, the operation creates new bodies instead of modifying the selected ones; if false, the selected bodies are modified in place."
     )

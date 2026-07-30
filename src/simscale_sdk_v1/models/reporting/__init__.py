@@ -23,14 +23,20 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.reporting.displacement import Displacement
     from simscale_sdk_v1.models.reporting.download_info import DownloadInfo
     from simscale_sdk_v1.models.reporting.filters import Filters
+    from simscale_sdk_v1.models.reporting.filters_override import FiltersOverride
     from simscale_sdk_v1.models.reporting.forty_five_view_predefined_camera_settings import (
         FortyFiveViewPredefinedCameraSettings,
     )
+    from simscale_sdk_v1.models.reporting.global_min_max_extreme import GlobalMinMaxExtreme
+    from simscale_sdk_v1.models.reporting.global_min_max_result import GlobalMinMaxResult
     from simscale_sdk_v1.models.reporting.internal_report_response import InternalReportResponse
     from simscale_sdk_v1.models.reporting.iso_surface import IsoSurface
     from simscale_sdk_v1.models.reporting.iso_volume import IsoVolume
     from simscale_sdk_v1.models.reporting.manual_state_metadata import ManualStateMetadata
+    from simscale_sdk_v1.models.reporting.measured_scalar import MeasuredScalar
+    from simscale_sdk_v1.models.reporting.measured_vector import MeasuredVector
     from simscale_sdk_v1.models.reporting.model_settings import ModelSettings
+    from simscale_sdk_v1.models.reporting.model_settings_override import ModelSettingsOverride
     from simscale_sdk_v1.models.reporting.one_of_animation_output_settings import OneOfAnimationOutputSettings
     from simscale_sdk_v1.models.reporting.one_of_camera_settings import OneOfCameraSettings
     from simscale_sdk_v1.models.reporting.one_of_visualization_style import OneOfVisualizationStyle
@@ -61,15 +67,23 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.reporting.shape_animation_output_settings import ShapeAnimationOutputSettings
     from simscale_sdk_v1.models.reporting.spheres_visualization_style import SpheresVisualizationStyle
     from simscale_sdk_v1.models.reporting.state_metadata import StateMetadata
+    from simscale_sdk_v1.models.reporting.state_overrides import StateOverrides
     from simscale_sdk_v1.models.reporting.statistics_bulk_values import StatisticsBulkValues
     from simscale_sdk_v1.models.reporting.statistics_centroid_metric import StatisticsCentroidMetric
     from simscale_sdk_v1.models.reporting.statistics_cutting_plane import StatisticsCuttingPlane
     from simscale_sdk_v1.models.reporting.statistics_cutting_plane_region_entry import StatisticsCuttingPlaneRegionEntry
+    from simscale_sdk_v1.models.reporting.statistics_global_min_max_report_properties import (
+        StatisticsGlobalMinMaxReportProperties,
+    )
+    from simscale_sdk_v1.models.reporting.statistics_global_min_max_report_properties_public import (
+        StatisticsGlobalMinMaxReportPropertiesPublic,
+    )
     from simscale_sdk_v1.models.reporting.statistics_metric import StatisticsMetric
     from simscale_sdk_v1.models.reporting.statistics_part_group import StatisticsPartGroup
     from simscale_sdk_v1.models.reporting.statistics_report_properties import StatisticsReportProperties
     from simscale_sdk_v1.models.reporting.statistics_report_properties_public import StatisticsReportPropertiesPublic
     from simscale_sdk_v1.models.reporting.statistics_result_entry import StatisticsResultEntry
+    from simscale_sdk_v1.models.reporting.step_selector import StepSelector
     from simscale_sdk_v1.models.reporting.time_step_animation_output_settings import TimeStepAnimationOutputSettings
     from simscale_sdk_v1.models.reporting.top_view_predefined_camera_settings import TopViewPredefinedCameraSettings
     from simscale_sdk_v1.models.reporting.user_input_camera_settings import UserInputCameraSettings
@@ -106,15 +120,21 @@ _NAMES: dict[str, tuple[str, str]] = {
     "Displacement": ("simscale_sdk_v1.models.reporting.displacement", "Displacement"),
     "DownloadInfo": ("simscale_sdk_v1.models.reporting.download_info", "DownloadInfo"),
     "Filters": ("simscale_sdk_v1.models.reporting.filters", "Filters"),
+    "FiltersOverride": ("simscale_sdk_v1.models.reporting.filters_override", "FiltersOverride"),
     "FortyFiveViewPredefinedCameraSettings": (
         "simscale_sdk_v1.models.reporting.forty_five_view_predefined_camera_settings",
         "FortyFiveViewPredefinedCameraSettings",
     ),
+    "GlobalMinMaxExtreme": ("simscale_sdk_v1.models.reporting.global_min_max_extreme", "GlobalMinMaxExtreme"),
+    "GlobalMinMaxResult": ("simscale_sdk_v1.models.reporting.global_min_max_result", "GlobalMinMaxResult"),
     "InternalReportResponse": ("simscale_sdk_v1.models.reporting.internal_report_response", "InternalReportResponse"),
     "IsoSurface": ("simscale_sdk_v1.models.reporting.iso_surface", "IsoSurface"),
     "IsoVolume": ("simscale_sdk_v1.models.reporting.iso_volume", "IsoVolume"),
     "ManualStateMetadata": ("simscale_sdk_v1.models.reporting.manual_state_metadata", "ManualStateMetadata"),
+    "MeasuredScalar": ("simscale_sdk_v1.models.reporting.measured_scalar", "MeasuredScalar"),
+    "MeasuredVector": ("simscale_sdk_v1.models.reporting.measured_vector", "MeasuredVector"),
     "ModelSettings": ("simscale_sdk_v1.models.reporting.model_settings", "ModelSettings"),
+    "ModelSettingsOverride": ("simscale_sdk_v1.models.reporting.model_settings_override", "ModelSettingsOverride"),
     "OneOfAnimationOutputSettings": (
         "simscale_sdk_v1.models.reporting.one_of_animation_output_settings",
         "OneOfAnimationOutputSettings",
@@ -168,6 +188,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "SpheresVisualizationStyle",
     ),
     "StateMetadata": ("simscale_sdk_v1.models.reporting.state_metadata", "StateMetadata"),
+    "StateOverrides": ("simscale_sdk_v1.models.reporting.state_overrides", "StateOverrides"),
     "StatisticsBulkValues": ("simscale_sdk_v1.models.reporting.statistics_bulk_values", "StatisticsBulkValues"),
     "StatisticsCentroidMetric": (
         "simscale_sdk_v1.models.reporting.statistics_centroid_metric",
@@ -177,6 +198,14 @@ _NAMES: dict[str, tuple[str, str]] = {
     "StatisticsCuttingPlaneRegionEntry": (
         "simscale_sdk_v1.models.reporting.statistics_cutting_plane_region_entry",
         "StatisticsCuttingPlaneRegionEntry",
+    ),
+    "StatisticsGlobalMinMaxReportProperties": (
+        "simscale_sdk_v1.models.reporting.statistics_global_min_max_report_properties",
+        "StatisticsGlobalMinMaxReportProperties",
+    ),
+    "StatisticsGlobalMinMaxReportPropertiesPublic": (
+        "simscale_sdk_v1.models.reporting.statistics_global_min_max_report_properties_public",
+        "StatisticsGlobalMinMaxReportPropertiesPublic",
     ),
     "StatisticsMetric": ("simscale_sdk_v1.models.reporting.statistics_metric", "StatisticsMetric"),
     "StatisticsPartGroup": ("simscale_sdk_v1.models.reporting.statistics_part_group", "StatisticsPartGroup"),
@@ -189,6 +218,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "StatisticsReportPropertiesPublic",
     ),
     "StatisticsResultEntry": ("simscale_sdk_v1.models.reporting.statistics_result_entry", "StatisticsResultEntry"),
+    "StepSelector": ("simscale_sdk_v1.models.reporting.step_selector", "StepSelector"),
     "TimeStepAnimationOutputSettings": (
         "simscale_sdk_v1.models.reporting.time_step_animation_output_settings",
         "TimeStepAnimationOutputSettings",

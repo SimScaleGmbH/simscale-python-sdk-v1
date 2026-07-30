@@ -36,12 +36,28 @@ _DEFAULT_URL = "https://api.simscale.com"
 
 
 class SimScaleSDK(SimScaleHelpers):
-    def __init__(self, *, api_key: str | None = None, server_url: str | None = None) -> None:
+    def __init__(
+        self,
+        *,
+        api_key: str | None = None,
+        server_url: str | None = None,
+        timeout: float = 60.0,
+        max_retries: int = 5,
+        max_connections: int = 100,
+        max_requests_per_second: float | None = None,
+    ) -> None:
         resolved_key = api_key or os.environ.get("SIMSCALE_API_KEY")
         if not resolved_key:
             raise ValueError("api_key must be provided or SIMSCALE_API_KEY environment variable must be set")
         resolved_url = (server_url or os.environ.get("SIMSCALE_API_URL", _DEFAULT_URL)).rstrip("/") + "/v1"
-        self._client = SimScaleClient(api_key=resolved_key, server_url=resolved_url)
+        self._client = SimScaleClient(
+            api_key=resolved_key,
+            server_url=resolved_url,
+            timeout=timeout,
+            max_retries=max_retries,
+            max_connections=max_connections,
+            max_requests_per_second=max_requests_per_second,
+        )
 
         self.ai_models = AiModels(self._client)
         self.cad_features = CadFeatures(self._client)

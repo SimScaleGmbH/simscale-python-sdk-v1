@@ -13,6 +13,6 @@ class Cylinder(SimScaleModel):
 
     center: Vector
     axis: Vector
-    radius: float
-    height: float
+    radius: float = Field(description="Radius of the cylinder. Uses the sibling `unit` field.")
+    height: float = Field(description="Height of the cylinder. Uses the sibling `unit` field.")
     unit: Literal["m", "cm", "mm", "yd", "ft", "in"] = Field(description="Unit of measurement.")

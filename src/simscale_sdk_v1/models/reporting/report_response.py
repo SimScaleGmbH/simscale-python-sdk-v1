@@ -8,6 +8,7 @@ from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.reporting.download_info import DownloadInfo
+from simscale_sdk_v1.models.reporting.global_min_max_result import GlobalMinMaxResult
 from simscale_sdk_v1.models.reporting.report_from_state_properties import ReportFromStateProperties
 from simscale_sdk_v1.models.reporting.report_properties_public import ReportPropertiesPublic
 from simscale_sdk_v1.models.reporting.statistics_result_entry import StatisticsResultEntry
@@ -55,6 +56,9 @@ class ReportResponse(SimScaleModel):
         serialization_alias="statisticsResult",
         default=None,
         description="Result of a STATISTICS report. Contains one entry per requested part identifier, part group identifier, or cutting plane identifier, each mapping to a StatisticsResultEntry. Null entries indicate that the part or plane was not found in the model.",
+    )
+    min_max_result: GlobalMinMaxResult | None = Field(
+        validation_alias="minMaxResult", serialization_alias="minMaxResult", default=None
     )
     failure_reason: Any | None = Field(
         validation_alias="failureReason", serialization_alias="failureReason", default=None

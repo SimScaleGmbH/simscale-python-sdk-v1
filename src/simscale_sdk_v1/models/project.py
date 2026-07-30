@@ -26,7 +26,7 @@ class Project(SimScaleModel):
     name: str = Field(
         description="The project title should contain the application you want to analyze as well as the simulation method you want to use, e.g. 'Heat exchanger - CHT simulation'."
     )
-    description: str = Field(description="A meaningful description of the project.")
+    description: str | None = Field(default=None, description="A meaningful description of the project.")
     measurement_system: Literal["SI", "US_CUSTOMARY"] = Field(
         validation_alias="measurementSystem",
         serialization_alias="measurementSystem",

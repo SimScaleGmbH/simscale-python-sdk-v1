@@ -106,6 +106,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.bolt_connector import BoltConnector
     from simscale_sdk_v1.models.simulation.bolt_mechanical_properties import BoltMechanicalProperties
     from simscale_sdk_v1.models.simulation.bolt_preload_bc import BoltPreloadBC
+    from simscale_sdk_v1.models.simulation.bolt_preload_bc_marc import BoltPreloadBCMarc
     from simscale_sdk_v1.models.simulation.bonded_contact import BondedContact
     from simscale_sdk_v1.models.simulation.bounded_gauss_upwind_divergence_scheme import (
         BoundedGaussUpwindDivergenceScheme,
@@ -173,6 +174,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.contact_resistance_layer import ContactResistanceLayer
     from simscale_sdk_v1.models.simulation.contact_result_control_item import ContactResultControlItem
     from simscale_sdk_v1.models.simulation.contact_state_type import ContactStateType
+    from simscale_sdk_v1.models.simulation.convection_radiation_bc_marc import ConvectionRadiationBCMarc
     from simscale_sdk_v1.models.simulation.convection_radiation_tbc import ConvectionRadiationTBC
     from simscale_sdk_v1.models.simulation.convection_tbc import ConvectionTBC
     from simscale_sdk_v1.models.simulation.convective_heat_flux import ConvectiveHeatFlux
@@ -1511,6 +1513,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__elastoplastic_network_plasticity_model_elastoplastic_network import (
         OneOf_ElastoplasticNetworkPlasticityModelElastoplasticNetwork,
     )
+    from simscale_sdk_v1.models.simulation.one_of__electromagnetic_advanced_concepts_motion_analysis import (
+        OneOf_ElectromagneticAdvancedConceptsMotionAnalysis,
+    )
     from simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_boundary_conditions import (
         OneOf_ElectromagneticAnalysisBoundaryConditions,
     )
@@ -2603,6 +2608,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.power_law_viscosity_model import PowerLawViscosityModel
     from simscale_sdk_v1.models.simulation.prandtl_les_delta import PrandtlLesDelta
     from simscale_sdk_v1.models.simulation.predefined_rotational_motion import PredefinedRotationalMotion
+    from simscale_sdk_v1.models.simulation.predefined_translational_motion import PredefinedTranslationalMotion
     from simscale_sdk_v1.models.simulation.prescribed_optional_function import PrescribedOptionalFunction
     from simscale_sdk_v1.models.simulation.pressure_bc import PressureBC
     from simscale_sdk_v1.models.simulation.pressure_bc_marc import PressureBCMarc
@@ -2824,6 +2830,7 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.surface_heat_flux import SurfaceHeatFlux
     from simscale_sdk_v1.models.simulation.surface_heat_flux_bc import SurfaceHeatFluxBC
+    from simscale_sdk_v1.models.simulation.surface_heat_flux_bc_marc import SurfaceHeatFluxBCMarc
     from simscale_sdk_v1.models.simulation.surface_load_bc import SurfaceLoadBC
     from simscale_sdk_v1.models.simulation.surface_normal_gradient_schemes import SurfaceNormalGradientSchemes
     from simscale_sdk_v1.models.simulation.surface_normals_result_type import SurfaceNormalsResultType
@@ -2970,6 +2977,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.voltage_excitation import VoltageExcitation
     from simscale_sdk_v1.models.simulation.volume_heat_flux import VolumeHeatFlux
     from simscale_sdk_v1.models.simulation.volume_heat_flux_bc import VolumeHeatFluxBC
+    from simscale_sdk_v1.models.simulation.volume_heat_flux_bc_marc import VolumeHeatFluxBCMarc
     from simscale_sdk_v1.models.simulation.volume_load_bc import VolumeLoadBC
     from simscale_sdk_v1.models.simulation.volumetric_flow import VolumetricFlow
     from simscale_sdk_v1.models.simulation.volumetric_species_humidity_source import VolumetricSpeciesHumiditySource
@@ -3264,6 +3272,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "BoltMechanicalProperties",
     ),
     "BoltPreloadBC": ("simscale_sdk_v1.models.simulation.bolt_preload_bc", "BoltPreloadBC"),
+    "BoltPreloadBCMarc": ("simscale_sdk_v1.models.simulation.bolt_preload_bc_marc", "BoltPreloadBCMarc"),
     "BondedContact": ("simscale_sdk_v1.models.simulation.bonded_contact", "BondedContact"),
     "BoundedGaussUpwindDivergenceScheme": (
         "simscale_sdk_v1.models.simulation.bounded_gauss_upwind_divergence_scheme",
@@ -3375,6 +3384,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "ContactResultControlItem",
     ),
     "ContactStateType": ("simscale_sdk_v1.models.simulation.contact_state_type", "ContactStateType"),
+    "ConvectionRadiationBCMarc": (
+        "simscale_sdk_v1.models.simulation.convection_radiation_bc_marc",
+        "ConvectionRadiationBCMarc",
+    ),
     "ConvectionRadiationTBC": ("simscale_sdk_v1.models.simulation.convection_radiation_tbc", "ConvectionRadiationTBC"),
     "ConvectionTBC": ("simscale_sdk_v1.models.simulation.convection_tbc", "ConvectionTBC"),
     "ConvectiveHeatFlux": ("simscale_sdk_v1.models.simulation.convective_heat_flux", "ConvectiveHeatFlux"),
@@ -5748,6 +5761,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__elastoplastic_network_plasticity_model_elastoplastic_network",
         "OneOf_ElastoplasticNetworkPlasticityModelElastoplasticNetwork",
     ),
+    "OneOf_ElectromagneticAdvancedConceptsMotionAnalysis": (
+        "simscale_sdk_v1.models.simulation.one_of__electromagnetic_advanced_concepts_motion_analysis",
+        "OneOf_ElectromagneticAdvancedConceptsMotionAnalysis",
+    ),
     "OneOf_ElectromagneticAnalysisBoundaryConditions": (
         "simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_boundary_conditions",
         "OneOf_ElectromagneticAnalysisBoundaryConditions",
@@ -7400,6 +7417,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.predefined_rotational_motion",
         "PredefinedRotationalMotion",
     ),
+    "PredefinedTranslationalMotion": (
+        "simscale_sdk_v1.models.simulation.predefined_translational_motion",
+        "PredefinedTranslationalMotion",
+    ),
     "PrescribedOptionalFunction": (
         "simscale_sdk_v1.models.simulation.prescribed_optional_function",
         "PrescribedOptionalFunction",
@@ -7810,6 +7831,7 @@ _NAMES: dict[str, tuple[str, str]] = {
     ),
     "SurfaceHeatFlux": ("simscale_sdk_v1.models.simulation.surface_heat_flux", "SurfaceHeatFlux"),
     "SurfaceHeatFluxBC": ("simscale_sdk_v1.models.simulation.surface_heat_flux_bc", "SurfaceHeatFluxBC"),
+    "SurfaceHeatFluxBCMarc": ("simscale_sdk_v1.models.simulation.surface_heat_flux_bc_marc", "SurfaceHeatFluxBCMarc"),
     "SurfaceLoadBC": ("simscale_sdk_v1.models.simulation.surface_load_bc", "SurfaceLoadBC"),
     "SurfaceNormalGradientSchemes": (
         "simscale_sdk_v1.models.simulation.surface_normal_gradient_schemes",
@@ -8098,6 +8120,7 @@ _NAMES: dict[str, tuple[str, str]] = {
     "VoltageExcitation": ("simscale_sdk_v1.models.simulation.voltage_excitation", "VoltageExcitation"),
     "VolumeHeatFlux": ("simscale_sdk_v1.models.simulation.volume_heat_flux", "VolumeHeatFlux"),
     "VolumeHeatFluxBC": ("simscale_sdk_v1.models.simulation.volume_heat_flux_bc", "VolumeHeatFluxBC"),
+    "VolumeHeatFluxBCMarc": ("simscale_sdk_v1.models.simulation.volume_heat_flux_bc_marc", "VolumeHeatFluxBCMarc"),
     "VolumeLoadBC": ("simscale_sdk_v1.models.simulation.volume_load_bc", "VolumeLoadBC"),
     "VolumetricFlow": ("simscale_sdk_v1.models.simulation.volumetric_flow", "VolumetricFlow"),
     "VolumetricSpeciesHumiditySource": (

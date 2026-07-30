@@ -47,6 +47,12 @@ class StatisticsBulkValues(SimScaleModel):
     volume_element_max: StatisticsMetric | None = Field(
         validation_alias="volumeElementMax", serialization_alias="volumeElementMax", default=None
     )
+    mass_flow_rate: StatisticsMetric | None = Field(
+        validation_alias="massFlowRate", serialization_alias="massFlowRate", default=None
+    )
+    volumetric_flow_rate: StatisticsMetric | None = Field(
+        validation_alias="volumetricFlowRate", serialization_alias="volumetricFlowRate", default=None
+    )
     centroid: StatisticsCentroidMetric | None = Field(default=None)
     bounding_box_min: StatisticsCentroidMetric | None = Field(
         validation_alias="boundingBoxMin", serialization_alias="boundingBoxMin", default=None

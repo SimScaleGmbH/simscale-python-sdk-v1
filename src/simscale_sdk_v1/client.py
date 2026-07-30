@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import logging
+import threading
 import time
+import weakref
 from collections.abc import Callable
 from importlib.metadata import version
 from pathlib import Path
@@ -19,7 +22,33 @@ _USER_AGENT = f"simscale-sdk-python/{_SDK_VERSION}"
 _RETRIABLE_STATUSES = frozenset({408, 429, 500, 502, 503, 504})
 _IDEMPOTENT_METHODS = frozenset({"GET", "HEAD", "OPTIONS", "PUT", "DELETE"})
 
+logger = logging.getLogger("simscale_sdk_v1")
+
 T = TypeVar("T", bound=BaseModel)
+
+
+class _RateLimiter:
+    """Thread-safe rate limiter spacing this client's outbound requests to at
+    most rate_per_second (including retries), so a burst of concurrent calls
+    stays under the server/WAF per-IP limit. A no-op when rate_per_second is
+    None (the default), so existing callers are unaffected.
+    """
+
+    def __init__(self, rate_per_second: float | None) -> None:
+        self._rate = rate_per_second
+        self._min_interval = 1.0 / rate_per_second if rate_per_second and rate_per_second > 0 else None
+        self._next = time.monotonic()
+        self._lock = threading.Lock()
+
+    def acquire(self) -> None:
+        if self._min_interval is None:
+            return
+        with self._lock:
+            now = time.monotonic()
+            wait = self._next - now
+            self._next = max(now, self._next) + self._min_interval
+        if wait > 0:
+            time.sleep(wait)
 
 
 class PaginatedResponse(Generic[T]):
@@ -99,6 +128,22 @@ class SimScaleAPIError(Exception):
         return f"{self.status_code} {reason}: {url}\n  {self.body}"
 
 
+class SimScaleTimeoutError(Exception):
+    """Raised when a request exhausts its retries on client-side timeouts.
+
+    Fail loud instead of hanging: carries the request context (method, url,
+    elapsed, attempts) so a stuck call surfaces as a clear, actionable error
+    rather than looking like a hang. Chained from the underlying httpx timeout.
+    """
+
+    def __init__(self, method: str, url: str, elapsed: float, attempts: int, cause: Exception) -> None:
+        self.method = method
+        self.url = url
+        self.elapsed = elapsed
+        self.attempts = attempts
+        super().__init__(f"{method} {url} timed out after {attempts} attempt(s), {elapsed:.1f}s total: {cause}")
+
+
 class SimScaleClient:
     """Low-level HTTP client for the SimScale v1 API."""
 
@@ -107,42 +152,88 @@ class SimScaleClient:
         *,
         api_key: str,
         server_url: str,
+        timeout: float = 60.0,
         max_retries: int = 5,
         retry_backoff: float = 0.2,
+        retry_after_cap: float = 60.0,
+        max_connections: int = 100,
+        max_requests_per_second: float | None = None,
     ) -> None:
         self._server_url = server_url.rstrip("/")
         self._http = httpx.Client(
             base_url=self._server_url,
             headers={"X-API-KEY": api_key, "User-Agent": _USER_AGENT},
             follow_redirects=True,
-            timeout=30.0,
+            timeout=timeout,
+            limits=httpx.Limits(max_connections=max_connections),
         )
         self._max_retries = max_retries
         self._retry_backoff = retry_backoff
+        self._retry_after_cap = retry_after_cap
+        self._rate_limiter = _RateLimiter(max_requests_per_second)
+        # Safety net: close the httpx client (releasing its socket pool) if this
+        # instance is garbage-collected without an explicit close()/context-exit.
+        # Binds the client's close, not self, so it doesn't keep self alive.
+        self._finalizer = weakref.finalize(self, self._http.close)
 
     def _with_retry(self, method: str, send: Callable[[], httpx.Response]) -> httpx.Response:
         """Invoke *send* with retries on transient failures.
 
         Retries network errors and 5xx responses for idempotent methods, and 429
         regardless of method (rate-limit — server hasn't acted yet). Honors
-        Retry-After on 429 when present. Disabled when max_retries is 0.
+        Retry-After on 429 when present, capped at retry_after_cap. Disabled when
+        max_retries is 0. Fails loud: a client timeout that exhausts retries is
+        re-raised as SimScaleTimeoutError with context (never swallowed), and
+        every retry is logged so a throttled/slow call is visible, not a hang.
         """
         method_u = method.upper()
         last_exc: Exception | None = None
+        start = time.monotonic()
         for attempt in range(self._max_retries + 1):
+            self._rate_limiter.acquire()
             try:
                 resp = send()
             except (httpx.TimeoutException, httpx.NetworkError) as e:
                 last_exc = e
                 if attempt >= self._max_retries or method_u not in _IDEMPOTENT_METHODS:
+                    if isinstance(e, httpx.TimeoutException):
+                        # Use the private _request: the public .request property
+                        # raises RuntimeError (not AttributeError) when unset, which
+                        # getattr wouldn't swallow and would mask the timeout.
+                        req = getattr(e, "_request", None)
+                        raise SimScaleTimeoutError(
+                            method_u,
+                            str(getattr(req, "url", "?")),
+                            time.monotonic() - start,
+                            attempt + 1,
+                            e,
+                        ) from e
                     raise
-                time.sleep(self._retry_backoff * (2**attempt))
+                delay = self._retry_backoff * (2**attempt)
+                logger.warning(
+                    "%s request failed (%s); retry %d/%d in %.1fs",
+                    method_u,
+                    type(e).__name__,
+                    attempt + 1,
+                    self._max_retries,
+                    delay,
+                )
+                time.sleep(delay)
                 continue
 
             status = resp.status_code
             retry_status = status == 429 or (status in _RETRIABLE_STATUSES and method_u in _IDEMPOTENT_METHODS)
             if retry_status and attempt < self._max_retries:
-                time.sleep(self._retry_delay(attempt, resp))
+                delay = self._retry_delay(attempt, resp)
+                logger.warning(
+                    "%s got HTTP %d; retry %d/%d in %.1fs",
+                    method_u,
+                    status,
+                    attempt + 1,
+                    self._max_retries,
+                    delay,
+                )
+                time.sleep(delay)
                 continue
             return resp
         raise last_exc if last_exc else RuntimeError("retry loop exited unexpectedly")
@@ -152,7 +243,9 @@ class SimScaleClient:
             ra = resp.headers.get("Retry-After")
             if ra:
                 try:
-                    return max(0.0, float(ra))
+                    # Cap the server-provided delay so a large Retry-After doesn't
+                    # stall the caller for minutes and read as a hang.
+                    return min(max(0.0, float(ra)), self._retry_after_cap)
                 except ValueError:
                     pass  # fall through to exponential backoff
         return self._retry_backoff * (2**attempt)
