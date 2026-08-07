@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.compute_resource_type import ComputeResourceType
     from simscale_sdk_v1.models.create_ai_prediction_request import CreateAiPredictionRequest
     from simscale_sdk_v1.models.create_ai_prediction_response import CreateAiPredictionResponse
+    from simscale_sdk_v1.models.create_async_ai_prediction_response import CreateAsyncAiPredictionResponse
     from simscale_sdk_v1.models.create_export_request import CreateExportRequest
     from simscale_sdk_v1.models.create_export_response import CreateExportResponse
     from simscale_sdk_v1.models.create_saved_selection_request import CreateSavedSelectionRequest
@@ -51,6 +52,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.geometry_primitive_response import GeometryPrimitiveResponse
     from simscale_sdk_v1.models.geometry_unit import GeometryUnit
     from simscale_sdk_v1.models.get_ai_models_response import GetAiModelsResponse
+    from simscale_sdk_v1.models.get_ai_prediction_response import GetAiPredictionResponse
     from simscale_sdk_v1.models.get_available_ai_models_response import GetAvailableAiModelsResponse
     from simscale_sdk_v1.models.get_export_response import GetExportResponse
     from simscale_sdk_v1.models.interpolation_parameters import InterpolationParameters
@@ -148,6 +150,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.create_ai_prediction_response",
         "CreateAiPredictionResponse",
     ),
+    "CreateAsyncAiPredictionResponse": (
+        "simscale_sdk_v1.models.create_async_ai_prediction_response",
+        "CreateAsyncAiPredictionResponse",
+    ),
     "CreateExportRequest": ("simscale_sdk_v1.models.create_export_request", "CreateExportRequest"),
     "CreateExportResponse": ("simscale_sdk_v1.models.create_export_response", "CreateExportResponse"),
     "CreateSavedSelectionRequest": (
@@ -176,6 +182,7 @@ _NAMES: dict[str, tuple[str, str]] = {
     "GeometryPrimitiveResponse": ("simscale_sdk_v1.models.geometry_primitive_response", "GeometryPrimitiveResponse"),
     "GeometryUnit": ("simscale_sdk_v1.models.geometry_unit", "GeometryUnit"),
     "GetAiModelsResponse": ("simscale_sdk_v1.models.get_ai_models_response", "GetAiModelsResponse"),
+    "GetAiPredictionResponse": ("simscale_sdk_v1.models.get_ai_prediction_response", "GetAiPredictionResponse"),
     "GetAvailableAiModelsResponse": (
         "simscale_sdk_v1.models.get_available_ai_models_response",
         "GetAvailableAiModelsResponse",

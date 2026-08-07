@@ -115,6 +115,28 @@ class DataRepository:
             response_type=models.data_repository.DataInfo,
         )
 
+    def get_domain_specific_metadata(
+        self,
+        data_id: str,
+    ) -> models.data_repository.DomainSpecificMetadata | None:
+        """Read the domain-specific metadata of a data object.
+
+
+
+        Returns the domain-specific metadata attached to the data object, a free-form
+
+        JSON object whose shape is defined by the metadata schema of the data type.
+
+        Data with no metadata attached is reported as 204, which is distinct from
+
+        metadata that was set to an empty object.
+        """
+        return self._client.request(
+            "GET",
+            f"/data-repository/data/{data_id}/domain-specific-metadata",
+            response_type=models.data_repository.DomainSpecificMetadata,
+        )
+
     def list_data(
         self,
         project_id: str,
@@ -148,12 +170,40 @@ class DataRepository:
             response_type=models.data_repository.UploadSessionAppend,
         )
 
+    def update_domain_specific_metadata(
+        self,
+        data_id: str,
+        body: models.data_repository.DomainSpecificMetadata,
+    ) -> None:
+        """Update the domain-specific metadata of a data object.
+
+
+
+        Replaces the domain-specific metadata attached to the data object with the
+
+        request body. The metadata is a free-form JSON object; if the data type declares
+
+        a metadata schema, the body is validated against it.
+
+
+
+        Transient result data uploaded for result import is marked as PVD-formatted by
+
+        setting `{"format": "PVD"}` here.
+        """
+        return self._client.request(
+            "PUT",
+            f"/data-repository/data/{data_id}/domain-specific-metadata",
+            json_body=body,
+        )
+
     def upload_data(
         self,
         content: bytes | BinaryIO | Path,
         *,
         data_type: str | None = None,
         project_id: str | None = None,
+        original_file_name: str | None = None,
         content_type: str | None = None,
     ) -> models.DataId:
         """Upload a new data object."""
@@ -162,6 +212,6 @@ class DataRepository:
             "/data-repository/data",
             binary_body=content,
             content_type=content_type,
-            query_params={"dataType": data_type, "projectId": project_id},
+            query_params={"dataType": data_type, "projectId": project_id, "originalFileName": original_file_name},
             response_type=models.DataId,
         )

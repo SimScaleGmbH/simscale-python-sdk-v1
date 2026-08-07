@@ -5,6 +5,7 @@ from pathlib import Path
 
 from simscale_sdk_v1 import SimScaleSDK
 from simscale_sdk_v1.models import CreateExportRequest, Project
+from simscale_sdk_v1.models.data_repository import DomainSpecificMetadata
 from simscale_sdk_v1.models.workflow_repository import CreateWorkflowRequest
 from simscale_sdk_v1.models.workflow_runner import InitializeWorkflowRunRequest
 
@@ -12,6 +13,9 @@ EXAMPLE_DIR = Path(__file__).resolve().parent
 
 INPUT_FILE = EXAMPLE_DIR / "fixtures/cube_with_results_ascii.vtu"
 INPUT_CONTENT_TYPE = "application/octet-stream"
+# Format of the uploaded data. VTK covers single-file VTU/VTM input; transient results
+# assembled from a PVD collection use "PVD", MED-format meshes use "MED".
+INPUT_FORMAT = "VTK"
 
 WORKFLOW_TYPE = "simscale.ramps:mesh-and-result-import:1.3.1"
 INPUT_DATA_TYPE = "simscale.ramps:general-mesh-and-fields:1.0.0"
@@ -39,6 +43,12 @@ input_data_id = sdk.upload_to_data_repository(
     content_type=INPUT_CONTENT_TYPE,
 )
 print(f"input_data_id: {input_data_id}")
+
+# Declare the format of the uploaded data, so the conversion knows how to read it
+sdk.data_repository.update_domain_specific_metadata(
+    input_data_id,
+    DomainSpecificMetadata(format=INPUT_FORMAT),
+)
 
 # Create workflow
 workflow_id = sdk.workflow_repository.create_workflow(

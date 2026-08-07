@@ -21,6 +21,9 @@ class DataDescription(SimScaleModel):
     data_type_filter: Any | None = Field(
         validation_alias="dataTypeFilter", serialization_alias="dataTypeFilter", default=None
     )
+    data_validation_rule_set: Any | None = Field(
+        validation_alias="dataValidationRuleSet", serialization_alias="dataValidationRuleSet", default=None
+    )
     doc: str | None = Field(default=None)
     label: str | None = Field(default=None)
     multi_language_doc: dict[str, str] | None = Field(

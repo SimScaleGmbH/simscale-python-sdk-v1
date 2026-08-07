@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from simscale_sdk_v1.models.data_repository.create_upload_session_request import CreateUploadSessionRequest
     from simscale_sdk_v1.models.data_repository.data_info import DataInfo
+    from simscale_sdk_v1.models.data_repository.domain_specific_metadata import DomainSpecificMetadata
     from simscale_sdk_v1.models.data_repository.external_data_info import ExternalDataInfo
     from simscale_sdk_v1.models.data_repository.http_header import HttpHeader
     from simscale_sdk_v1.models.data_repository.internal_data_info import InternalDataInfo
@@ -26,6 +27,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "CreateUploadSessionRequest",
     ),
     "DataInfo": ("simscale_sdk_v1.models.data_repository.data_info", "DataInfo"),
+    "DomainSpecificMetadata": (
+        "simscale_sdk_v1.models.data_repository.domain_specific_metadata",
+        "DomainSpecificMetadata",
+    ),
     "ExternalDataInfo": ("simscale_sdk_v1.models.data_repository.external_data_info", "ExternalDataInfo"),
     "HttpHeader": ("simscale_sdk_v1.models.data_repository.http_header", "HttpHeader"),
     "InternalDataInfo": ("simscale_sdk_v1.models.data_repository.internal_data_info", "InternalDataInfo"),

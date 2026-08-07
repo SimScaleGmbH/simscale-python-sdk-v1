@@ -8,11 +8,37 @@ class AiModels:
     def __init__(self, client: SimScaleClient) -> None:
         self._client = client
 
+    def create_async_prediction(
+        self,
+        body: models.CreateAiPredictionRequest,
+    ) -> models.CreateAsyncAiPredictionResponse:
+        """Start an AI prediction for a simulation based on an AI model
+
+
+
+        Starts the prediction and returns immediately, without waiting for the results. Poll
+
+        GET /ai/predictions/{predictionId} for the status and the results.
+        """
+        return self._client.request(
+            "POST",
+            "/ai/predictions",
+            json_body=body,
+            response_type=models.CreateAsyncAiPredictionResponse,
+        )
+
     def create_prediction(
         self,
         body: models.CreateAiPredictionRequest,
     ) -> models.CreateAiPredictionResponse:
-        """Generate an AI prediction for a simulation based on an AI model"""
+        """Generate an AI prediction for a simulation based on an AI model
+
+
+
+        Waits for the prediction to finish and returns the results. Predictions that take longer
+
+        than 50 seconds time out, use POST /v1/ai/predictions for those.
+        """
         return self._client.request(
             "POST",
             "/ai/predict",
@@ -51,4 +77,15 @@ class AiModels:
             "/ai/available-models",
             query_params={"simulationId": simulation_id, "projectId": project_id},
             response_type=models.GetAvailableAiModelsResponse,
+        )
+
+    def get_prediction(
+        self,
+        prediction_id: str,
+    ) -> models.GetAiPredictionResponse:
+        """Get the status of an AI prediction, and its results if it is done"""
+        return self._client.request(
+            "GET",
+            f"/ai/predictions/{prediction_id}",
+            response_type=models.GetAiPredictionResponse,
         )

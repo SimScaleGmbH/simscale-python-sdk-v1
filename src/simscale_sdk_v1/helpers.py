@@ -116,6 +116,7 @@ class SimScaleHelpers:
             models.data_repository.CreateUploadSessionRequest(
                 data_type=data_type,
                 content_type=content_type,
+                original_file_name=path.name,
             ),
             project_id=project_id,
         )
