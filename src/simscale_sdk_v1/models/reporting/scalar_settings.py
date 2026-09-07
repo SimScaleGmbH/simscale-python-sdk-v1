@@ -5,6 +5,7 @@ from typing import Literal
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
+from simscale_sdk_v1.models.reporting.color import Color
 from simscale_sdk_v1.models.reporting.scalar_field import ScalarField
 
 
@@ -54,4 +55,16 @@ class ScalarSettings(SimScaleModel):
         serialization_alias="colorScheme",
         default="NORMAL",
         description="The color scheme to use to map scalar values on the model and legend bar.",
+    )
+    color_legend_scaling: Literal["FULL_RANGE", "VISIBLE_ITEMS", "VISIBLE_ITEMS_WITH_INNER_VOLUME"] | None = Field(
+        validation_alias="colorLegendScaling",
+        serialization_alias="colorLegendScaling",
+        default="FULL_RANGE",
+        description="How the color legend range is scaled when minimumRange/maximumRange are not given. FULL_RANGE uses the whole dataset (all parts, shown or hidden). VISIBLE_ITEMS scales to only the currently visible items. VISIBLE_ITEMS_WITH_INNER_VOLUME additionally folds in the inner volume behind visible faces. Ignored when minimumRange/maximumRange are provided (an explicit range always wins).",
+    )
+    below_range_color: Color | None = Field(
+        validation_alias="belowRangeColor", serialization_alias="belowRangeColor", default=None
+    )
+    above_range_color: Color | None = Field(
+        validation_alias="aboveRangeColor", serialization_alias="aboveRangeColor", default=None
     )

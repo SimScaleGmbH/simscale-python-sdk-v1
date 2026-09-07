@@ -25,6 +25,12 @@ class DataDescription(SimScaleModel):
         validation_alias="dataValidationRuleSet", serialization_alias="dataValidationRuleSet", default=None
     )
     doc: str | None = Field(default=None)
+    fixed_data_id: str | None = Field(
+        validation_alias="fixedDataId",
+        serialization_alias="fixedDataId",
+        default=None,
+        description="Data identifier. It is a string composed of the type identifier and a UUID: `data:[UUID]`.",
+    )
     label: str | None = Field(default=None)
     multi_language_doc: dict[str, str] | None = Field(
         validation_alias="multiLanguageDoc", serialization_alias="multiLanguageDoc", default=None

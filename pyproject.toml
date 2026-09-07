@@ -1,13 +1,17 @@
 [project]
 name = "simscale_sdk_v1"
-version = "0.4.0"
+version = "0.5.0"
 description = "SimScale Python SDK v1"
 requires-python = ">=3.10"
 dependencies = [
     "httpx >=0.28.1",
     "isodate >=0.7",
     "pydantic >=2.0",
+    "truststore >=0.10",
 ]
+
+[project.scripts]
+simscale-network-check = "simscale_sdk_v1.network_check:main"
 
 [dependency-groups]
 build = [

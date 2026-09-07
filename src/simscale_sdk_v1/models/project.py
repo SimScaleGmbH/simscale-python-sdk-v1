@@ -27,10 +27,16 @@ class Project(SimScaleModel):
         description="The project title should contain the application you want to analyze as well as the simulation method you want to use, e.g. 'Heat exchanger - CHT simulation'."
     )
     description: str | None = Field(default=None, description="A meaningful description of the project.")
-    measurement_system: Literal["SI", "US_CUSTOMARY"] = Field(
+    measurement_system: Literal["SI", "US_CUSTOMARY"] | None = Field(
         validation_alias="measurementSystem",
         serialization_alias="measurementSystem",
         default="SI",
-        description="The measurement system of the project. Can't be modified.",
+        description="The measurement system of the project. Can't be modified. Only applies to SIMULATION projects, SI is used when it is omitted. PHYSICS_AI projects have no measurement system.",
+    )
+    project_type: str | None = Field(
+        validation_alias="projectType",
+        serialization_alias="projectType",
+        default=None,
+        description="The type of the project. Can only be set when the project is created, 'SIMULATION' is used when it is omitted. The possible values are 'SIMULATION' and 'PHYSICS_AI'.",
     )
     tags: list[str] | None = Field(default=None)

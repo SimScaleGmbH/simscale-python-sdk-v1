@@ -24,7 +24,7 @@ from simscale_sdk_v1.models.workflows.real_to_dimensional_scalar_value_conversio
     RealToDimensionalScalarValueConversion,
 )
 
-# Value model for a dimensional scalar.  Resolves to an object node with field `value` (double node) and field `unit` (text node).  Note: during resolution all dimensionals are converted to base SI units (e.g. 50 miles/hour -> 22.352 m/s).
+# Value model for a dimensional scalar.  Resolves to an object node with field `value` (double node) and field `unit` (text node).  Note: during resolution dimensionals are converted to base SI units (e.g. 50 miles/hour -> 22.352 m/s), unless the resolution context opts out of the conversion to keep the original units; results of operations are always in base SI units.
 _DIMENSIONAL_SCALAR_VALUE_VARIANTS: dict[str, type] = {
     "dimensional_scalar:constant": DimensionalScalarConstant,
     "dimensional_scalar:expression:select": DimensionalScalarExpressionSelect,

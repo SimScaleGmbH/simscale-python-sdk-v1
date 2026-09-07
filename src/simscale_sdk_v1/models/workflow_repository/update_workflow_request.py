@@ -9,7 +9,7 @@ from simscale_sdk_v1.models.workflows.breakpoint import Breakpoint
 
 
 class UpdateWorkflowRequest(SimScaleModel):
-    """Workflow update data structure. Suitable for specifying all mutable properties. Properties which are not presented will not be updated in the workflow."""
+    """Workflow update data structure. Suitable for specifying all mutable properties. Properties which are omitted or explicitly null will not be updated in the workflow."""
 
     breakpoints: list[Breakpoint] | None = Field(default=None)
     configuration: Any | None = Field(default=None)

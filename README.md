@@ -66,6 +66,7 @@ Construct **one `SimScaleSDK` per process and reuse it** (don't create one per c
 | `max_retries` | `5` | Retries on network errors / 5xx (idempotent methods) and 429 (any method). |
 | `max_connections` | `100` | httpx connection-pool size. |
 | `max_requests_per_second` | `None` | Optional client-side rate limiter (paces outbound requests). `None` disables it. Set it to stay under the server's per-IP rate limit when running many concurrent calls. |
+| `verify` | `None` | TLS verification, passed to httpx. By default certificates are verified against the operating system's trust store (via `truststore`), so corporate CAs installed on the machine work. Pass an `ssl.SSLContext`, a CA bundle path, or `True` (httpx's bundled CA list) to override. |
 
 ```python
 with SimScaleSDK(timeout=90, max_requests_per_second=10) as sdk:
@@ -188,6 +189,28 @@ water_data = sdk.get_material("Water")
 custom_mat = sdk.get_material("Steel", group="My Custom Group")
 ```
 
+### network_check
+
+Measure API roundtrip and upload throughput from this environment (see the Network check section):
+
+```python
+result = sdk.network_check()
+print(result.upload_single_mbits, result.upload_parallel_mbits)
+```
+
+## Network check
+
+If uploads are slow or API calls fail, run the bundled diagnostic. It measures the API roundtrip and the upload throughput to SimScale's storage (single stream and 4 parallel streams) and reports the network path details (RTT, TLS certificate issuer, proxy variables, VPN routing for CGNAT-based VPNs such as Tailscale). Installing the SDK provides the command:
+
+```bash
+export SIMSCALE_API_KEY="your-api-key"
+simscale-network-check
+```
+
+Share the complete output when contacting SimScale support.
+
+The test uploads synthetic data through upload sessions that are deleted without being finalized, so nothing is stored. A project named "SimScale network check" is found or created to book the sessions in. Total transfer volume is at most a few hundred MB on fast connections and the run takes well under a minute.
+
 ## Examples
 
 The `examples/` folder contains complete, runnable scripts:
@@ -199,6 +222,7 @@ The `examples/` folder contains complete, runnable scripts:
 | `pedestrian_wind_comfort_example.py` | Pedestrian Wind Comfort (PWC): wind rose data, geographical location, region of interest, comfort surfaces, Wind API integration, and additional wind data for reusing directional results |
 | `folders_and_spaces_example.py` | Space and folder management: creation, listing, moving, and deletion |
 | `workflow_mesh_and_result_import_example.py` | Workflow public API: upload VTU data, create and run the mesh-and-result-import workflow, and export the imported result |
+| `network_check_example.py` | Network diagnostic: API roundtrip and upload throughput measurement, with the transfer size capped to keep the example fast |
 
 ### Running Examples
 

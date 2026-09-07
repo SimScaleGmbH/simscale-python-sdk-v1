@@ -24,5 +24,5 @@ class WrapOccurrencesParameters(SimScaleModel):
     )
     tunnel_detection: WrapTunnelDetectionParameter
     replace_each: bool = Field(
-        description="Controls the result. If `true`, each body is wrapped individually; otherwise, one wrap body encloses all selected bodies."
+        description="Controls whether the selected occurrences are wrapped individually or merged into a single wrap body. In both cases, the original selected occurrences are removed and do not remain in the model alongside the result. - If `true`, each selected occurrence is wrapped separately and replaced 1:1 by its own wrap body. - If `false`, all selected occurrences are removed together and replaced by a single wrap body enclosing all of them.  If only one occurrence is selected, this parameter is ignored and treated as `true`."
     )

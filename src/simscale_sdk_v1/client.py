@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import ssl
 import threading
 import time
 import weakref
@@ -12,6 +13,7 @@ from pathlib import Path
 from typing import Any, BinaryIO, Generic, TypeVar
 
 import httpx
+import truststore
 from pydantic import BaseModel, TypeAdapter
 
 from simscale_sdk_v1.strip_unset import strip_unset_defaults
@@ -25,6 +27,11 @@ _IDEMPOTENT_METHODS = frozenset({"GET", "HEAD", "OPTIONS", "PUT", "DELETE"})
 logger = logging.getLogger("simscale_sdk_v1")
 
 T = TypeVar("T", bound=BaseModel)
+
+
+def default_ssl_context() -> ssl.SSLContext:
+    """Verify against the OS trust store (like a browser), so corporate CAs work."""
+    return truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
 
 
 class _RateLimiter:
@@ -158,6 +165,7 @@ class SimScaleClient:
         retry_after_cap: float = 60.0,
         max_connections: int = 100,
         max_requests_per_second: float | None = None,
+        verify: ssl.SSLContext | str | bool | None = None,
     ) -> None:
         self._server_url = server_url.rstrip("/")
         self._http = httpx.Client(
@@ -166,6 +174,7 @@ class SimScaleClient:
             follow_redirects=True,
             timeout=timeout,
             limits=httpx.Limits(max_connections=max_connections),
+            verify=verify if verify is not None else default_ssl_context(),
         )
         self._max_retries = max_retries
         self._retry_backoff = retry_backoff

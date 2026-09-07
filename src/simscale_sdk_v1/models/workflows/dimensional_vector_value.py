@@ -15,7 +15,7 @@ from simscale_sdk_v1.models.workflows.dimensional_vector_operation_plus import D
 from simscale_sdk_v1.models.workflows.dimensional_vector_operation_times import DimensionalVectorOperationTimes
 from simscale_sdk_v1.models.workflows.dimensional_vector_reference import DimensionalVectorReference
 
-# Value model for a dimensional vector.  Resolves to an object node with field `vector` containing Cartesian vector components (`x`, `y`, `z`; as double nodes) and field `unit` (text node).  Note that during resolution, all dimensionals are converted to base SI units (e.g. 50 miles/hour -> 22.352 m/s),
+# Value model for a dimensional vector.  Resolves to an object node with field `vector` containing Cartesian vector components (`x`, `y`, `z`; as double nodes) and field `unit` (text node).  Note that during resolution dimensionals are converted to base SI units (e.g. 50 miles/hour -> 22.352 m/s), unless the resolution context opts out of the conversion to keep the original units; results of operations are always in base SI units.
 _DIMENSIONAL_VECTOR_VALUE_VARIANTS: dict[str, type] = {
     "dimensional_vector:constant": DimensionalVectorConstant,
     "dimensional_vector:expression:select": DimensionalVectorExpressionSelect,

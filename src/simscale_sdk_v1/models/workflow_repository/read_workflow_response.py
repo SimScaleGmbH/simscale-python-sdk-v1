@@ -21,7 +21,7 @@ class ReadWorkflowResponse(SimScaleModel):
         validation_alias="inputDataMap", serialization_alias="inputDataMap", default=None
     )
     name: str | None = Field(default=None)
-    origin: Literal["CREATED", "UPDATED", "MIGRATED", "COPIED"] | None = Field(
+    origin: Literal["CREATED", "UPDATED", "RESTORED", "MIGRATED", "COPIED"] | None = Field(
         default=None, description="The operation through which the workflow version came into existence."
     )
     parent_workflow_version_id: str | None = Field(

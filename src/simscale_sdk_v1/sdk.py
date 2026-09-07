@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import ssl
 
 from simscale_sdk_v1.client import SimScaleClient
 from simscale_sdk_v1.helpers import SimScaleHelpers
@@ -45,6 +46,7 @@ class SimScaleSDK(SimScaleHelpers):
         max_retries: int = 5,
         max_connections: int = 100,
         max_requests_per_second: float | None = None,
+        verify: ssl.SSLContext | str | bool | None = None,
     ) -> None:
         resolved_key = api_key or os.environ.get("SIMSCALE_API_KEY")
         if not resolved_key:
@@ -57,6 +59,7 @@ class SimScaleSDK(SimScaleHelpers):
             max_retries=max_retries,
             max_connections=max_connections,
             max_requests_per_second=max_requests_per_second,
+            verify=verify,
         )
 
         self.ai_models = AiModels(self._client)

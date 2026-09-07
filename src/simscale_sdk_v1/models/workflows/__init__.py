@@ -346,6 +346,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.workflows.value_list_value import ValueListValue
     from simscale_sdk_v1.models.workflows.value_reference import ValueReference
     from simscale_sdk_v1.models.workflows.vector import Vector
+    from simscale_sdk_v1.models.workflows.viewer_entity_value_reference import ViewerEntityValueReference
     from simscale_sdk_v1.models.workflows.visibility_ui_configuration_entry import VisibilityUiConfigurationEntry
 
 _NAMES: dict[str, tuple[str, str]] = {
@@ -1036,6 +1037,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "ValueListValue": ("simscale_sdk_v1.models.workflows.value_list_value", "ValueListValue"),
     "ValueReference": ("simscale_sdk_v1.models.workflows.value_reference", "ValueReference"),
     "Vector": ("simscale_sdk_v1.models.workflows.vector", "Vector"),
+    "ViewerEntityValueReference": (
+        "simscale_sdk_v1.models.workflows.viewer_entity_value_reference",
+        "ViewerEntityValueReference",
+    ),
     "VisibilityUiConfigurationEntry": (
         "simscale_sdk_v1.models.workflows.visibility_ui_configuration_entry",
         "VisibilityUiConfigurationEntry",

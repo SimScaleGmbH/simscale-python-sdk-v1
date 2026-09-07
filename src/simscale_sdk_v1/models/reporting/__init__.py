@@ -41,6 +41,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.reporting.one_of_camera_settings import OneOfCameraSettings
     from simscale_sdk_v1.models.reporting.one_of_visualization_style import OneOfVisualizationStyle
     from simscale_sdk_v1.models.reporting.opacity import Opacity
+    from simscale_sdk_v1.models.reporting.out_of_range_color_override import OutOfRangeColorOverride
     from simscale_sdk_v1.models.reporting.part import Part
     from simscale_sdk_v1.models.reporting.particle_trace import ParticleTrace
     from simscale_sdk_v1.models.reporting.particle_trace_animation_output_settings import (
@@ -145,6 +146,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "OneOfVisualizationStyle",
     ),
     "Opacity": ("simscale_sdk_v1.models.reporting.opacity", "Opacity"),
+    "OutOfRangeColorOverride": (
+        "simscale_sdk_v1.models.reporting.out_of_range_color_override",
+        "OutOfRangeColorOverride",
+    ),
     "Part": ("simscale_sdk_v1.models.reporting.part", "Part"),
     "ParticleTrace": ("simscale_sdk_v1.models.reporting.particle_trace", "ParticleTrace"),
     "ParticleTraceAnimationOutputSettings": (

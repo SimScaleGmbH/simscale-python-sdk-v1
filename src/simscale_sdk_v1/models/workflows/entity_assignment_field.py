@@ -30,12 +30,29 @@ class EntityAssignmentField(SimScaleModel):
     ui_field_index: int | None = Field(
         validation_alias="uiFieldIndex", serialization_alias="uiFieldIndex", default=None
     )
-    allowed_entity_type: Literal["VERTEX", "EDGE", "FACE", "REGION"] | None = Field(
-        validation_alias="allowedEntityType",
-        serialization_alias="allowedEntityType",
-        default="",
-        description="Entity type distinguished by its spatial dimensionality.",
-    )
+    allowed_entity_types: (
+        list[
+            Literal[
+                "SOLID",
+                "SOLID_FACE",
+                "SOLID_EDGE",
+                "SOLID_VERTEX",
+                "SHEET",
+                "SHEET_FACE",
+                "SHEET_EDGE",
+                "SHEET_VERTEX",
+                "WIRE",
+                "WIRE_EDGE",
+                "WIRE_VERTEX",
+                "ACORN_VERTEX",
+                "VERTEX",
+                "EDGE",
+                "FACE",
+                "REGION",
+            ]
+        ]
+        | None
+    ) = Field(validation_alias="allowedEntityTypes", serialization_alias="allowedEntityTypes", default=None)
     allowed_source_types: list[Literal["CAD", "MESH"]] | None = Field(
         validation_alias="allowedSourceTypes", serialization_alias="allowedSourceTypes", default=None
     )

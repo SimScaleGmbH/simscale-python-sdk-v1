@@ -56,12 +56,13 @@ class Projects:
         *,
         limit: int | None = None,
         page: int | None = None,
+        project_type: str | None = None,
     ) -> PaginatedResponse[models.Project]:
         """List projects"""
         data = self._client.request(
             "GET",
             "/projects",
-            query_params={"limit": limit, "page": page},
+            query_params={"limit": limit, "page": page, "projectType": project_type},
         )
         return PaginatedResponse(data, models.Project)
 

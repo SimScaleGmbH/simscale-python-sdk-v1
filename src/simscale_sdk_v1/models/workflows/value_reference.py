@@ -11,6 +11,7 @@ from simscale_sdk_v1.models.workflows.data_value_reference import DataValueRefer
 from simscale_sdk_v1.models.workflows.general_metadata_value_reference import GeneralMetadataValueReference
 from simscale_sdk_v1.models.workflows.iterator_reference import IteratorReference
 from simscale_sdk_v1.models.workflows.metadata_value_reference import MetadataValueReference
+from simscale_sdk_v1.models.workflows.viewer_entity_value_reference import ViewerEntityValueReference
 
 # Reference to a value which can be resolved using a particular context.
 _VALUE_REFERENCE_VARIANTS: dict[str, type] = {
@@ -20,6 +21,7 @@ _VALUE_REFERENCE_VARIANTS: dict[str, type] = {
     "general_metadata": GeneralMetadataValueReference,
     "iterator": IteratorReference,
     "metadata": MetadataValueReference,
+    "viewer_entity": ViewerEntityValueReference,
 }
 
 ValueReference = Annotated[
@@ -30,6 +32,7 @@ ValueReference = Annotated[
         GeneralMetadataValueReference,
         IteratorReference,
         MetadataValueReference,
+        ViewerEntityValueReference,
     ],
     BeforeValidator(
         partial(

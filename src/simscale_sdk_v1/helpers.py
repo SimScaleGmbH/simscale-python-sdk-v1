@@ -158,6 +158,17 @@ class SimScaleHelpers:
                 self.data_repository.delete_upload_session(storage_id, project_id=project_id)
             raise
 
+    def network_check(self, *, project_id: str | None = None, max_tier_bytes: int | None = None):
+        """Measure API roundtrip and storage upload throughput from this environment.
+
+        Uses upload sessions that are deleted without finalizing, so nothing persists.
+        Without project_id, a project named "SimScale network check" is found or created.
+        Returns a NetworkCheckResult.
+        """
+        from simscale_sdk_v1.network_check import NetworkCheck
+
+        return NetworkCheck(self, project_id=project_id, max_tier_bytes=max_tier_bytes).run()
+
     def create_non_parametric_workflow_data_map(self, data_by_name: Mapping[str, str]) -> dict[str, Any]:
         """Create a workflow data map for workflows without parameter values.
 

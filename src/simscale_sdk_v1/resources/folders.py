@@ -110,6 +110,7 @@ class Folders:
         limit: int | None = None,
         page: int | None = None,
         sort: str | None = None,
+        project_type: str | None = None,
     ) -> PaginatedResponse[models.Project]:
         """List Projects in Folder
 
@@ -120,7 +121,7 @@ class Folders:
         data = self._client.request(
             "GET",
             f"/spaces/{space_id}/folders/{folder_id}/content/projects",
-            query_params={"limit": limit, "page": page, "sort": sort},
+            query_params={"limit": limit, "page": page, "sort": sort, "projectType": project_type},
         )
         return PaginatedResponse(data, models.Project)
 
@@ -131,6 +132,7 @@ class Folders:
         limit: int | None = None,
         page: int | None = None,
         sort: str | None = None,
+        project_type: str | None = None,
     ) -> PaginatedResponse[models.Project]:
         """List Projects in Space root
 
@@ -141,7 +143,7 @@ class Folders:
         data = self._client.request(
             "GET",
             f"/spaces/{space_id}/content/projects",
-            query_params={"limit": limit, "page": page, "sort": sort},
+            query_params={"limit": limit, "page": page, "sort": sort, "projectType": project_type},
         )
         return PaginatedResponse(data, models.Project)
 
