@@ -216,7 +216,6 @@ simulation_run = sdk.simulation_runs.create_simulation_run(
 )
 run_id = simulation_run.run_id
 print(f"run_id: {run_id}")
-sdk.simulation_runs.start_simulation_run(project_id, simulation_id, run_id)
 simulation_run = sdk.wait_until_done(
     lambda: sdk.simulation_runs.get_simulation_run(project_id, simulation_id, run_id),
     timeout=max_runtime,

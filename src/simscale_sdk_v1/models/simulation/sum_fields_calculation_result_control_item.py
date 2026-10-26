@@ -10,11 +10,13 @@ from simscale_sdk_v1.models.simulation.topological_reference import TopologicalR
 
 
 class SumFieldsCalculationResultControlItem(SimScaleModel):
+    """Use Sum to output the sum of the nodal values of the selected result quantity on the assigned entity. This option is only available for use with force solution fields and must be used when computing any force e.g. reaction force on a selected entity."""
+
     type_: str = Field(
         validation_alias="type",
         serialization_alias="type",
         default="SUM_FIELDS_CALCULATION",
-        description="Schema name: SumFieldsCalculationResultControlItem",
+        description="Use Sum to output the sum of the nodal values of the selected result quantity on the assigned entity. This option is only available for use with force solution fields and must be used when computing any force e.g. reaction force on a selected entity.  Schema name: SumFieldsCalculationResultControlItem",
     )
     name: str | None = Field(default=None)
     field_selection: OneOf_SumFieldsCalculationResultControlItemFieldSelection | None = Field(

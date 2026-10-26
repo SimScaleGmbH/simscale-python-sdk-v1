@@ -5,6 +5,7 @@ from typing import Annotated, Union
 from pydantic import BeforeValidator
 
 from simscale_sdk_v1._base import parse_discriminated_union
+from simscale_sdk_v1.models.simulation.cumulative_plastic_strain import CumulativePlasticStrain
 from simscale_sdk_v1.models.simulation.elastic_strain import ElasticStrain
 from simscale_sdk_v1.models.simulation.equivalent_elastic_strain import EquivalentElasticStrain
 from simscale_sdk_v1.models.simulation.equivalent_plastic_strain import EquivalentPlasticStrain
@@ -14,7 +15,7 @@ from simscale_sdk_v1.models.simulation.principal_plastic_strain import Principal
 from simscale_sdk_v1.models.simulation.principal_total_strain import PrincipalTotalStrain
 from simscale_sdk_v1.models.simulation.total_strain import TotalStrain
 
-# Total strain: Represents the sum of all strain components (elastic, plastic, and thermal) relative to the original configuration. It describes the complete deformation state of the material. Tensor quantity.Elastic strain: The recoverable portion of the strain that disappears upon unloading, calculated using the material's elastic constitutive laws. Tensor quantity.Plastic strain: The permanent, non-recoverable deformation that occurs once the material exceeds its yield point. Tensor quantity.Principal strain (total): The strains oriented along the axes where shear strain is zero. These represent the maximum, intermediate, and minimum normal strains in the material. Derived from the total strain tensor field.Principal strain (elastic): The strains oriented along the axes where shear strain is zero. These represent the maximum, intermediate, and minimum normal strains in the material. Derived from the elastic strain tensor field.Principal strain (plastic): The strains oriented along the axes where shear strain is zero. These represent the maximum, intermediate, and minimum normal strains in the material. Derived from the plastic strain tensor field.Equivalent elastic strain: A scalar value derived from the elastic strain tensor components, used to represent the magnitude of elastic deformation in a single value.Equivalent plastic strain: A scalar measure (the von Mises equivalent) representing the accumulation of plastic deformation, often used for assessing material failure or hardening.
+# Total strain: Represents the sum of all strain components (elastic, plastic, and thermal) relative to the original configuration. It describes the complete deformation state of the material. Tensor quantity.Elastic strain: The recoverable portion of the strain that disappears upon unloading, calculated using the material's elastic constitutive laws. Tensor quantity.Plastic strain: The permanent, non-recoverable deformation that occurs once the material exceeds its yield point. Tensor quantity.Principal strain (total): The strains oriented along the axes where shear strain is zero. These represent the maximum, intermediate, and minimum normal strains in the material. Derived from the total strain tensor field.Principal strain (elastic): The strains oriented along the axes where shear strain is zero. These represent the maximum, intermediate, and minimum normal strains in the material. Derived from the elastic strain tensor field.Principal strain (plastic): The strains oriented along the axes where shear strain is zero. These represent the maximum, intermediate, and minimum normal strains in the material. Derived from the plastic strain tensor field.Equivalent elastic strain: A scalar value derived from the elastic strain tensor components, used to represent the magnitude of elastic deformation in a single value.Equivalent plastic strain: A scalar measure (the von Mises equivalent) derived from the current plastic strain tensor, representing the magnitude of plastic deformation in a single value. It can decrease under load reversal.Cumulative plastic strain: A scalar measure representing the total accumulated plastic deformation over the load history, computed as a running sum of plastic strain increments. Unlike equivalent plastic strain, it never decreases, even when the material unloads or the load reverses direction.
 _ONE_OF__MARC_STRAIN_RESULT_CONTROL_ITEM_STRAIN_TYPE_VARIANTS: dict[str, type] = {
     "TOTAL": TotalStrain,
     "ELASTIC": ElasticStrain,
@@ -24,6 +25,7 @@ _ONE_OF__MARC_STRAIN_RESULT_CONTROL_ITEM_STRAIN_TYPE_VARIANTS: dict[str, type] =
     "PRINCIPAL_PLASTIC": PrincipalPlasticStrain,
     "EQUIVALENT_ELASTIC": EquivalentElasticStrain,
     "EQUIVALENT_PLASTIC": EquivalentPlasticStrain,
+    "CUMULATIVE_PLASTIC": CumulativePlasticStrain,
 }
 
 OneOf_MarcStrainResultControlItemStrainType = Annotated[
@@ -36,6 +38,7 @@ OneOf_MarcStrainResultControlItemStrainType = Annotated[
         PrincipalPlasticStrain,
         EquivalentElasticStrain,
         EquivalentPlasticStrain,
+        CumulativePlasticStrain,
     ],
     BeforeValidator(
         partial(

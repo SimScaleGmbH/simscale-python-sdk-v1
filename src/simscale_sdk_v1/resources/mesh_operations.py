@@ -47,6 +47,22 @@ class MeshOperations:
             response_type=models.MeshOperation,
         )
 
+    def delete_mesh_operation(
+        self,
+        project_id: str,
+        mesh_operation_id: str,
+    ) -> None:
+        """Delete the mesh operation
+
+
+
+        The generated mesh is deleted with the operation. A running meshing job is stopped.
+        """
+        return self._client.request(
+            "DELETE",
+            f"/projects/{project_id}/meshoperations/{mesh_operation_id}",
+        )
+
     def estimate_mesh_operation(
         self,
         project_id: str,

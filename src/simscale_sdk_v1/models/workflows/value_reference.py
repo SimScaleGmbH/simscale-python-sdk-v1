@@ -6,9 +6,11 @@ from pydantic import BeforeValidator
 
 from simscale_sdk_v1._base import parse_discriminated_union
 from simscale_sdk_v1.models.workflows.config_value_reference import ConfigValueReference
+from simscale_sdk_v1.models.workflows.connections_value_reference import ConnectionsValueReference
 from simscale_sdk_v1.models.workflows.data_presence_reference import DataPresenceReference
 from simscale_sdk_v1.models.workflows.data_value_reference import DataValueReference
 from simscale_sdk_v1.models.workflows.general_metadata_value_reference import GeneralMetadataValueReference
+from simscale_sdk_v1.models.workflows.instance_value_reference import InstanceValueReference
 from simscale_sdk_v1.models.workflows.iterator_reference import IteratorReference
 from simscale_sdk_v1.models.workflows.metadata_value_reference import MetadataValueReference
 from simscale_sdk_v1.models.workflows.viewer_entity_value_reference import ViewerEntityValueReference
@@ -16,9 +18,11 @@ from simscale_sdk_v1.models.workflows.viewer_entity_value_reference import Viewe
 # Reference to a value which can be resolved using a particular context.
 _VALUE_REFERENCE_VARIANTS: dict[str, type] = {
     "config": ConfigValueReference,
+    "connections": ConnectionsValueReference,
     "data": DataValueReference,
     "data_presence": DataPresenceReference,
     "general_metadata": GeneralMetadataValueReference,
+    "instance": InstanceValueReference,
     "iterator": IteratorReference,
     "metadata": MetadataValueReference,
     "viewer_entity": ViewerEntityValueReference,
@@ -27,9 +31,11 @@ _VALUE_REFERENCE_VARIANTS: dict[str, type] = {
 ValueReference = Annotated[
     Union[
         ConfigValueReference,
+        ConnectionsValueReference,
         DataValueReference,
         DataPresenceReference,
         GeneralMetadataValueReference,
+        InstanceValueReference,
         IteratorReference,
         MetadataValueReference,
         ViewerEntityValueReference,

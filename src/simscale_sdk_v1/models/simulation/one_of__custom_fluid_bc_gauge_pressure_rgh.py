@@ -10,7 +10,6 @@ from simscale_sdk_v1.models.simulation.fixed_flux_pbc import FixedFluxPBC
 from simscale_sdk_v1.models.simulation.fixed_gradient_pbc import FixedGradientPBC
 from simscale_sdk_v1.models.simulation.fixed_value_pbc import FixedValuePBC
 from simscale_sdk_v1.models.simulation.freestream_pbc import FreestreamPBC
-from simscale_sdk_v1.models.simulation.hydrostatic_fan_pbc import HydrostaticFanPBC
 from simscale_sdk_v1.models.simulation.mean_value_pbc import MeanValuePBC
 from simscale_sdk_v1.models.simulation.symmetry_pbc import SymmetryPBC
 from simscale_sdk_v1.models.simulation.total_pbc import TotalPBC
@@ -27,7 +26,6 @@ _ONE_OF__CUSTOM_FLUID_BC_GAUGE_PRESSURE_RGH_VARIANTS: dict[str, type] = {
     "FIXED_MEAN": MeanValuePBC,
     "ZERO_GRADIENT": ZeroGradientPBC,
     "TOTAL_PRESSURE": TotalPBC,
-    "HYDROSTATIC_ISOTHERMAL_FAN_PRESSURE": HydrostaticFanPBC,
 }
 
 OneOf_CustomFluidBCGaugePressureRgh = Annotated[
@@ -41,7 +39,6 @@ OneOf_CustomFluidBCGaugePressureRgh = Annotated[
         MeanValuePBC,
         ZeroGradientPBC,
         TotalPBC,
-        HydrostaticFanPBC,
     ],
     BeforeValidator(
         partial(

@@ -7,3 +7,7 @@ from simscale_sdk_v1._base import SimScaleModel
 
 class UnionBodiesParameters(SimScaleModel):
     occurrences: list[str] | None = Field(default=None, description="List of solid regions and/or sheet bodies.")
+    merge_faces: bool | None = Field(
+        default=None,
+        description="If `true`, faces of the resulting bodies that lie on the same underlying surface are merged. Defaults to `false`.",
+    )

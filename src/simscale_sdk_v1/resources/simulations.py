@@ -46,6 +46,22 @@ class Simulations:
             response_type=models.simulation.Simulation,
         )
 
+    def delete_simulation(
+        self,
+        project_id: str,
+        simulation_id: str,
+    ) -> None:
+        """Delete the simulation setup
+
+
+
+        All runs of the simulation are deleted with it. Running jobs are stopped.
+        """
+        return self._client.request(
+            "DELETE",
+            f"/projects/{project_id}/simulations/{simulation_id}",
+        )
+
     def estimate_simulation_setup(
         self,
         project_id: str,

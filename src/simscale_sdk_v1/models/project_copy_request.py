@@ -3,6 +3,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
+from simscale_sdk_v1.models.project_visibility import ProjectVisibility
 
 
 class ProjectCopyRequest(SimScaleModel):
@@ -22,3 +23,4 @@ class ProjectCopyRequest(SimScaleModel):
         description="The project title should contain the application you want to analyze as well as the simulation method you want to use, e.g. 'Heat exchanger - CHT simulation'."
     )
     description: str = Field(description="A meaningful description of the project.")
+    visibility: ProjectVisibility | None = Field(default=None)

@@ -27,13 +27,12 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.cad.extrude_by_parameter import ExtrudeByParameter
     from simscale_sdk_v1.models.cad.extrude_faces_parameters import ExtrudeFacesParameters
     from simscale_sdk_v1.models.cad.face_contact import FaceContact
-    from simscale_sdk_v1.models.cad.face_pairs import FacePairs
     from simscale_sdk_v1.models.cad.facet_split_bodies_parameters import FacetSplitBodiesParameters
     from simscale_sdk_v1.models.cad.feature_parameters import FeatureParameters
+    from simscale_sdk_v1.models.cad.find_gaps_parameters import FindGapsParameters
+    from simscale_sdk_v1.models.cad.find_gaps_response import FindGapsResponse
     from simscale_sdk_v1.models.cad.find_interfering_bodies_parameters import FindInterferingBodiesParameters
     from simscale_sdk_v1.models.cad.find_interfering_bodies_response import FindInterferingBodiesResponse
-    from simscale_sdk_v1.models.cad.find_small_gaps_parameters import FindSmallGapsParameters
-    from simscale_sdk_v1.models.cad.find_small_gaps_response import FindSmallGapsResponse
     from simscale_sdk_v1.models.cad.fix_interferences_parameters import FixInterferencesParameters
     from simscale_sdk_v1.models.cad.flow_volume_extraction_external_parameters import (
         FlowVolumeExtractionExternalParameters,
@@ -41,6 +40,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.cad.flow_volume_extraction_internal_parameters import (
         FlowVolumeExtractionInternalParameters,
     )
+    from simscale_sdk_v1.models.cad.gap import Gap
     from simscale_sdk_v1.models.cad.imprint_bodies_parameters import ImprintBodiesParameters
     from simscale_sdk_v1.models.cad.interference import Interference
     from simscale_sdk_v1.models.cad.intersect_bodies_parameters import IntersectBodiesParameters
@@ -100,12 +100,13 @@ _NAMES: dict[str, tuple[str, str]] = {
     "ExtrudeByParameter": ("simscale_sdk_v1.models.cad.extrude_by_parameter", "ExtrudeByParameter"),
     "ExtrudeFacesParameters": ("simscale_sdk_v1.models.cad.extrude_faces_parameters", "ExtrudeFacesParameters"),
     "FaceContact": ("simscale_sdk_v1.models.cad.face_contact", "FaceContact"),
-    "FacePairs": ("simscale_sdk_v1.models.cad.face_pairs", "FacePairs"),
     "FacetSplitBodiesParameters": (
         "simscale_sdk_v1.models.cad.facet_split_bodies_parameters",
         "FacetSplitBodiesParameters",
     ),
     "FeatureParameters": ("simscale_sdk_v1.models.cad.feature_parameters", "FeatureParameters"),
+    "FindGapsParameters": ("simscale_sdk_v1.models.cad.find_gaps_parameters", "FindGapsParameters"),
+    "FindGapsResponse": ("simscale_sdk_v1.models.cad.find_gaps_response", "FindGapsResponse"),
     "FindInterferingBodiesParameters": (
         "simscale_sdk_v1.models.cad.find_interfering_bodies_parameters",
         "FindInterferingBodiesParameters",
@@ -114,8 +115,6 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.cad.find_interfering_bodies_response",
         "FindInterferingBodiesResponse",
     ),
-    "FindSmallGapsParameters": ("simscale_sdk_v1.models.cad.find_small_gaps_parameters", "FindSmallGapsParameters"),
-    "FindSmallGapsResponse": ("simscale_sdk_v1.models.cad.find_small_gaps_response", "FindSmallGapsResponse"),
     "FixInterferencesParameters": (
         "simscale_sdk_v1.models.cad.fix_interferences_parameters",
         "FixInterferencesParameters",
@@ -128,6 +127,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.cad.flow_volume_extraction_internal_parameters",
         "FlowVolumeExtractionInternalParameters",
     ),
+    "Gap": ("simscale_sdk_v1.models.cad.gap", "Gap"),
     "ImprintBodiesParameters": ("simscale_sdk_v1.models.cad.imprint_bodies_parameters", "ImprintBodiesParameters"),
     "Interference": ("simscale_sdk_v1.models.cad.interference", "Interference"),
     "IntersectBodiesParameters": (

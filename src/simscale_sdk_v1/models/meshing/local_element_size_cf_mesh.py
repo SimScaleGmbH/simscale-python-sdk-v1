@@ -8,11 +8,13 @@ from simscale_sdk_v1.models.meshing.topological_reference import TopologicalRefe
 
 
 class LocalElementSizeCfMesh(SimScaleModel):
+    """Surface custom sizing refines the mesh on the selected faces. The maximum edge length is the target cell size on the faces, the minimum element size is the lower bound for the automatic refinement of curvature and small features on them. Use it for faces of interest, for example inlets, outlets or walls with small details."""
+
     type_: str = Field(
         validation_alias="type",
         serialization_alias="type",
         default="LOCAL_SIZING_CF_MESH",
-        description="Schema name: LocalElementSizeCfMesh",
+        description="Surface custom sizing refines the mesh on the selected faces. The maximum edge length is the target cell size on the faces, the minimum element size is the lower bound for the automatic refinement of curvature and small features on them. Use it for faces of interest, for example inlets, outlets or walls with small details.  Schema name: LocalElementSizeCfMesh",
     )
     name: str | None = Field(default="Local element size")
     max_element_size: Dimensional_Length | None = Field(

@@ -26,9 +26,20 @@ class PublicWorkflowRunOverview(SimScaleModel):
         validation_alias="outputDataMap", serialization_alias="outputDataMap", default=None
     )
     project_id: str | None = Field(validation_alias="projectId", serialization_alias="projectId", default=None)
-    state: Literal["CREATED", "RUNNING", "PAUSED", "CANCELING", "SUCCEEDED", "FAILED", "CANCELED"] | None = Field(
-        default=None, description="Workflow run state is a higher-level state describing overall progression."
-    )
+    state: (
+        Literal[
+            "CREATED",
+            "VALIDATING",
+            "DERIVING_CONNECTIONS",
+            "RUNNING",
+            "PAUSED",
+            "CANCELING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELED",
+        ]
+        | None
+    ) = Field(default=None, description="Workflow run state is a higher-level state describing overall progression.")
     workflow_id: str | None = Field(
         validation_alias="workflowId",
         serialization_alias="workflowId",

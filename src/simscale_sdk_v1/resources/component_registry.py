@@ -97,12 +97,12 @@ class ComponentRegistry:
     def get_data_type_metadata_schema_validation_rules(
         self,
         component_version_reference: str,
-    ) -> models.component_registry.ValidationRuleSet:
+    ) -> models.workflows.ValidationRuleSet:
         """Read the metadata schema validation rules of a data type version."""
         return self._client.request(
             "GET",
             f"/component-registry/data-types/{component_version_reference}/metadata-schema-validation-rules",
-            response_type=models.component_registry.ValidationRuleSet,
+            response_type=models.workflows.ValidationRuleSet,
         )
 
     def get_data_type_schema(
@@ -122,12 +122,12 @@ class ComponentRegistry:
     def get_data_type_schema_validation_rules(
         self,
         component_version_reference: str,
-    ) -> models.component_registry.ValidationRuleSet:
+    ) -> models.workflows.ValidationRuleSet:
         """Read the data schema validation rules of a data type version."""
         return self._client.request(
             "GET",
             f"/component-registry/data-types/{component_version_reference}/schema-validation-rules",
-            response_type=models.component_registry.ValidationRuleSet,
+            response_type=models.workflows.ValidationRuleSet,
         )
 
     def get_data_type_ui_schema(
@@ -158,12 +158,12 @@ class ComponentRegistry:
     def get_method_configuration_schema_validation_rules(
         self,
         component_version_reference: str,
-    ) -> models.component_registry.ValidationRuleSet:
+    ) -> models.workflows.ValidationRuleSet:
         """Read the configuration schema validation rules of a method version."""
         return self._client.request(
             "GET",
             f"/component-registry/methods/{component_version_reference}/configuration-schema-validation-rules",
-            response_type=models.component_registry.ValidationRuleSet,
+            response_type=models.workflows.ValidationRuleSet,
         )
 
     def get_method_data_interface(
@@ -216,12 +216,12 @@ class ComponentRegistry:
     def get_workflow_type_configuration_schema_validation_rules(
         self,
         component_version_reference: str,
-    ) -> models.component_registry.ValidationRuleSet:
+    ) -> models.workflows.ValidationRuleSet:
         """Read the configuration schema validation rules of a workflow type version."""
         return self._client.request(
             "GET",
             f"/component-registry/workflow-types/{component_version_reference}/configuration-schema-validation-rules",
-            response_type=models.component_registry.ValidationRuleSet,
+            response_type=models.workflows.ValidationRuleSet,
         )
 
     def get_workflow_type_data_interface(

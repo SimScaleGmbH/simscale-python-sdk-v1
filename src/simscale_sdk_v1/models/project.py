@@ -6,6 +6,7 @@ from typing import Literal
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
+from simscale_sdk_v1.models.project_visibility import ProjectVisibility
 
 
 class Project(SimScaleModel):
@@ -38,5 +39,12 @@ class Project(SimScaleModel):
         serialization_alias="projectType",
         default=None,
         description="The type of the project. Can only be set when the project is created, 'SIMULATION' is used when it is omitted. The possible values are 'SIMULATION' and 'PHYSICS_AI'.",
+    )
+    visibility: ProjectVisibility | None = Field(default=None)
+    owner_user_id: str | None = Field(
+        validation_alias="ownerUserId",
+        serialization_alias="ownerUserId",
+        default=None,
+        description="The `userId` of the user who owns the project.",
     )
     tags: list[str] | None = Field(default=None)

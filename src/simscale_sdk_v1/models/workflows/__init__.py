@@ -50,11 +50,13 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.workflows.compound_map_entities import CompoundMapEntities
     from simscale_sdk_v1.models.workflows.compound_value import CompoundValue
     from simscale_sdk_v1.models.workflows.config_value_reference import ConfigValueReference
+    from simscale_sdk_v1.models.workflows.connections_value_reference import ConnectionsValueReference
     from simscale_sdk_v1.models.workflows.constant_value_list import ConstantValueList
     from simscale_sdk_v1.models.workflows.data_mapping_entry import DataMappingEntry
     from simscale_sdk_v1.models.workflows.data_presence_reference import DataPresenceReference
     from simscale_sdk_v1.models.workflows.data_reference import DataReference
     from simscale_sdk_v1.models.workflows.data_value_reference import DataValueReference
+    from simscale_sdk_v1.models.workflows.derived_material_value import DerivedMaterialValue
     from simscale_sdk_v1.models.workflows.dimensional_field import DimensionalField
     from simscale_sdk_v1.models.workflows.dimensional_profile_object_dimension import DimensionalProfileObjectDimension
     from simscale_sdk_v1.models.workflows.dimensional_profiles_object_dimension import (
@@ -113,6 +115,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.workflows.entity_assignment_field import EntityAssignmentField
     from simscale_sdk_v1.models.workflows.entity_assignment_function_is_empty import EntityAssignmentFunctionIsEmpty
     from simscale_sdk_v1.models.workflows.entity_assignment_list import EntityAssignmentList
+    from simscale_sdk_v1.models.workflows.entity_assignment_list_cad_predicate_failures import (
+        EntityAssignmentListCadPredicateFailures,
+    )
     from simscale_sdk_v1.models.workflows.entity_assignment_list_constant import EntityAssignmentListConstant
     from simscale_sdk_v1.models.workflows.entity_assignment_list_from_components import (
         EntityAssignmentListFromComponents,
@@ -155,9 +160,13 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.workflows.enum_value_doc import EnumValueDoc
     from simscale_sdk_v1.models.workflows.enum_value_label import EnumValueLabel
     from simscale_sdk_v1.models.workflows.general_metadata_value_reference import GeneralMetadataValueReference
+    from simscale_sdk_v1.models.workflows.geometry_derivation_ui_configuration_entry import (
+        GeometryDerivationUiConfigurationEntry,
+    )
     from simscale_sdk_v1.models.workflows.gpu_scaling_estimation_value_model import GpuScalingEstimationValueModel
     from simscale_sdk_v1.models.workflows.inline_operation_definition import InlineOperationDefinition
     from simscale_sdk_v1.models.workflows.input_data_definition import InputDataDefinition
+    from simscale_sdk_v1.models.workflows.instance_value_reference import InstanceValueReference
     from simscale_sdk_v1.models.workflows.integer_comparison_equal import IntegerComparisonEqual
     from simscale_sdk_v1.models.workflows.integer_comparison_greater_than import IntegerComparisonGreaterThan
     from simscale_sdk_v1.models.workflows.integer_comparison_greater_than_or_equal import (
@@ -188,6 +197,8 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.workflows.intermediate_data_definition import IntermediateDataDefinition
     from simscale_sdk_v1.models.workflows.iterator_reference import IteratorReference
     from simscale_sdk_v1.models.workflows.json_node import JsonNode
+    from simscale_sdk_v1.models.workflows.list_element_scope import ListElementScope
+    from simscale_sdk_v1.models.workflows.material_field import MaterialField
     from simscale_sdk_v1.models.workflows.measurement_unit_comparison_equal import MeasurementUnitComparisonEqual
     from simscale_sdk_v1.models.workflows.measurement_unit_comparison_not_equal import MeasurementUnitComparisonNotEqual
     from simscale_sdk_v1.models.workflows.measurement_unit_constant import MeasurementUnitConstant
@@ -282,6 +293,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.workflows.schema_definition import SchemaDefinition
     from simscale_sdk_v1.models.workflows.schema_element import SchemaElement
     from simscale_sdk_v1.models.workflows.serializable_data_map import SerializableDataMap
+    from simscale_sdk_v1.models.workflows.simulation_connections_field import SimulationConnectionsField
     from simscale_sdk_v1.models.workflows.slider_ui_configuration_entry import SliderUiConfigurationEntry
     from simscale_sdk_v1.models.workflows.string_comparison_equal import StringComparisonEqual
     from simscale_sdk_v1.models.workflows.string_comparison_not_equal import StringComparisonNotEqual
@@ -305,6 +317,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.workflows.unit_profile_dimension import UnitProfileDimension
     from simscale_sdk_v1.models.workflows.unit_profiles_dimension import UnitProfilesDimension
     from simscale_sdk_v1.models.workflows.unknown_ui_configuration_entry import UnknownUiConfigurationEntry
+    from simscale_sdk_v1.models.workflows.validation_rule import ValidationRule
+    from simscale_sdk_v1.models.workflows.validation_rule_case import ValidationRuleCase
+    from simscale_sdk_v1.models.workflows.validation_rule_set import ValidationRuleSet
     from simscale_sdk_v1.models.workflows.value import Value
     from simscale_sdk_v1.models.workflows.value_list import ValueList
     from simscale_sdk_v1.models.workflows.value_list_data_series_value import ValueListDataSeriesValue
@@ -327,6 +342,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.workflows.value_list_function_real_sum import ValueListFunctionRealSum
     from simscale_sdk_v1.models.workflows.value_list_function_size import ValueListFunctionSize
     from simscale_sdk_v1.models.workflows.value_list_function_sub_list import ValueListFunctionSubList
+    from simscale_sdk_v1.models.workflows.value_list_function_table_section import ValueListFunctionTableSection
     from simscale_sdk_v1.models.workflows.value_list_function_take import ValueListFunctionTake
     from simscale_sdk_v1.models.workflows.value_list_function_take_last import ValueListFunctionTakeLast
     from simscale_sdk_v1.models.workflows.value_list_integer_value import ValueListIntegerValue
@@ -427,11 +443,16 @@ _NAMES: dict[str, tuple[str, str]] = {
     "CompoundMapEntities": ("simscale_sdk_v1.models.workflows.compound_map_entities", "CompoundMapEntities"),
     "CompoundValue": ("simscale_sdk_v1.models.workflows.compound_value", "CompoundValue"),
     "ConfigValueReference": ("simscale_sdk_v1.models.workflows.config_value_reference", "ConfigValueReference"),
+    "ConnectionsValueReference": (
+        "simscale_sdk_v1.models.workflows.connections_value_reference",
+        "ConnectionsValueReference",
+    ),
     "ConstantValueList": ("simscale_sdk_v1.models.workflows.constant_value_list", "ConstantValueList"),
     "DataMappingEntry": ("simscale_sdk_v1.models.workflows.data_mapping_entry", "DataMappingEntry"),
     "DataPresenceReference": ("simscale_sdk_v1.models.workflows.data_presence_reference", "DataPresenceReference"),
     "DataReference": ("simscale_sdk_v1.models.workflows.data_reference", "DataReference"),
     "DataValueReference": ("simscale_sdk_v1.models.workflows.data_value_reference", "DataValueReference"),
+    "DerivedMaterialValue": ("simscale_sdk_v1.models.workflows.derived_material_value", "DerivedMaterialValue"),
     "DimensionalField": ("simscale_sdk_v1.models.workflows.dimensional_field", "DimensionalField"),
     "DimensionalProfileObjectDimension": (
         "simscale_sdk_v1.models.workflows.dimensional_profile_object_dimension",
@@ -568,6 +589,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "EntityAssignmentFunctionIsEmpty",
     ),
     "EntityAssignmentList": ("simscale_sdk_v1.models.workflows.entity_assignment_list", "EntityAssignmentList"),
+    "EntityAssignmentListCadPredicateFailures": (
+        "simscale_sdk_v1.models.workflows.entity_assignment_list_cad_predicate_failures",
+        "EntityAssignmentListCadPredicateFailures",
+    ),
     "EntityAssignmentListConstant": (
         "simscale_sdk_v1.models.workflows.entity_assignment_list_constant",
         "EntityAssignmentListConstant",
@@ -644,6 +669,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.workflows.general_metadata_value_reference",
         "GeneralMetadataValueReference",
     ),
+    "GeometryDerivationUiConfigurationEntry": (
+        "simscale_sdk_v1.models.workflows.geometry_derivation_ui_configuration_entry",
+        "GeometryDerivationUiConfigurationEntry",
+    ),
     "GpuScalingEstimationValueModel": (
         "simscale_sdk_v1.models.workflows.gpu_scaling_estimation_value_model",
         "GpuScalingEstimationValueModel",
@@ -653,6 +682,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "InlineOperationDefinition",
     ),
     "InputDataDefinition": ("simscale_sdk_v1.models.workflows.input_data_definition", "InputDataDefinition"),
+    "InstanceValueReference": ("simscale_sdk_v1.models.workflows.instance_value_reference", "InstanceValueReference"),
     "IntegerComparisonEqual": ("simscale_sdk_v1.models.workflows.integer_comparison_equal", "IntegerComparisonEqual"),
     "IntegerComparisonGreaterThan": (
         "simscale_sdk_v1.models.workflows.integer_comparison_greater_than",
@@ -712,6 +742,8 @@ _NAMES: dict[str, tuple[str, str]] = {
     ),
     "IteratorReference": ("simscale_sdk_v1.models.workflows.iterator_reference", "IteratorReference"),
     "JsonNode": ("simscale_sdk_v1.models.workflows.json_node", "JsonNode"),
+    "ListElementScope": ("simscale_sdk_v1.models.workflows.list_element_scope", "ListElementScope"),
+    "MaterialField": ("simscale_sdk_v1.models.workflows.material_field", "MaterialField"),
     "MeasurementUnitComparisonEqual": (
         "simscale_sdk_v1.models.workflows.measurement_unit_comparison_equal",
         "MeasurementUnitComparisonEqual",
@@ -902,6 +934,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "SchemaDefinition": ("simscale_sdk_v1.models.workflows.schema_definition", "SchemaDefinition"),
     "SchemaElement": ("simscale_sdk_v1.models.workflows.schema_element", "SchemaElement"),
     "SerializableDataMap": ("simscale_sdk_v1.models.workflows.serializable_data_map", "SerializableDataMap"),
+    "SimulationConnectionsField": (
+        "simscale_sdk_v1.models.workflows.simulation_connections_field",
+        "SimulationConnectionsField",
+    ),
     "SliderUiConfigurationEntry": (
         "simscale_sdk_v1.models.workflows.slider_ui_configuration_entry",
         "SliderUiConfigurationEntry",
@@ -952,6 +988,9 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.workflows.unknown_ui_configuration_entry",
         "UnknownUiConfigurationEntry",
     ),
+    "ValidationRule": ("simscale_sdk_v1.models.workflows.validation_rule", "ValidationRule"),
+    "ValidationRuleCase": ("simscale_sdk_v1.models.workflows.validation_rule_case", "ValidationRuleCase"),
+    "ValidationRuleSet": ("simscale_sdk_v1.models.workflows.validation_rule_set", "ValidationRuleSet"),
     "Value": ("simscale_sdk_v1.models.workflows.value", "Value"),
     "ValueList": ("simscale_sdk_v1.models.workflows.value_list", "ValueList"),
     "ValueListDataSeriesValue": (
@@ -1000,6 +1039,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "ValueListFunctionSubList": (
         "simscale_sdk_v1.models.workflows.value_list_function_sub_list",
         "ValueListFunctionSubList",
+    ),
+    "ValueListFunctionTableSection": (
+        "simscale_sdk_v1.models.workflows.value_list_function_table_section",
+        "ValueListFunctionTableSection",
     ),
     "ValueListFunctionTake": ("simscale_sdk_v1.models.workflows.value_list_function_take", "ValueListFunctionTake"),
     "ValueListFunctionTakeLast": (

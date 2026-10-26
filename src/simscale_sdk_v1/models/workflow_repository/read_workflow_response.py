@@ -38,6 +38,7 @@ class ReadWorkflowResponse(SimScaleModel):
         default=None,
         description="Workflow identifier. It is a string composed of the type identifier and a UUID: `workflow:[UUID]`.",
     )
+    workflow_name: str | None = Field(validation_alias="workflowName", serialization_alias="workflowName", default=None)
     workflow_type_reference: str | None = Field(
         validation_alias="workflowTypeReference",
         serialization_alias="workflowTypeReference",

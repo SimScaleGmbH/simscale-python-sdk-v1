@@ -5,6 +5,7 @@ from typing import Any
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
+from simscale_sdk_v1.models.workflows.schema_element import SchemaElement
 
 
 class AbstractCompoundField(SimScaleModel):
@@ -22,6 +23,7 @@ class AbstractCompoundField(SimScaleModel):
         validation_alias="multiLanguageLabel", serialization_alias="multiLanguageLabel", default=None
     )
     name: str | None = Field(default=None)
+    non_empty: bool | None = Field(validation_alias="nonEmpty", serialization_alias="nonEmpty", default=None)
     optional: bool | None = Field(default=None)
     schema_definition_field_index: int | None = Field(
         validation_alias="schemaDefinitionFieldIndex", serialization_alias="schemaDefinitionFieldIndex", default=None
@@ -33,9 +35,8 @@ class AbstractCompoundField(SimScaleModel):
     default_subtype: bool | None = Field(
         validation_alias="defaultSubtype", serialization_alias="defaultSubtype", default=None
     )
+    fields: dict[str, SchemaElement] | None = Field(default=None)
     polymorphic: bool | None = Field(default=None)
-    subtypes: list[dict[str, Any]] | None = Field(default=None)
-    supertype: Any | None = Field(
-        default=None, description="Abstract compound field denotes a schema element which has nested schema elements."
-    )
+    subtypes: list[Any] | None = Field(default=None)
+    supertype: AbstractCompoundField | None = Field(default=None)
     type_name: str | None = Field(validation_alias="typeName", serialization_alias="typeName", default=None)

@@ -8,7 +8,7 @@ from simscale_sdk_v1._base import parse_discriminated_union
 from simscale_sdk_v1.models.simulation.current_excitation import CurrentExcitation
 from simscale_sdk_v1.models.simulation.voltage_excitation import VoltageExcitation
 
-# Current ExcitationUse when you want to set a specific current flow through the coil. Note that the specified current is assumed to flow over the sum of all entry (or internal) faces.Voltage ExcitationUse when you want to set a specific voltage across the coil ports.
+# Current ExcitationUse when you want to set a specific current flow through the coil. Note that the specified current is assumed to flow over the sum of all entry (or internal) faces, which act as parallel current paths. For stranded and Litz wire coils, it is the current per turn and is multiplied by the number of turns.Voltage ExcitationUse when you want to set a specific voltage across the coil ports.
 _ONE_OF__COIL_EXCITATION_VARIANTS: dict[str, type] = {
     "CURRENT_EXCITATION": CurrentExcitation,
     "VOLTAGE_EXCITATION": VoltageExcitation,

@@ -145,6 +145,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.coil import Coil
     from simscale_sdk_v1.models.simulation.collision_retiming_event import CollisionRetimingEvent
     from simscale_sdk_v1.models.simulation.combined_plastic_hardening_marc import CombinedPlasticHardeningMarc
+    from simscale_sdk_v1.models.simulation.combined_voce_chaboche_hardening_marc import (
+        CombinedVoceChabocheHardeningMarc,
+    )
     from simscale_sdk_v1.models.simulation.comfort_criterion_definition_v2 import ComfortCriterionDefinitionV2
     from simscale_sdk_v1.models.simulation.component_vector_function import ComponentVectorFunction
     from simscale_sdk_v1.models.simulation.compressible import Compressible
@@ -197,6 +200,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.cross_power_law_viscosity_model import CrossPowerLawViscosityModel
     from simscale_sdk_v1.models.simulation.cube_root_vol_les_delta import CubeRootVolLesDelta
     from simscale_sdk_v1.models.simulation.cubic_interpolation_scheme import CubicInterpolationScheme
+    from simscale_sdk_v1.models.simulation.cumulative_plastic_strain import CumulativePlasticStrain
     from simscale_sdk_v1.models.simulation.current_excitation import CurrentExcitation
     from simscale_sdk_v1.models.simulation.current_inflow_ebc import CurrentInflowEBC
     from simscale_sdk_v1.models.simulation.current_outflow_ebc import CurrentOutflowEBC
@@ -503,6 +507,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.electromagnetic_current_type_table import ElectromagneticCurrentTypeTable
     from simscale_sdk_v1.models.simulation.electromagnetic_initial_conditions import ElectromagneticInitialConditions
     from simscale_sdk_v1.models.simulation.electromagnetic_material import ElectromagneticMaterial
+    from simscale_sdk_v1.models.simulation.electromagnetic_motion import ElectromagneticMotion
     from simscale_sdk_v1.models.simulation.electromagnetic_numerics import ElectromagneticNumerics
     from simscale_sdk_v1.models.simulation.electromagnetic_resistance_set import ElectromagneticResistanceSet
     from simscale_sdk_v1.models.simulation.electromagnetic_result_control import ElectromagneticResultControl
@@ -891,8 +896,10 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.isotropic_thermal_conductivity_method import (
         IsotropicThermalConductivityMethod,
     )
+    from simscale_sdk_v1.models.simulation.isotropic_voce_hardening_marc import IsotropicVoceHardeningMarc
     from simscale_sdk_v1.models.simulation.jacobi_preconditioner import JacobiPreconditioner
     from simscale_sdk_v1.models.simulation.johnson_cook_elasto_plastic_model import JohnsonCookElastoPlasticModel
+    from simscale_sdk_v1.models.simulation.kinematic_chaboche_hardening_marc import KinematicChabocheHardeningMarc
     from simscale_sdk_v1.models.simulation.kinematic_plastic_hardening_marc import KinematicPlasticHardeningMarc
     from simscale_sdk_v1.models.simulation.kurganov_flux_scheme import KurganovFluxScheme
     from simscale_sdk_v1.models.simulation.lanczos import Lanczos
@@ -967,6 +974,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.marc_contact_result_control_item import MarcContactResultControlItem
     from simscale_sdk_v1.models.simulation.marc_contact_status import MarcContactStatus
     from simscale_sdk_v1.models.simulation.marc_contact_status_type import MarcContactStatusType
+    from simscale_sdk_v1.models.simulation.marc_cumulative_plastic_strain_type import MarcCumulativePlasticStrainType
     from simscale_sdk_v1.models.simulation.marc_displacement_field_selection import MarcDisplacementFieldSelection
     from simscale_sdk_v1.models.simulation.marc_displacement_result_control_item import (
         MarcDisplacementResultControlItem,
@@ -1098,6 +1106,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.ogden_hyper_elastic_model import OgdenHyperElasticModel
     from simscale_sdk_v1.models.simulation.ogden_hyperelastic_model_marc import OgdenHyperelasticModelMarc
     from simscale_sdk_v1.models.simulation.ogden_roxburgh import OgdenRoxburgh
+    from simscale_sdk_v1.models.simulation.one_backstress_term import OneBackstressTerm
     from simscale_sdk_v1.models.simulation.one_of_ami_rotating_zone_motion_type import OneOf_AMIRotatingZoneMotionType
     from simscale_sdk_v1.models.simulation.one_of__acceleration_field_selection_acceleration_type import (
         OneOf_AccelerationFieldSelectionAccelerationType,
@@ -1177,6 +1186,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__coil_coil_type import OneOf_CoilCoilType
     from simscale_sdk_v1.models.simulation.one_of__coil_excitation import OneOf_CoilExcitation
     from simscale_sdk_v1.models.simulation.one_of__coil_topology import OneOf_CoilTopology
+    from simscale_sdk_v1.models.simulation.one_of__combined_voce_chaboche_hardening_marc_backstress_terms import (
+        OneOf_CombinedVoceChabocheHardeningMarcBackstressTerms,
+    )
     from simscale_sdk_v1.models.simulation.one_of__component_vector_function_x import OneOf_ComponentVectorFunctionX
     from simscale_sdk_v1.models.simulation.one_of__component_vector_function_y import OneOf_ComponentVectorFunctionY
     from simscale_sdk_v1.models.simulation.one_of__component_vector_function_z import OneOf_ComponentVectorFunctionZ
@@ -1512,9 +1524,6 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.one_of__elastoplastic_network_plasticity_model_elastoplastic_network import (
         OneOf_ElastoplasticNetworkPlasticityModelElastoplasticNetwork,
-    )
-    from simscale_sdk_v1.models.simulation.one_of__electromagnetic_advanced_concepts_motion_analysis import (
-        OneOf_ElectromagneticAdvancedConceptsMotionAnalysis,
     )
     from simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_boundary_conditions import (
         OneOf_ElectromagneticAnalysisBoundaryConditions,
@@ -1926,6 +1935,9 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.one_of__johnson_cook_elasto_plastic_model_poissons_ratio import (
         OneOf_JohnsonCookElastoPlasticModelPoissonsRatio,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__kinematic_chaboche_hardening_marc_backstress_terms import (
+        OneOf_KinematicChabocheHardeningMarcBackstressTerms,
     )
     from simscale_sdk_v1.models.simulation.one_of__lanczos_subspace_settings import OneOf_LanczosSubspaceSettings
     from simscale_sdk_v1.models.simulation.one_of__laplacian_schemes_for_default import OneOf_LaplacianSchemesForDefault
@@ -2519,6 +2531,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__viscoelastic_network_creep_model_viscoelastic_network import (
         OneOf_ViscoelasticNetworkCreepModelViscoelasticNetwork,
     )
+    from simscale_sdk_v1.models.simulation.one_of__voce_chaboche_model_marc_hardening_rule import (
+        OneOf_VoceChabocheModelMarcHardeningRule,
+    )
     from simscale_sdk_v1.models.simulation.one_of__voltage_excitation_voltage_type import (
         OneOf_VoltageExcitationVoltageType,
     )
@@ -2607,8 +2622,6 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.power_law_medium import PowerLawMedium
     from simscale_sdk_v1.models.simulation.power_law_viscosity_model import PowerLawViscosityModel
     from simscale_sdk_v1.models.simulation.prandtl_les_delta import PrandtlLesDelta
-    from simscale_sdk_v1.models.simulation.predefined_rotational_motion import PredefinedRotationalMotion
-    from simscale_sdk_v1.models.simulation.predefined_translational_motion import PredefinedTranslationalMotion
     from simscale_sdk_v1.models.simulation.prescribed_optional_function import PrescribedOptionalFunction
     from simscale_sdk_v1.models.simulation.pressure_bc import PressureBC
     from simscale_sdk_v1.models.simulation.pressure_bc_marc import PressureBCMarc
@@ -2880,6 +2893,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.theta_method_time_integration_type import ThetaMethodTimeIntegrationType
     from simscale_sdk_v1.models.simulation.thin_resistance_layer import ThinResistanceLayer
     from simscale_sdk_v1.models.simulation.third_order_ogden import ThirdOrderOgden
+    from simscale_sdk_v1.models.simulation.three_backstress_terms import ThreeBackstressTerms
     from simscale_sdk_v1.models.simulation.three_terms import ThreeTerms
     from simscale_sdk_v1.models.simulation.time_and_place_sun_direction import TimeAndPlaceSunDirection
     from simscale_sdk_v1.models.simulation.time_differentiation_schemes import TimeDifferentiationSchemes
@@ -2925,6 +2939,7 @@ if TYPE_CHECKING:
         TurbulentIntensityAndReferenceLengthTurbulence,
     )
     from simscale_sdk_v1.models.simulation.twice_max_loading_frequency import TwiceMaxLoadingFrequency
+    from simscale_sdk_v1.models.simulation.two_backstress_terms import TwoBackstressTerms
     from simscale_sdk_v1.models.simulation.two_resistor_network import TwoResistorNetwork
     from simscale_sdk_v1.models.simulation.two_terms import TwoTerms
     from simscale_sdk_v1.models.simulation.unconstrained_optional_function import UnconstrainedOptionalFunction
@@ -2974,6 +2989,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.velocity_result_control_item import VelocityResultControlItem
     from simscale_sdk_v1.models.simulation.viscoelastic_network import ViscoelasticNetwork
     from simscale_sdk_v1.models.simulation.viscoplastic_marc_material_behavior import ViscoplasticMarcMaterialBehavior
+    from simscale_sdk_v1.models.simulation.voce_chaboche_model_marc import VoceChabocheModelMarc
     from simscale_sdk_v1.models.simulation.voltage_excitation import VoltageExcitation
     from simscale_sdk_v1.models.simulation.volume_heat_flux import VolumeHeatFlux
     from simscale_sdk_v1.models.simulation.volume_heat_flux_bc import VolumeHeatFluxBC
@@ -3329,6 +3345,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.combined_plastic_hardening_marc",
         "CombinedPlasticHardeningMarc",
     ),
+    "CombinedVoceChabocheHardeningMarc": (
+        "simscale_sdk_v1.models.simulation.combined_voce_chaboche_hardening_marc",
+        "CombinedVoceChabocheHardeningMarc",
+    ),
     "ComfortCriterionDefinitionV2": (
         "simscale_sdk_v1.models.simulation.comfort_criterion_definition_v2",
         "ComfortCriterionDefinitionV2",
@@ -3432,6 +3452,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "CubicInterpolationScheme": (
         "simscale_sdk_v1.models.simulation.cubic_interpolation_scheme",
         "CubicInterpolationScheme",
+    ),
+    "CumulativePlasticStrain": (
+        "simscale_sdk_v1.models.simulation.cumulative_plastic_strain",
+        "CumulativePlasticStrain",
     ),
     "CurrentExcitation": ("simscale_sdk_v1.models.simulation.current_excitation", "CurrentExcitation"),
     "CurrentInflowEBC": ("simscale_sdk_v1.models.simulation.current_inflow_ebc", "CurrentInflowEBC"),
@@ -4048,6 +4072,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.electromagnetic_material",
         "ElectromagneticMaterial",
     ),
+    "ElectromagneticMotion": ("simscale_sdk_v1.models.simulation.electromagnetic_motion", "ElectromagneticMotion"),
     "ElectromagneticNumerics": (
         "simscale_sdk_v1.models.simulation.electromagnetic_numerics",
         "ElectromagneticNumerics",
@@ -4711,10 +4736,18 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.isotropic_thermal_conductivity_method",
         "IsotropicThermalConductivityMethod",
     ),
+    "IsotropicVoceHardeningMarc": (
+        "simscale_sdk_v1.models.simulation.isotropic_voce_hardening_marc",
+        "IsotropicVoceHardeningMarc",
+    ),
     "JacobiPreconditioner": ("simscale_sdk_v1.models.simulation.jacobi_preconditioner", "JacobiPreconditioner"),
     "JohnsonCookElastoPlasticModel": (
         "simscale_sdk_v1.models.simulation.johnson_cook_elasto_plastic_model",
         "JohnsonCookElastoPlasticModel",
+    ),
+    "KinematicChabocheHardeningMarc": (
+        "simscale_sdk_v1.models.simulation.kinematic_chaboche_hardening_marc",
+        "KinematicChabocheHardeningMarc",
     ),
     "KinematicPlasticHardeningMarc": (
         "simscale_sdk_v1.models.simulation.kinematic_plastic_hardening_marc",
@@ -4877,6 +4910,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     ),
     "MarcContactStatus": ("simscale_sdk_v1.models.simulation.marc_contact_status", "MarcContactStatus"),
     "MarcContactStatusType": ("simscale_sdk_v1.models.simulation.marc_contact_status_type", "MarcContactStatusType"),
+    "MarcCumulativePlasticStrainType": (
+        "simscale_sdk_v1.models.simulation.marc_cumulative_plastic_strain_type",
+        "MarcCumulativePlasticStrainType",
+    ),
     "MarcDisplacementFieldSelection": (
         "simscale_sdk_v1.models.simulation.marc_displacement_field_selection",
         "MarcDisplacementFieldSelection",
@@ -5166,6 +5203,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "OgdenHyperelasticModelMarc",
     ),
     "OgdenRoxburgh": ("simscale_sdk_v1.models.simulation.ogden_roxburgh", "OgdenRoxburgh"),
+    "OneBackstressTerm": ("simscale_sdk_v1.models.simulation.one_backstress_term", "OneBackstressTerm"),
     "OneOf_AMIRotatingZoneMotionType": (
         "simscale_sdk_v1.models.simulation.one_of_ami_rotating_zone_motion_type",
         "OneOf_AMIRotatingZoneMotionType",
@@ -5273,6 +5311,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_CoilCoilType": ("simscale_sdk_v1.models.simulation.one_of__coil_coil_type", "OneOf_CoilCoilType"),
     "OneOf_CoilExcitation": ("simscale_sdk_v1.models.simulation.one_of__coil_excitation", "OneOf_CoilExcitation"),
     "OneOf_CoilTopology": ("simscale_sdk_v1.models.simulation.one_of__coil_topology", "OneOf_CoilTopology"),
+    "OneOf_CombinedVoceChabocheHardeningMarcBackstressTerms": (
+        "simscale_sdk_v1.models.simulation.one_of__combined_voce_chaboche_hardening_marc_backstress_terms",
+        "OneOf_CombinedVoceChabocheHardeningMarcBackstressTerms",
+    ),
     "OneOf_ComponentVectorFunctionX": (
         "simscale_sdk_v1.models.simulation.one_of__component_vector_function_x",
         "OneOf_ComponentVectorFunctionX",
@@ -5760,10 +5802,6 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_ElastoplasticNetworkPlasticityModelElastoplasticNetwork": (
         "simscale_sdk_v1.models.simulation.one_of__elastoplastic_network_plasticity_model_elastoplastic_network",
         "OneOf_ElastoplasticNetworkPlasticityModelElastoplasticNetwork",
-    ),
-    "OneOf_ElectromagneticAdvancedConceptsMotionAnalysis": (
-        "simscale_sdk_v1.models.simulation.one_of__electromagnetic_advanced_concepts_motion_analysis",
-        "OneOf_ElectromagneticAdvancedConceptsMotionAnalysis",
     ),
     "OneOf_ElectromagneticAnalysisBoundaryConditions": (
         "simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_boundary_conditions",
@@ -6373,6 +6411,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_JohnsonCookElastoPlasticModelPoissonsRatio": (
         "simscale_sdk_v1.models.simulation.one_of__johnson_cook_elasto_plastic_model_poissons_ratio",
         "OneOf_JohnsonCookElastoPlasticModelPoissonsRatio",
+    ),
+    "OneOf_KinematicChabocheHardeningMarcBackstressTerms": (
+        "simscale_sdk_v1.models.simulation.one_of__kinematic_chaboche_hardening_marc_backstress_terms",
+        "OneOf_KinematicChabocheHardeningMarcBackstressTerms",
     ),
     "OneOf_LanczosSubspaceSettings": (
         "simscale_sdk_v1.models.simulation.one_of__lanczos_subspace_settings",
@@ -7246,6 +7288,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__viscoelastic_network_creep_model_viscoelastic_network",
         "OneOf_ViscoelasticNetworkCreepModelViscoelasticNetwork",
     ),
+    "OneOf_VoceChabocheModelMarcHardeningRule": (
+        "simscale_sdk_v1.models.simulation.one_of__voce_chaboche_model_marc_hardening_rule",
+        "OneOf_VoceChabocheModelMarcHardeningRule",
+    ),
     "OneOf_VoltageExcitationVoltageType": (
         "simscale_sdk_v1.models.simulation.one_of__voltage_excitation_voltage_type",
         "OneOf_VoltageExcitationVoltageType",
@@ -7413,14 +7459,6 @@ _NAMES: dict[str, tuple[str, str]] = {
     "PowerLawMedium": ("simscale_sdk_v1.models.simulation.power_law_medium", "PowerLawMedium"),
     "PowerLawViscosityModel": ("simscale_sdk_v1.models.simulation.power_law_viscosity_model", "PowerLawViscosityModel"),
     "PrandtlLesDelta": ("simscale_sdk_v1.models.simulation.prandtl_les_delta", "PrandtlLesDelta"),
-    "PredefinedRotationalMotion": (
-        "simscale_sdk_v1.models.simulation.predefined_rotational_motion",
-        "PredefinedRotationalMotion",
-    ),
-    "PredefinedTranslationalMotion": (
-        "simscale_sdk_v1.models.simulation.predefined_translational_motion",
-        "PredefinedTranslationalMotion",
-    ),
     "PrescribedOptionalFunction": (
         "simscale_sdk_v1.models.simulation.prescribed_optional_function",
         "PrescribedOptionalFunction",
@@ -7922,6 +7960,7 @@ _NAMES: dict[str, tuple[str, str]] = {
     ),
     "ThinResistanceLayer": ("simscale_sdk_v1.models.simulation.thin_resistance_layer", "ThinResistanceLayer"),
     "ThirdOrderOgden": ("simscale_sdk_v1.models.simulation.third_order_ogden", "ThirdOrderOgden"),
+    "ThreeBackstressTerms": ("simscale_sdk_v1.models.simulation.three_backstress_terms", "ThreeBackstressTerms"),
     "ThreeTerms": ("simscale_sdk_v1.models.simulation.three_terms", "ThreeTerms"),
     "TimeAndPlaceSunDirection": (
         "simscale_sdk_v1.models.simulation.time_and_place_sun_direction",
@@ -8020,6 +8059,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.twice_max_loading_frequency",
         "TwiceMaxLoadingFrequency",
     ),
+    "TwoBackstressTerms": ("simscale_sdk_v1.models.simulation.two_backstress_terms", "TwoBackstressTerms"),
     "TwoResistorNetwork": ("simscale_sdk_v1.models.simulation.two_resistor_network", "TwoResistorNetwork"),
     "TwoTerms": ("simscale_sdk_v1.models.simulation.two_terms", "TwoTerms"),
     "UnconstrainedOptionalFunction": (
@@ -8117,6 +8157,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.viscoplastic_marc_material_behavior",
         "ViscoplasticMarcMaterialBehavior",
     ),
+    "VoceChabocheModelMarc": ("simscale_sdk_v1.models.simulation.voce_chaboche_model_marc", "VoceChabocheModelMarc"),
     "VoltageExcitation": ("simscale_sdk_v1.models.simulation.voltage_excitation", "VoltageExcitation"),
     "VolumeHeatFlux": ("simscale_sdk_v1.models.simulation.volume_heat_flux", "VolumeHeatFlux"),
     "VolumeHeatFluxBC": ("simscale_sdk_v1.models.simulation.volume_heat_flux_bc", "VolumeHeatFluxBC"),

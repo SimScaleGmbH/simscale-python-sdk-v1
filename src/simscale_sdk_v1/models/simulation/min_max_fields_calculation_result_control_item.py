@@ -10,11 +10,13 @@ from simscale_sdk_v1.models.simulation.topological_reference import TopologicalR
 
 
 class MinMaxFieldsCalculationResultControlItem(SimScaleModel):
+    """Use Min-max to output the minimum and maximum nodal values of the selected result quantity on the assigned entity."""
+
     type_: str = Field(
         validation_alias="type",
         serialization_alias="type",
         default="MIN_MAX_FIELDS_CALCULATION",
-        description="Schema name: MinMaxFieldsCalculationResultControlItem",
+        description="Use Min-max to output the minimum and maximum nodal values of the selected result quantity on the assigned entity.  Schema name: MinMaxFieldsCalculationResultControlItem",
     )
     name: str | None = Field(default=None)
     field_selection: OneOf_MinMaxFieldsCalculationResultControlItemFieldSelection | None = Field(

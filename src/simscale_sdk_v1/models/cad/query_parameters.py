@@ -2,10 +2,10 @@ from __future__ import annotations
 from typing import Union
 
 from simscale_sdk_v1.models.cad.detect_contacts_v3_parameters import DetectContactsV3Parameters
+from simscale_sdk_v1.models.cad.find_gaps_parameters import FindGapsParameters
 from simscale_sdk_v1.models.cad.find_interfering_bodies_parameters import FindInterferingBodiesParameters
-from simscale_sdk_v1.models.cad.find_small_gaps_parameters import FindSmallGapsParameters
 from simscale_sdk_v1.models.cad.measure_entities_parameters import MeasureEntitiesParameters
 
 QueryParameters = Union[
-    DetectContactsV3Parameters, FindInterferingBodiesParameters, FindSmallGapsParameters, MeasureEntitiesParameters
+    DetectContactsV3Parameters, FindInterferingBodiesParameters, FindGapsParameters, MeasureEntitiesParameters
 ]

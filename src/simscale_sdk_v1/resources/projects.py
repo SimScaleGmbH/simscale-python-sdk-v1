@@ -13,7 +13,12 @@ class Projects:
         project_id: str,
         body: models.ProjectCopyRequest,
     ) -> models.Project:
-        """Copy an existing project"""
+        """Copy an existing project
+
+
+
+        The copy has the visibility of the source project unless 'visibility' is set.
+        """
         return self._client.request(
             "POST",
             f"/projects/{project_id}/copy",
@@ -29,15 +34,32 @@ class Projects:
 
 
 
-        The visibility of the Project will be determined by the available capabilities of the requesting user.
+        Set 'visibility' to create a public or a private project. When omitted, users who can create private projects get a private project,
 
-        If the user can create private projects, the Project will be private. Otherwise, it will be public.
+        all others (for example Community accounts) get a public one. Requesting a private project without a plan that allows it fails with 403.
         """
         return self._client.request(
             "POST",
             "/projects",
             json_body=body,
             response_type=models.Project,
+        )
+
+    def delete_project(
+        self,
+        project_id: str,
+    ) -> None:
+        """Delete an existing project
+
+
+
+        The project is moved to the trash together with its CADs, meshes, simulations and runs.
+
+        Running jobs are stopped. A trashed project can be restored from the SimScale workbench for a limited time.
+        """
+        return self._client.request(
+            "DELETE",
+            f"/projects/{project_id}",
         )
 
     def get_project(
@@ -71,7 +93,12 @@ class Projects:
         project_id: str,
         body: models.Project,
     ) -> None:
-        """Update an existing project"""
+        """Update an existing project
+
+
+
+        Set 'visibility' to change between public and private. When omitted, the visibility is kept.
+        """
         return self._client.request(
             "PUT",
             f"/projects/{project_id}",

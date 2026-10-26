@@ -27,6 +27,22 @@ class Cads:
             response_type=models.CreateSavedSelectionResponse,
         )
 
+    def delete_cad(
+        self,
+        project_id: str,
+        cad_id: str,
+    ) -> None:
+        """Delete the CAD
+
+
+
+        The CAD is deleted with all its states. Mesh operations and simulations that use it are not deleted.
+        """
+        return self._client.request(
+            "DELETE",
+            f"/projects/{project_id}/cads/{cad_id}",
+        )
+
     def download_original_cad(
         self,
         cad_id: str,

@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 
 if TYPE_CHECKING:
+    from simscale_sdk_v1.models.component_registry.component_documentation import ComponentDocumentation
     from simscale_sdk_v1.models.component_registry.component_group_metadata import ComponentGroupMetadata
     from simscale_sdk_v1.models.component_registry.component_overview import ComponentOverview
     from simscale_sdk_v1.models.component_registry.component_version_dependencies import ComponentVersionDependencies
@@ -18,6 +19,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.component_registry.data_type_file_operations_description import (
         DataTypeFileOperationsDescription,
     )
+    from simscale_sdk_v1.models.component_registry.documentation_page import DocumentationPage
     from simscale_sdk_v1.models.component_registry.file_format import FileFormat
     from simscale_sdk_v1.models.component_registry.file_format_group import FileFormatGroup
     from simscale_sdk_v1.models.component_registry.organization_component_group_metadata import (
@@ -25,12 +27,13 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.component_registry.parameter_description import ParameterDescription
     from simscale_sdk_v1.models.component_registry.ui_configuration import UiConfiguration
-    from simscale_sdk_v1.models.component_registry.validation_rule import ValidationRule
-    from simscale_sdk_v1.models.component_registry.validation_rule_case import ValidationRuleCase
-    from simscale_sdk_v1.models.component_registry.validation_rule_set import ValidationRuleSet
     from simscale_sdk_v1.models.component_registry.workflow_definition import WorkflowDefinition
 
 _NAMES: dict[str, tuple[str, str]] = {
+    "ComponentDocumentation": (
+        "simscale_sdk_v1.models.component_registry.component_documentation",
+        "ComponentDocumentation",
+    ),
     "ComponentGroupMetadata": (
         "simscale_sdk_v1.models.component_registry.component_group_metadata",
         "ComponentGroupMetadata",
@@ -54,6 +57,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.component_registry.data_type_file_operations_description",
         "DataTypeFileOperationsDescription",
     ),
+    "DocumentationPage": ("simscale_sdk_v1.models.component_registry.documentation_page", "DocumentationPage"),
     "FileFormat": ("simscale_sdk_v1.models.component_registry.file_format", "FileFormat"),
     "FileFormatGroup": ("simscale_sdk_v1.models.component_registry.file_format_group", "FileFormatGroup"),
     "OrganizationComponentGroupMetadata": (
@@ -62,9 +66,6 @@ _NAMES: dict[str, tuple[str, str]] = {
     ),
     "ParameterDescription": ("simscale_sdk_v1.models.component_registry.parameter_description", "ParameterDescription"),
     "UiConfiguration": ("simscale_sdk_v1.models.component_registry.ui_configuration", "UiConfiguration"),
-    "ValidationRule": ("simscale_sdk_v1.models.component_registry.validation_rule", "ValidationRule"),
-    "ValidationRuleCase": ("simscale_sdk_v1.models.component_registry.validation_rule_case", "ValidationRuleCase"),
-    "ValidationRuleSet": ("simscale_sdk_v1.models.component_registry.validation_rule_set", "ValidationRuleSet"),
     "WorkflowDefinition": ("simscale_sdk_v1.models.component_registry.workflow_definition", "WorkflowDefinition"),
 }
 

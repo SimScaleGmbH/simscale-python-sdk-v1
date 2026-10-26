@@ -34,6 +34,7 @@ class InternalDataInfo(SimScaleModel):
         description="Reference to a component version.  Components are organized into a group hierarchy which serves as a qualification mechanism to avoid collisions and also to group components semantically.  Component versions follow the convention of semantic versioning.  The fully qualified reference of a component version follows the following syntax: `[component_group]:[component]:[component_version]`.",
     )
     data_info_type: str
+    description: str | None = Field(default=None)
     origin: Literal["USER_UPLOAD", "WORKFLOW_EXECUTION"] | None = Field(
         default=None,
         description="Identifies the origin of data creation: - `USER_UPLOAD`: data was uploaded or registered directly by a user through the API - `WORKFLOW_EXECUTION`: data was created as a result of a workflow run",

@@ -38,6 +38,12 @@ class ReportResponse(SimScaleModel):
     status: Literal["READY", "QUEUED", "RUNNING", "FINISHED", "CANCELED", "FAILED"] = Field(
         description="Status of the report operation."
     )
+    ramps_id: str | None = Field(
+        validation_alias="rampsId",
+        serialization_alias="rampsId",
+        default=None,
+        description="The RAMPS result of a dataflow output for which the report was created; absent for reports on simulation results (resultIds).",
+    )
     result_ids: list[str] | None = Field(
         validation_alias="resultIds",
         serialization_alias="resultIds",

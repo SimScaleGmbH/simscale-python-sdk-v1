@@ -17,7 +17,7 @@ class ComponentOverview(SimScaleModel):
         description="Reference to a component.  Components are organized into a group hierarchy which serves as a qualification mechanism to avoid collisions and also to group components semantically.  The fully qualified reference of a component follows the following syntax: `[component_group]:[component]`.",
     )
     component_type: (
-        Literal["DATA_TYPE", "METHOD", "WORKFLOW_TYPE", "PHYSICS_AI_MODEL", "ENGINEERING_AI_AGENT"] | None
+        Literal["DATA_TYPE", "METHOD", "WORKFLOW_TYPE", "PHYSICS_AI_MODEL", "ENGINEERING_AI_AGENT", "MATERIAL"] | None
     ) = Field(validation_alias="componentType", serialization_alias="componentType", default=None)
     name: str | None = Field(default=None)
     state: Literal["ACTIVE", "ARCHIVED"] | None = Field(default=None, description="Possible states of a component.")

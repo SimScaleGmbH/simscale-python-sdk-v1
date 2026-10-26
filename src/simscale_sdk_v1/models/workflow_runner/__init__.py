@@ -20,6 +20,7 @@ if TYPE_CHECKING:
         OperationRunStateHistoryStatisticalSummary,
     )
     from simscale_sdk_v1.models.workflow_runner.public_workflow_run_overview import PublicWorkflowRunOverview
+    from simscale_sdk_v1.models.workflow_runner.recycled_operation_run_reference import RecycledOperationRunReference
     from simscale_sdk_v1.models.workflow_runner.resource_usage import ResourceUsage
     from simscale_sdk_v1.models.workflow_runner.resource_usage_summary import ResourceUsageSummary
     from simscale_sdk_v1.models.workflow_runner.workflow_run_error import WorkflowRunError
@@ -56,6 +57,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "PublicWorkflowRunOverview": (
         "simscale_sdk_v1.models.workflow_runner.public_workflow_run_overview",
         "PublicWorkflowRunOverview",
+    ),
+    "RecycledOperationRunReference": (
+        "simscale_sdk_v1.models.workflow_runner.recycled_operation_run_reference",
+        "RecycledOperationRunReference",
     ),
     "ResourceUsage": ("simscale_sdk_v1.models.workflow_runner.resource_usage", "ResourceUsage"),
     "ResourceUsageSummary": ("simscale_sdk_v1.models.workflow_runner.resource_usage_summary", "ResourceUsageSummary"),

@@ -8,6 +8,7 @@ from simscale_sdk_v1._base import parse_discriminated_union
 from simscale_sdk_v1.models.simulation.global_nodal_force_type import GlobalNodalForceType
 from simscale_sdk_v1.models.simulation.global_reaction_force_type import GlobalReactionForceType
 
+# Reaction force: Reaction forces computed on the nodes of the model. The field is non-zero only on faces with imposed displacement boundary conditions, such as Fixed support, Fixed value, or Symmetry plane. Expressed in global components X, Y, Z.Nodal force: Applied forces as computed on the nodes of the model. The field is non-zero on entities with imposed displacement and load boundary conditions, such as Force, Pressure, etc. Expressed in global components X, Y, Z.
 _ONE_OF__FORCE_RESULT_CONTROL_ITEM_FORCE_TYPE_VARIANTS: dict[str, type] = {
     "REACTION": GlobalReactionForceType,
     "NODAL": GlobalNodalForceType,

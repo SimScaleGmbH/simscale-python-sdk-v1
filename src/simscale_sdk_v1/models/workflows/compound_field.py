@@ -12,6 +12,7 @@ class CompoundField(SimScaleModel):
     associated_data_type: str | None = Field(
         validation_alias="associatedDataType", serialization_alias="associatedDataType", default=None
     )
+    axes: list[str] | None = Field(default=None)
     default_subtype: bool | None = Field(
         validation_alias="defaultSubtype", serialization_alias="defaultSubtype", default=None
     )
@@ -30,6 +31,7 @@ class CompoundField(SimScaleModel):
         validation_alias="multiLanguageLabel", serialization_alias="multiLanguageLabel", default=None
     )
     name: str | None = Field(default=None)
+    non_empty: bool | None = Field(validation_alias="nonEmpty", serialization_alias="nonEmpty", default=None)
     optional: bool | None = Field(default=None)
     polymorphic: bool | None = Field(default=None)
     schema_definition_field_index: int | None = Field(

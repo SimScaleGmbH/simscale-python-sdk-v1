@@ -11,6 +11,9 @@ from simscale_sdk_v1.models.workflows.compound_field_custom_ui_configuration_ent
 from simscale_sdk_v1.models.workflows.compound_field_title_ui_configuration_entry import (
     CompoundFieldTitleUiConfigurationEntry,
 )
+from simscale_sdk_v1.models.workflows.geometry_derivation_ui_configuration_entry import (
+    GeometryDerivationUiConfigurationEntry,
+)
 from simscale_sdk_v1.models.workflows.navigation_list_ui_configuration_entry import NavigationListUiConfigurationEntry
 from simscale_sdk_v1.models.workflows.navigation_ui_configuration_entry import NavigationUiConfigurationEntry
 from simscale_sdk_v1.models.workflows.plot2_d_ui_configuration_entry import Plot2DUiConfigurationEntry
@@ -19,9 +22,10 @@ from simscale_sdk_v1.models.workflows.unknown_ui_configuration_entry import Unkn
 from simscale_sdk_v1.models.workflows.visibility_ui_configuration_entry import VisibilityUiConfigurationEntry
 
 _UI_CONFIGURATION_ENTRY_VARIANTS: dict[str, type] = {
+    "builtin:geometry_derivation": GeometryDerivationUiConfigurationEntry,
     "builtin:navigation": NavigationUiConfigurationEntry,
     "builtin:navigation:list": NavigationListUiConfigurationEntry,
-    "builtin:plot": Plot2DUiConfigurationEntry,
+    "builtin:plot2D": Plot2DUiConfigurationEntry,
     "builtin:slider": SliderUiConfigurationEntry,
     "builtin:title": CompoundFieldTitleUiConfigurationEntry,
     "builtin:visibility": VisibilityUiConfigurationEntry,
@@ -31,6 +35,7 @@ _UI_CONFIGURATION_ENTRY_VARIANTS: dict[str, type] = {
 
 UiConfigurationEntry = Annotated[
     Union[
+        GeometryDerivationUiConfigurationEntry,
         NavigationUiConfigurationEntry,
         NavigationListUiConfigurationEntry,
         Plot2DUiConfigurationEntry,

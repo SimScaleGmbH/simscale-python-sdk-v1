@@ -15,6 +15,7 @@ from simscale_sdk_v1.models.workflows.value_list_function_drop_last import Value
 from simscale_sdk_v1.models.workflows.value_list_function_filter import ValueListFunctionFilter
 from simscale_sdk_v1.models.workflows.value_list_function_map import ValueListFunctionMap
 from simscale_sdk_v1.models.workflows.value_list_function_sub_list import ValueListFunctionSubList
+from simscale_sdk_v1.models.workflows.value_list_function_table_section import ValueListFunctionTableSection
 from simscale_sdk_v1.models.workflows.value_list_function_take import ValueListFunctionTake
 from simscale_sdk_v1.models.workflows.value_list_function_take_last import ValueListFunctionTakeLast
 from simscale_sdk_v1.models.workflows.value_list_operation_plus import ValueListOperationPlus
@@ -29,6 +30,7 @@ _VALUE_LIST_ENUM_VALUE_VARIANTS: dict[str, type] = {
     "list:function:filter": ValueListFunctionFilter,
     "list:function:map": ValueListFunctionMap,
     "list:function:sublist": ValueListFunctionSubList,
+    "list:function:table_section": ValueListFunctionTableSection,
     "list:function:take": ValueListFunctionTake,
     "list:function:take_last": ValueListFunctionTakeLast,
     "list:generator:integer_sequence": IntegerSequenceGenerator,
@@ -47,6 +49,7 @@ ValueListEnumValue = Annotated[
         ValueListFunctionFilter,
         ValueListFunctionMap,
         ValueListFunctionSubList,
+        ValueListFunctionTableSection,
         ValueListFunctionTake,
         ValueListFunctionTakeLast,
         IntegerSequenceGenerator,

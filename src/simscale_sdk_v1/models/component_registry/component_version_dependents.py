@@ -16,6 +16,9 @@ class ComponentVersionDependents(SimScaleModel):
         serialization_alias="engineeringAiAgentDependents",
         default=None,
     )
+    material_dependents: list[str] | None = Field(
+        validation_alias="materialDependents", serialization_alias="materialDependents", default=None
+    )
     method_dependents: list[str] | None = Field(
         validation_alias="methodDependents", serialization_alias="methodDependents", default=None
     )

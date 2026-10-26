@@ -8,6 +8,7 @@ from simscale_sdk_v1._base import SimScaleModel
 
 
 class EnumFunctionOneOf(SimScaleModel):
+    value_model_type: str
     operand_a: Any | None = Field(
         validation_alias="operandA",
         serialization_alias="operandA",
@@ -20,4 +21,3 @@ class EnumFunctionOneOf(SimScaleModel):
         default=None,
         description="Value model for a list of values. Resolves to a JSON array.",
     )
-    value_model_type: str

@@ -61,6 +61,7 @@ class OperationRun(SimScaleModel):
         validation_alias="parameterValues", serialization_alias="parameterValues", default=None
     )
     recycled: bool | None = Field(default=None)
+    recycled_from: Any | None = Field(validation_alias="recycledFrom", serialization_alias="recycledFrom", default=None)
     state_history_statistical_summary: OperationRunStateHistoryStatisticalSummary | None = Field(
         validation_alias="stateHistoryStatisticalSummary",
         serialization_alias="stateHistoryStatisticalSummary",

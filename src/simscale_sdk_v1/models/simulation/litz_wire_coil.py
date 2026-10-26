@@ -22,7 +22,7 @@ class LitzWireCoil(SimScaleModel):
         validation_alias="numberOfTurns",
         serialization_alias="numberOfTurns",
         default=1,
-        description="The Number of Turns option indicates the number of times the wire is wound around the coil's core to form loops. Each loop is a complete 360-degree winding of the wire around the core.",
+        description="The Number of Turns option indicates the number of times the wire is wound around the coil's core to form loops. Each loop is a complete 360-degree winding of the wire around the core.With Current Excitation, the entered current is the current in a single turn. The solver multiplies it by the number of turns to obtain the ampere-turns of the coil, so do not multiply the current by the number of turns yourself.",
     )
     number_of_strands_per_turn: int | None = Field(
         validation_alias="numberOfStrandsPerTurn", serialization_alias="numberOfStrandsPerTurn", default=1

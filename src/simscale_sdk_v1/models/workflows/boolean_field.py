@@ -20,6 +20,7 @@ class BooleanField(SimScaleModel):
         validation_alias="multiLanguageLabel", serialization_alias="multiLanguageLabel", default=None
     )
     name: str | None = Field(default=None)
+    non_empty: bool | None = Field(validation_alias="nonEmpty", serialization_alias="nonEmpty", default=None)
     optional: bool | None = Field(default=None)
     schema_definition_field_index: int | None = Field(
         validation_alias="schemaDefinitionFieldIndex", serialization_alias="schemaDefinitionFieldIndex", default=None

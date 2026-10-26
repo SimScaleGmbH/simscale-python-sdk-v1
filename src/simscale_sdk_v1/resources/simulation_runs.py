@@ -59,17 +59,34 @@ class SimulationRuns:
         simulation_id: str,
         body: models.SimulationRun,
     ) -> models.SimulationRun:
-        """Create a simulation run
+        """Create and start a simulation run
 
 
 
-        This operation creates a run in status `READY`, however the run is not automatically started. The run must be started explicitly using the `POST /projects/{projectId}/simulations/{simulationId}/runs/{runId}/start` endpoint.
+        This operation creates a simulation run and starts it in one call.
         """
         return self._client.request(
             "POST",
             f"/projects/{project_id}/simulations/{simulation_id}/runs",
             json_body=body,
             response_type=models.SimulationRun,
+        )
+
+    def delete_simulation_run(
+        self,
+        project_id: str,
+        simulation_id: str,
+        run_id: str,
+    ) -> None:
+        """Delete the simulation run
+
+
+
+        Continued runs and sub-runs of the run are deleted with it. A running job is stopped.
+        """
+        return self._client.request(
+            "DELETE",
+            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}",
         )
 
     def delete_simulation_run_sub_run(
@@ -235,18 +252,6 @@ class SimulationRuns:
             query_params={"limit": limit, "page": page},
         )
         return PaginatedResponse(data, models.SimulationRun)
-
-    def start_simulation_run(
-        self,
-        project_id: str,
-        simulation_id: str,
-        run_id: str,
-    ) -> None:
-        """Start the simulation run"""
-        return self._client.request(
-            "POST",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/start",
-        )
 
     def update_simulation_run(
         self,
