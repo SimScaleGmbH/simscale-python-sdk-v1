@@ -17,12 +17,6 @@ class AdvancedMUMPSSettings(SimScaleModel):
         default=False,
         description="Choose if you want to enforce a symmetric matrix.",
     )
-    enable_singularity_detection: bool | None = Field(
-        validation_alias="enableSingularityDetection",
-        serialization_alias="enableSingularityDetection",
-        default=True,
-        description="Enable the check for singularities in the model. This is helpful for debugging, to spot problems with the setup.",
-    )
     precision_singularity_detection: int | None = Field(
         validation_alias="precisionSingularityDetection",
         serialization_alias="precisionSingularityDetection",

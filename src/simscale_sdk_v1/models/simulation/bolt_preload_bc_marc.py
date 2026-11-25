@@ -5,6 +5,7 @@ from typing import Literal
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
+from simscale_sdk_v1.models.simulation.automatic_load_ramping_marc import AutomaticLoadRampingMarc
 from simscale_sdk_v1.models.simulation.dimensional__force import Dimensional_Force
 from simscale_sdk_v1.models.simulation.dimensional__length import Dimensional_Length
 from simscale_sdk_v1.models.simulation.topological_reference import TopologicalReference
@@ -40,6 +41,9 @@ class BoltPreloadBCMarc(SimScaleModel):
     )
     load_step_uuids: list[str] | None = Field(
         validation_alias="loadStepUuids", serialization_alias="loadStepUuids", default=None
+    )
+    automatic_load_ramping: AutomaticLoadRampingMarc | None = Field(
+        validation_alias="automaticLoadRamping", serialization_alias="automaticLoadRamping", default=None
     )
     topological_reference: TopologicalReference | None = Field(
         validation_alias="topologicalReference", serialization_alias="topologicalReference", default=None

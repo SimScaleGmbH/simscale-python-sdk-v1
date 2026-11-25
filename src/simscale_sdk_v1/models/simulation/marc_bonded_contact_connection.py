@@ -6,6 +6,9 @@ from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.simulation.one_of__marc_bonded_contact_connection_position_tolerance import (
     OneOf_MarcBondedContactConnectionPositionTolerance,
 )
+from simscale_sdk_v1.models.simulation.one_of__marc_bonded_contact_connection_thermal_contact import (
+    OneOf_MarcBondedContactConnectionThermalContact,
+)
 from simscale_sdk_v1.models.simulation.topological_reference import TopologicalReference
 
 
@@ -21,6 +24,9 @@ class MarcBondedContactConnection(SimScaleModel):
     name: str | None = Field(default=None)
     position_tolerance: OneOf_MarcBondedContactConnectionPositionTolerance | None = Field(
         validation_alias="positionTolerance", serialization_alias="positionTolerance", default=None
+    )
+    thermal_contact: OneOf_MarcBondedContactConnectionThermalContact | None = Field(
+        validation_alias="thermalContact", serialization_alias="thermalContact", default=None
     )
     activate_load_steps: bool | None = Field(
         validation_alias="activateLoadSteps",

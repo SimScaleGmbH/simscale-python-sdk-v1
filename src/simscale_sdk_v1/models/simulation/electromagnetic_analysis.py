@@ -13,6 +13,9 @@ from simscale_sdk_v1.models.simulation.electromagnetic_simulation_control import
 from simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_boundary_conditions import (
     OneOf_ElectromagneticAnalysisBoundaryConditions,
 )
+from simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_local_coordinate_systems import (
+    OneOf_ElectromagneticAnalysisLocalCoordinateSystems,
+)
 from simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_model import OneOf_ElectromagneticAnalysisModel
 
 
@@ -22,6 +25,9 @@ class ElectromagneticAnalysis(SimScaleModel):
         serialization_alias="type",
         default="ELECTROMAGNETIC_ANALYSIS",
         description="Schema name: ElectromagneticAnalysis",
+    )
+    local_coordinate_systems: list[OneOf_ElectromagneticAnalysisLocalCoordinateSystems] | None = Field(
+        validation_alias="localCoordinateSystems", serialization_alias="localCoordinateSystems", default=None
     )
     model: OneOf_ElectromagneticAnalysisModel | None = Field(default=None)
     materials: list[ElectromagneticMaterial] | None = Field(default=None)

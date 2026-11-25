@@ -7,9 +7,11 @@ from pydantic import BeforeValidator
 from simscale_sdk_v1._base import parse_discriminated_union
 from simscale_sdk_v1.models.simulation.marc_contact_field_selection import MarcContactFieldSelection
 from simscale_sdk_v1.models.simulation.marc_displacement_field_selection import MarcDisplacementFieldSelection
+from simscale_sdk_v1.models.simulation.marc_heat_flux_field_selection import MarcHeatFluxFieldSelection
 from simscale_sdk_v1.models.simulation.marc_pressure_field_selection import MarcPressureFieldSelection
 from simscale_sdk_v1.models.simulation.marc_strain_field_selection import MarcStrainFieldSelection
 from simscale_sdk_v1.models.simulation.marc_stress_field_selection import MarcStressFieldSelection
+from simscale_sdk_v1.models.simulation.marc_temperature_field_selection import MarcTemperatureFieldSelection
 
 _ONE_OF__MARC_AVERAGE_FIELDS_CALCULATION_RESULT_CONTROL_ITEM_FIELD_SELECTION_VARIANTS: dict[str, type] = {
     "DISPLACEMENT": MarcDisplacementFieldSelection,
@@ -17,6 +19,8 @@ _ONE_OF__MARC_AVERAGE_FIELDS_CALCULATION_RESULT_CONTROL_ITEM_FIELD_SELECTION_VAR
     "STRESS": MarcStressFieldSelection,
     "STRAIN": MarcStrainFieldSelection,
     "CONTACT": MarcContactFieldSelection,
+    "TEMPERATURE": MarcTemperatureFieldSelection,
+    "HEAT_FLUX": MarcHeatFluxFieldSelection,
 }
 
 OneOf_MarcAverageFieldsCalculationResultControlItemFieldSelection = Annotated[
@@ -26,6 +30,8 @@ OneOf_MarcAverageFieldsCalculationResultControlItemFieldSelection = Annotated[
         MarcStressFieldSelection,
         MarcStrainFieldSelection,
         MarcContactFieldSelection,
+        MarcTemperatureFieldSelection,
+        MarcHeatFluxFieldSelection,
     ],
     BeforeValidator(
         partial(

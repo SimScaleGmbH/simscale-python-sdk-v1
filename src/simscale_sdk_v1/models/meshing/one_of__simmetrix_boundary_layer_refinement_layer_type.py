@@ -9,16 +9,18 @@ from simscale_sdk_v1.models.meshing.first_layer_growth import FirstLayerGrowth
 from simscale_sdk_v1.models.meshing.fractional_height1 import FractionalHeight1
 from simscale_sdk_v1.models.meshing.fractional_height2 import FractionalHeight2
 from simscale_sdk_v1.models.meshing.geometric_growth import GeometricGrowth
+from simscale_sdk_v1.models.meshing.layer_growth import LayerGrowth
 
 _ONE_OF__SIMMETRIX_BOUNDARY_LAYER_REFINEMENT_LAYER_TYPE_VARIANTS: dict[str, type] = {
     "FRACTIONAL_HEIGHT_1": FractionalHeight1,
     "FRACTIONAL_HEIGHT_2": FractionalHeight2,
     "GEOMETRIC_GROWTH": GeometricGrowth,
     "FIRST_LAYER_GROWTH": FirstLayerGrowth,
+    "LAYER_GROWTH": LayerGrowth,
 }
 
 OneOf_SimmetrixBoundaryLayerRefinementLayerType = Annotated[
-    Union[FractionalHeight1, FractionalHeight2, GeometricGrowth, FirstLayerGrowth],
+    Union[FractionalHeight1, FractionalHeight2, GeometricGrowth, FirstLayerGrowth, LayerGrowth],
     BeforeValidator(
         partial(
             parse_discriminated_union,

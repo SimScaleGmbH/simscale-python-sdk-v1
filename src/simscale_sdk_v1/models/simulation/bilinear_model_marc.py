@@ -3,7 +3,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
-from simscale_sdk_v1.models.simulation.dimensional__pressure import Dimensional_Pressure
+from simscale_sdk_v1.models.simulation.dimensional_function__pressure import DimensionalFunction_Pressure
 from simscale_sdk_v1.models.simulation.one_of__bilinear_model_marc_hardening_model import (
     OneOf_BilinearModelMarcHardeningModel,
 )
@@ -19,8 +19,8 @@ class BilinearModelMarc(SimScaleModel):
         default="BILINEAR",
         description="Schema name: BilinearModelMarc",
     )
-    yield_stress: Dimensional_Pressure | None = Field(
-        validation_alias="yieldStress", serialization_alias="yieldStress", default=None
+    yield_stress_function: DimensionalFunction_Pressure | None = Field(
+        validation_alias="yieldStressFunction", serialization_alias="yieldStressFunction", default=None
     )
     hardening_model: OneOf_BilinearModelMarcHardeningModel | None = Field(
         validation_alias="hardeningModel", serialization_alias="hardeningModel", default=None

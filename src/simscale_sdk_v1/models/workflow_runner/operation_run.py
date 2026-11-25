@@ -15,6 +15,7 @@ from simscale_sdk_v1.models.workflow_runner.operation_run_state_history_statisti
 class OperationRun(SimScaleModel):
     """Operation level information about workflow run."""
 
+    error: Any | None = Field(default=None)
     method_reference: str | None = Field(
         validation_alias="methodReference",
         serialization_alias="methodReference",

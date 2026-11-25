@@ -10,6 +10,9 @@ from simscale_sdk_v1.models.simulation.one_of__frequency_analysis_boundary_condi
     OneOf_FrequencyAnalysisBoundaryConditions,
 )
 from simscale_sdk_v1.models.simulation.one_of__frequency_analysis_connectors import OneOf_FrequencyAnalysisConnectors
+from simscale_sdk_v1.models.simulation.one_of__frequency_analysis_local_coordinate_systems import (
+    OneOf_FrequencyAnalysisLocalCoordinateSystems,
+)
 from simscale_sdk_v1.models.simulation.solid_element_technology import SolidElementTechnology
 from simscale_sdk_v1.models.simulation.solid_initial_conditions import SolidInitialConditions
 from simscale_sdk_v1.models.simulation.solid_material import SolidMaterial
@@ -25,6 +28,9 @@ class FrequencyAnalysis(SimScaleModel):
         serialization_alias="type",
         default="FREQUENCY_ANALYSIS",
         description="Schema name: FrequencyAnalysis",
+    )
+    local_coordinate_systems: list[OneOf_FrequencyAnalysisLocalCoordinateSystems] | None = Field(
+        validation_alias="localCoordinateSystems", serialization_alias="localCoordinateSystems", default=None
     )
     connection_groups: list[Contact] | None = Field(
         validation_alias="connectionGroups", serialization_alias="connectionGroups", default=None

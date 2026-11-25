@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class SimulationRuns:
@@ -23,7 +23,7 @@ class SimulationRuns:
         """
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/add-wind-data",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}/add-wind-data",
             json_body=body,
             response_type=models.SimulationRun,
         )
@@ -37,7 +37,7 @@ class SimulationRuns:
         """Cancel the simulation run"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/cancel",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}/cancel",
         )
 
     def cancel_simulation_run_sub_run(
@@ -50,7 +50,7 @@ class SimulationRuns:
         """Cancel the sub-run of a parametric run"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/subruns/{sub_run_id}/cancel",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}/subruns/{path_segment(sub_run_id)}/cancel",
         )
 
     def create_simulation_run(
@@ -67,7 +67,7 @@ class SimulationRuns:
         """
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs",
             json_body=body,
             response_type=models.SimulationRun,
         )
@@ -86,7 +86,7 @@ class SimulationRuns:
         """
         return self._client.request(
             "DELETE",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}",
         )
 
     def delete_simulation_run_sub_run(
@@ -99,7 +99,7 @@ class SimulationRuns:
         """Delete the sub-run of a parametric run"""
         return self._client.request(
             "DELETE",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/subruns/{sub_run_id}",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}/subruns/{path_segment(sub_run_id)}",
         )
 
     def get_simulation_run(
@@ -111,7 +111,7 @@ class SimulationRuns:
         """Get basic information about the simulation run"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}",
             response_type=models.SimulationRun,
         )
 
@@ -124,7 +124,7 @@ class SimulationRuns:
         """Get the simulation run event log"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/eventlog",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}/eventlog",
             response_type=models.EventLogResponse,
         )
 
@@ -145,7 +145,7 @@ class SimulationRuns:
         """List available results for a simulation runs"""
         data = self._client.request(
             "GET",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/results",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}/results",
             query_params={
                 "limit": limit,
                 "page": page,
@@ -169,7 +169,7 @@ class SimulationRuns:
         """Get the simulation run spec"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/spec",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}/spec",
             query_params={"simulationSpecSchemaVersion": simulation_spec_schema_version},
             response_type=models.SimulationSpec,
         )
@@ -191,7 +191,7 @@ class SimulationRuns:
         """Get the simulation sub-run results"""
         data = self._client.request(
             "GET",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/subruns/{sub_run_id}/results",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}/subruns/{path_segment(sub_run_id)}/results",
             query_params={
                 "limit": limit,
                 "page": page,
@@ -215,7 +215,7 @@ class SimulationRuns:
         """Get the simulation sub-run spec"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/subruns/{sub_run_id}/spec",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}/subruns/{path_segment(sub_run_id)}/spec",
             query_params={"simulationSpecSchemaVersion": simulation_spec_schema_version},
             response_type=models.SimulationSpec,
         )
@@ -232,7 +232,7 @@ class SimulationRuns:
         """List of sub-runs of parametric runs"""
         data = self._client.request(
             "GET",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}/subruns",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}/subruns",
             query_params={"limit": limit, "page": page},
         )
         return PaginatedResponse(data, models.SimulationRun)
@@ -248,7 +248,7 @@ class SimulationRuns:
         """List simulation runs for a simulation"""
         data = self._client.request(
             "GET",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs",
             query_params={"limit": limit, "page": page},
         )
         return PaginatedResponse(data, models.SimulationRun)
@@ -263,6 +263,6 @@ class SimulationRuns:
         """Update an existing simulation run"""
         return self._client.request(
             "PUT",
-            f"/projects/{project_id}/simulations/{simulation_id}/runs/{run_id}",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/runs/{path_segment(run_id)}",
             json_body=body,
         )

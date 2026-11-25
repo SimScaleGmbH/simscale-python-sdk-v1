@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class Meshes:
@@ -16,7 +16,7 @@ class Meshes:
         """Get information about the mesh"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/meshes/{mesh_id}",
+            f"/projects/{path_segment(project_id)}/meshes/{path_segment(mesh_id)}",
             response_type=models.Mesh,
         )
 
@@ -35,7 +35,7 @@ class Meshes:
         """
         data = self._client.request(
             "GET",
-            f"/projects/{project_id}/meshes",
+            f"/projects/{path_segment(project_id)}/meshes",
             query_params={"limit": limit, "page": page},
         )
         return PaginatedResponse(data, models.Mesh)

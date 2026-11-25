@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class WorkflowRepository:
@@ -31,7 +31,7 @@ class WorkflowRepository:
         """List the versions of a workflow."""
         return self._client.request(
             "GET",
-            f"/workflow-repository/workflows/{workflow_id}/versions",
+            f"/workflow-repository/workflows/{path_segment(workflow_id)}/versions",
             query_params={"page": page, "size": size, "sortBy": sort_by},
             response_type=list[models.workflow_repository.WorkflowVersionOverview],
         )
@@ -47,7 +47,7 @@ class WorkflowRepository:
         """List workflows in a project."""
         return self._client.request(
             "GET",
-            f"/workflow-repository/projects/{project_id}/workflows",
+            f"/workflow-repository/projects/{path_segment(project_id)}/workflows",
             query_params={"page": page, "size": size, "sortBy": sort_by},
             response_type=list[models.workflow_repository.WorkflowOverview],
         )
@@ -59,7 +59,7 @@ class WorkflowRepository:
         """Read a workflow at its latest version."""
         return self._client.request(
             "GET",
-            f"/workflow-repository/workflows/{workflow_id}",
+            f"/workflow-repository/workflows/{path_segment(workflow_id)}",
             response_type=models.workflow_repository.ReadWorkflowResponse,
         )
 
@@ -72,7 +72,7 @@ class WorkflowRepository:
         """Read a specific workflow version."""
         return self._client.request(
             "GET",
-            f"/workflow-repository/workflow-versions/{workflow_version_id}",
+            f"/workflow-repository/workflow-versions/{path_segment(workflow_version_id)}",
             query_params={"populateDefaultValues": populate_default_values},
             response_type=models.workflow_repository.ReadWorkflowResponse,
         )
@@ -85,7 +85,7 @@ class WorkflowRepository:
         """Update a workflow by creating a new version."""
         return self._client.request(
             "POST",
-            f"/workflow-repository/workflow-versions/{workflow_version_id}",
+            f"/workflow-repository/workflow-versions/{path_segment(workflow_version_id)}",
             json_body=body,
             response_type=models.WorkflowVersionId,
         )

@@ -22,6 +22,9 @@ class PublicWorkflowRunOverview(SimScaleModel):
     last_processed: datetime | None = Field(
         validation_alias="lastProcessed", serialization_alias="lastProcessed", default=None
     )
+    operation_recycling_enabled: bool | None = Field(
+        validation_alias="operationRecyclingEnabled", serialization_alias="operationRecyclingEnabled", default=None
+    )
     output_data_map: Any | None = Field(
         validation_alias="outputDataMap", serialization_alias="outputDataMap", default=None
     )

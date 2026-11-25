@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class Projects:
@@ -17,11 +17,17 @@ class Projects:
 
 
 
-        The copy has the visibility of the source project unless 'visibility' is set.
+        Deprecated: large projects can take longer to copy than the request is allowed to run.
+
+        Start the copy via `POST /projects/{projectId}/copies` and check its status via `GET /projects/{projectId}/copies/{projectCopyId}` instead.
+
+
+
+        Unless 'visibility' is set, the copy is private on a Professional plan and has the visibility of the source project otherwise.
         """
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/copy",
+            f"/projects/{path_segment(project_id)}/copy",
             json_body=body,
             response_type=models.Project,
         )
@@ -59,7 +65,7 @@ class Projects:
         """
         return self._client.request(
             "DELETE",
-            f"/projects/{project_id}",
+            f"/projects/{path_segment(project_id)}",
         )
 
     def get_project(
@@ -69,8 +75,25 @@ class Projects:
         """Get information about an existing project"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}",
+            f"/projects/{path_segment(project_id)}",
             response_type=models.Project,
+        )
+
+    def get_project_copy(
+        self,
+        project_id: str,
+        project_copy_id: str,
+    ) -> models.ProjectCopyResponse:
+        """Get information about the project copy
+
+
+
+        Only the user who started the copy can read it. Finished copies can be read for 7 days.
+        """
+        return self._client.request(
+            "GET",
+            f"/projects/{path_segment(project_id)}/copies/{path_segment(project_copy_id)}",
+            response_type=models.ProjectCopyResponse,
         )
 
     def get_projects(
@@ -88,6 +111,34 @@ class Projects:
         )
         return PaginatedResponse(data, models.Project)
 
+    def start_project_copy(
+        self,
+        project_id: str,
+        body: models.ProjectCopyRequest,
+    ) -> models.ProjectCopyResponse:
+        """Start copying an existing project
+
+
+
+        Copying a project requires the following steps:
+
+        1. Start the copy via `POST /projects/{projectId}/copies`.
+
+        2. Check for the copy status via `GET /projects/{projectId}/copies/{projectCopyId}` until it is `FINISHED` or `FAILED`.
+
+        3. Once `FINISHED`, the `projectId` of the response is the ID of the new project.
+
+
+
+        Unless 'visibility' is set, the copy is private on a Professional plan and has the visibility of the source project otherwise.
+        """
+        return self._client.request(
+            "POST",
+            f"/projects/{path_segment(project_id)}/copies",
+            json_body=body,
+            response_type=models.ProjectCopyResponse,
+        )
+
     def update_project(
         self,
         project_id: str,
@@ -101,6 +152,6 @@ class Projects:
         """
         return self._client.request(
             "PUT",
-            f"/projects/{project_id}",
+            f"/projects/{path_segment(project_id)}",
             json_body=body,
         )

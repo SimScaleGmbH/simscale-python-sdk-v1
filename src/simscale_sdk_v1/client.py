@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import ipaddress
 import logging
 import ssl
 import threading
@@ -11,6 +12,7 @@ from collections.abc import Callable
 from importlib.metadata import version
 from pathlib import Path
 from typing import Any, BinaryIO, Generic, TypeVar
+from urllib.parse import quote, urlsplit, urlunsplit
 
 import httpx
 import truststore
@@ -27,6 +29,35 @@ _IDEMPOTENT_METHODS = frozenset({"GET", "HEAD", "OPTIONS", "PUT", "DELETE"})
 logger = logging.getLogger("simscale_sdk_v1")
 
 T = TypeVar("T", bound=BaseModel)
+
+
+def _redact_url(url: str) -> str:
+    """Drop userinfo, query and fragment for error text: presigned storage URLs carry their signature in the query."""
+    parts = urlsplit(url)
+    netloc = parts.netloc.rsplit("@", 1)[-1]
+    return urlunsplit((parts.scheme, netloc, parts.path, "", ""))
+
+
+def _is_loopback(host: str) -> bool:
+    """localhost or any loopback address (127.0.0.0/8, ::1), like C# Uri.IsLoopback."""
+    if host == "localhost":
+        return True
+    try:
+        return ipaddress.ip_address(host).is_loopback
+    except ValueError:
+        return False
+
+
+def path_segment(value: object) -> str:
+    """Encode an identifier as one URL path segment.
+
+    No SimScale identifier contains a separator, a dot segment or a percent sign. Rejecting them
+    makes a crafted identifier fail instead of addressing a different endpoint.
+    """
+    text = str(value)
+    if text in ("", ".", "..") or any(c in text for c in "/\\?#%"):
+        raise ValueError(f"Invalid path parameter: {text!r}")
+    return quote(text, safe="")
 
 
 def default_ssl_context() -> ssl.SSLContext:
@@ -111,10 +142,15 @@ class SimScaleAPIError(Exception):
         import http.client
 
         reason = http.client.responses.get(self.status_code, "Unknown")
-        url = str(self.response.request.url)
+        url = _redact_url(str(self.response.request.url))
+        status_line = f"{self.status_code} {reason}: {url}"
+        location = self.response.headers.get("location") if 300 <= self.status_code < 400 else None
+        if location:
+            target = _redact_url(str(self.response.request.url.join(location)))
+            status_line += f" (redirect to {target}, not followed)"
         if isinstance(self.body, dict):
             lines = [str(self.body), ""]
-            lines.append(f"{self.status_code} {reason}: {url}")
+            lines.append(status_line)
             severity = self.body.get("severity")
             code = self.body.get("code")
             message = self.body.get("message")
@@ -132,7 +168,7 @@ class SimScaleAPIError(Exception):
             if trace:
                 lines.append(f"  (trace: {trace})")
             return "\n".join(lines)
-        return f"{self.status_code} {reason}: {url}\n  {self.body}"
+        return f"{status_line}\n  {self.body}"
 
 
 class SimScaleTimeoutError(Exception):
@@ -145,10 +181,10 @@ class SimScaleTimeoutError(Exception):
 
     def __init__(self, method: str, url: str, elapsed: float, attempts: int, cause: Exception) -> None:
         self.method = method
-        self.url = url
+        self.url = _redact_url(url)
         self.elapsed = elapsed
         self.attempts = attempts
-        super().__init__(f"{method} {url} timed out after {attempts} attempt(s), {elapsed:.1f}s total: {cause}")
+        super().__init__(f"{method} {self.url} timed out after {attempts} attempt(s), {elapsed:.1f}s total: {cause}")
 
 
 class SimScaleClient:
@@ -168,10 +204,15 @@ class SimScaleClient:
         verify: ssl.SSLContext | str | bool | None = None,
     ) -> None:
         self._server_url = server_url.rstrip("/")
+        base_url = httpx.URL(self._server_url)
+        if base_url.scheme != "https" and not _is_loopback(base_url.host):
+            raise ValueError(f"server_url must use https, plain http is only allowed for localhost: {self._server_url}")
+        # No redirects: the API does not send any, and following one would send the key to the target.
+        # A 3xx surfaces as SimScaleAPIError.
         self._http = httpx.Client(
             base_url=self._server_url,
             headers={"X-API-KEY": api_key, "User-Agent": _USER_AGENT},
-            follow_redirects=True,
+            follow_redirects=False,
             timeout=timeout,
             limits=httpx.Limits(max_connections=max_connections),
             verify=verify if verify is not None else default_ssl_context(),
@@ -280,7 +321,7 @@ class SimScaleClient:
     ) -> T | dict | bytes | None:
         """Send an HTTP request and optionally parse the JSON response into *response_type*.
 
-        Accepts any 2xx status. Raises SimScaleAPIError on 4xx/5xx.
+        Accepts any 2xx status. Raises SimScaleAPIError on any other status, including 3xx (redirects are not followed).
         """
         # Serialize Pydantic models to dict (by alias), stripping unset optional fields.
         # strip_unset_defaults nulls out optional fields the user didn't set (to avoid

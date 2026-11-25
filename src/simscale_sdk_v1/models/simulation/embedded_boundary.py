@@ -9,7 +9,6 @@ from simscale_sdk_v1.models.simulation.advanced_concepts import AdvancedConcepts
 from simscale_sdk_v1.models.simulation.coupled_conjugate_heat_transfer_materials import (
     CoupledConjugateHeatTransferMaterials,
 )
-from simscale_sdk_v1.models.simulation.embedded_boundary_meshing import EmbeddedBoundaryMeshing
 from simscale_sdk_v1.models.simulation.fluid_initial_conditions import FluidInitialConditions
 from simscale_sdk_v1.models.simulation.fluid_model import FluidModel
 from simscale_sdk_v1.models.simulation.fluid_numerics import FluidNumerics
@@ -65,9 +64,6 @@ class EmbeddedBoundary(SimScaleModel):
     )
     result_control: FluidResultControls | None = Field(
         validation_alias="resultControl", serialization_alias="resultControl", default=None
-    )
-    embedded_boundary_meshing: EmbeddedBoundaryMeshing | None = Field(
-        validation_alias="embeddedBoundaryMeshing", serialization_alias="embeddedBoundaryMeshing", default=None
     )
     is_compressible: bool | None = Field(
         validation_alias="isCompressible",

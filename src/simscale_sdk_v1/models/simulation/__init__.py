@@ -54,6 +54,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.advanced_concepts import AdvancedConcepts
     from simscale_sdk_v1.models.simulation.advanced_connector_settings import AdvancedConnectorSettings
     from simscale_sdk_v1.models.simulation.advanced_mumps_settings import AdvancedMUMPSSettings
+    from simscale_sdk_v1.models.simulation.advanced_marc_numerics_settings import AdvancedMarcNumericsSettings
     from simscale_sdk_v1.models.simulation.advanced_modelling import AdvancedModelling
     from simscale_sdk_v1.models.simulation.advanced_petsc_settings import AdvancedPETSCSettings
     from simscale_sdk_v1.models.simulation.advanced_roi_settings import AdvancedROISettings
@@ -81,9 +82,8 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.automatic_axis_definition import AutomaticAxisDefinition
     from simscale_sdk_v1.models.simulation.automatic_domain_decomposition import AutomaticDomainDecomposition
     from simscale_sdk_v1.models.simulation.automatic_element_definition_method import AutomaticElementDefinitionMethod
-    from simscale_sdk_v1.models.simulation.automatic_embedded_boundary_mesh_sizing import (
-        AutomaticEmbeddedBoundaryMeshSizing,
-    )
+    from simscale_sdk_v1.models.simulation.automatic_load_ramping_marc import AutomaticLoadRampingMarc
+    from simscale_sdk_v1.models.simulation.automatic_marc_stabilization import AutomaticMarcStabilization
     from simscale_sdk_v1.models.simulation.automatic_mesh_sizing import AutomaticMeshSizing
     from simscale_sdk_v1.models.simulation.automatic_omega_dissipation import AutomaticOmegaDissipation
     from simscale_sdk_v1.models.simulation.automatic_reactualization import AutomaticReactualization
@@ -99,6 +99,8 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.average_velocity_momentum_source import AverageVelocityMomentumSource
     from simscale_sdk_v1.models.simulation.base_excitation_bc import BaseExcitationBC
     from simscale_sdk_v1.models.simulation.bathe_wilson import BatheWilson
+    from simscale_sdk_v1.models.simulation.bearing_load_bc_marc import BearingLoadBCMarc
+    from simscale_sdk_v1.models.simulation.bearing_load_distribution_marc import BearingLoadDistributionMarc
     from simscale_sdk_v1.models.simulation.bilinear_elasto_plastic_model import BilinearElastoPlasticModel
     from simscale_sdk_v1.models.simulation.bilinear_model_marc import BilinearModelMarc
     from simscale_sdk_v1.models.simulation.bird_carreau_viscosity_model import BirdCarreauViscosityModel
@@ -118,6 +120,11 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.calculated_evcbc import CalculatedEVCBC
     from simscale_sdk_v1.models.simulation.calculated_tdbc import CalculatedTDBC
     from simscale_sdk_v1.models.simulation.calculated_tdcbc import CalculatedTDCBC
+    from simscale_sdk_v1.models.simulation.cartesian_component_partial_vector_function import (
+        CartesianComponentPartialVectorFunction,
+    )
+    from simscale_sdk_v1.models.simulation.cartesian_component_vector_function import CartesianComponentVectorFunction
+    from simscale_sdk_v1.models.simulation.cartesian_coordinate_system import CartesianCoordinateSystem
     from simscale_sdk_v1.models.simulation.cartesian_orientation import CartesianOrientation
     from simscale_sdk_v1.models.simulation.cauchy_stress import CauchyStress
     from simscale_sdk_v1.models.simulation.cauchy_stress_tensor_field import CauchyStressTensorField
@@ -137,6 +144,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.charge_density import ChargeDensity
     from simscale_sdk_v1.models.simulation.chestnut import Chestnut
     from simscale_sdk_v1.models.simulation.chronos_solver import ChronosSolver
+    from simscale_sdk_v1.models.simulation.circuit_excitation import CircuitExcitation
     from simscale_sdk_v1.models.simulation.circular_hole_shape import CircularHoleShape
     from simscale_sdk_v1.models.simulation.clock_time_write_control import ClockTimeWriteControl
     from simscale_sdk_v1.models.simulation.closed_coil import ClosedCoil
@@ -152,6 +160,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.component_vector_function import ComponentVectorFunction
     from simscale_sdk_v1.models.simulation.compressible import Compressible
     from simscale_sdk_v1.models.simulation.compressible_fluid_materials import CompressibleFluidMaterials
+    from simscale_sdk_v1.models.simulation.computed_translational_motion import ComputedTranslationalMotion
     from simscale_sdk_v1.models.simulation.computing_core import ComputingCore
     from simscale_sdk_v1.models.simulation.conductivity_thickness_pair import ConductivityThicknessPair
     from simscale_sdk_v1.models.simulation.conjugate_heat_transfer import ConjugateHeatTransfer
@@ -212,9 +221,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.custom_contact_stiffness import CustomContactStiffness
     from simscale_sdk_v1.models.simulation.custom_domain_decomposition import CustomDomainDecomposition
     from simscale_sdk_v1.models.simulation.custom_element_definition_method import CustomElementDefinitionMethod
-    from simscale_sdk_v1.models.simulation.custom_embedded_boundary_mesh_sizing import CustomEmbeddedBoundaryMeshSizing
     from simscale_sdk_v1.models.simulation.custom_fluid_bc import CustomFluidBC
     from simscale_sdk_v1.models.simulation.custom_fraction_body_surface import CustomFractionBodySurface
+    from simscale_sdk_v1.models.simulation.custom_marc_stabilization import CustomMarcStabilization
     from simscale_sdk_v1.models.simulation.custom_omega_dissipation import CustomOmegaDissipation
     from simscale_sdk_v1.models.simulation.custom_orientation import CustomOrientation
     from simscale_sdk_v1.models.simulation.custom_resolution import CustomResolution
@@ -222,6 +231,13 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.custom_sun_direction import CustomSunDirection
     from simscale_sdk_v1.models.simulation.custom_tree import CustomTree
     from simscale_sdk_v1.models.simulation.cyclic_symmetry_bc import CyclicSymmetryBC
+    from simscale_sdk_v1.models.simulation.cylindrical_component_partial_vector_function import (
+        CylindricalComponentPartialVectorFunction,
+    )
+    from simscale_sdk_v1.models.simulation.cylindrical_component_vector_function import (
+        CylindricalComponentVectorFunction,
+    )
+    from simscale_sdk_v1.models.simulation.cylindrical_coordinate_system import CylindricalCoordinateSystem
     from simscale_sdk_v1.models.simulation.dic_preconditioner import DICPreconditioner
     from simscale_sdk_v1.models.simulation.dilu_preconditioner import DILUPreconditioner
     from simscale_sdk_v1.models.simulation.darcy_forchheimer_medium import DarcyForchheimerMedium
@@ -255,6 +271,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.dimensional_function__electric_resistivity import (
         DimensionalFunction_ElectricResistivity,
     )
+    from simscale_sdk_v1.models.simulation.dimensional_function__force import DimensionalFunction_Force
     from simscale_sdk_v1.models.simulation.dimensional_function__heat_flux import DimensionalFunction_HeatFlux
     from simscale_sdk_v1.models.simulation.dimensional_function__kinematic_viscosity import (
         DimensionalFunction_KinematicViscosity,
@@ -325,6 +342,12 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.dimensional_initial_condition_domains__turbulent_dissipation import (
         DimensionalInitialConditionDomains_TurbulentDissipation,
     )
+    from simscale_sdk_v1.models.simulation.dimensional_partial_vector_function_with_lcs__angle import (
+        DimensionalPartialVectorFunctionWithLCS_Angle,
+    )
+    from simscale_sdk_v1.models.simulation.dimensional_partial_vector_function_with_lcs__length import (
+        DimensionalPartialVectorFunctionWithLCS_Length,
+    )
     from simscale_sdk_v1.models.simulation.dimensional_partial_vector_function__angle import (
         DimensionalPartialVectorFunction_Angle,
     )
@@ -340,6 +363,12 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.dimensional_vector_function_initial_condition_with_domains__speed import (
         DimensionalVectorFunctionInitialConditionWithDomains_Speed,
+    )
+    from simscale_sdk_v1.models.simulation.dimensional_vector_function_with_lcs__force import (
+        DimensionalVectorFunctionWithLCS_Force,
+    )
+    from simscale_sdk_v1.models.simulation.dimensional_vector_function_with_lcs__torque import (
+        DimensionalVectorFunctionWithLCS_Torque,
     )
     from simscale_sdk_v1.models.simulation.dimensional_vector_function__acceleration import (
         DimensionalVectorFunction_Acceleration,
@@ -383,6 +412,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.dimensional__charge import Dimensional_Charge
     from simscale_sdk_v1.models.simulation.dimensional__charge_density import Dimensional_ChargeDensity
     from simscale_sdk_v1.models.simulation.dimensional__contact_resistance import Dimensional_ContactResistance
+    from simscale_sdk_v1.models.simulation.dimensional__damping import Dimensional_Damping
     from simscale_sdk_v1.models.simulation.dimensional__density import Dimensional_Density
     from simscale_sdk_v1.models.simulation.dimensional__dimensionless import Dimensional_Dimensionless
     from simscale_sdk_v1.models.simulation.dimensional__dynamic_viscosity import Dimensional_DynamicViscosity
@@ -462,9 +492,6 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.displacement_field_selection import DisplacementFieldSelection
     from simscale_sdk_v1.models.simulation.displacement_result_control_item import DisplacementResultControlItem
     from simscale_sdk_v1.models.simulation.displacements_convergence_method import DisplacementsConvergenceMethod
-    from simscale_sdk_v1.models.simulation.distance_region_refinement_with_length import (
-        DistanceRegionRefinementWithLength,
-    )
     from simscale_sdk_v1.models.simulation.distributed_isotropic_stiffness_definition import (
         DistributedIsotropicStiffnessDefinition,
     )
@@ -528,7 +555,6 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.element_technology import ElementTechnology
     from simscale_sdk_v1.models.simulation.element_technology_definition import ElementTechnologyDefinition
     from simscale_sdk_v1.models.simulation.embedded_boundary import EmbeddedBoundary
-    from simscale_sdk_v1.models.simulation.embedded_boundary_meshing import EmbeddedBoundaryMeshing
     from simscale_sdk_v1.models.simulation.empty2_dbc import Empty2DBC
     from simscale_sdk_v1.models.simulation.equivalent_elastic_strain import EquivalentElasticStrain
     from simscale_sdk_v1.models.simulation.equivalent_plastic_strain import EquivalentPlasticStrain
@@ -541,6 +567,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.explicit_time_integration_type import ExplicitTimeIntegrationType
     from simscale_sdk_v1.models.simulation.expression_function import ExpressionFunction
     from simscale_sdk_v1.models.simulation.external_force import ExternalForce
+    from simscale_sdk_v1.models.simulation.external_forces import ExternalForces
     from simscale_sdk_v1.models.simulation.external_pressure import ExternalPressure
     from simscale_sdk_v1.models.simulation.external_wall_heat_flux_tbc import ExternalWallHeatFluxTBC
     from simscale_sdk_v1.models.simulation.face_normal_magnetization_direction_method import (
@@ -553,9 +580,6 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.fan_bc import FanBC
     from simscale_sdk_v1.models.simulation.fan_pbc import FanPBC
     from simscale_sdk_v1.models.simulation.fan_pressure_drop_momentum_source import FanPressureDropMomentumSource
-    from simscale_sdk_v1.models.simulation.field_calculations_adjoint_sensitivities_result_control import (
-        FieldCalculationsAdjointSensitivitiesResultControl,
-    )
     from simscale_sdk_v1.models.simulation.field_calculations_friction_velocity_result_control import (
         FieldCalculationsFrictionVelocityResultControl,
     )
@@ -771,6 +795,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.global_damping_value import GlobalDampingValue
     from simscale_sdk_v1.models.simulation.global_displacement import GlobalDisplacement
     from simscale_sdk_v1.models.simulation.global_displacement_type import GlobalDisplacementType
+    from simscale_sdk_v1.models.simulation.global_heat_flux import GlobalHeatFlux
     from simscale_sdk_v1.models.simulation.global_max_over_phase_von_mises_stress_type import (
         GlobalMaxOverPhaseVonMisesStressType,
     )
@@ -782,6 +807,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.global_principal_stress_type import GlobalPrincipalStressType
     from simscale_sdk_v1.models.simulation.global_reaction_force_type import GlobalReactionForceType
     from simscale_sdk_v1.models.simulation.global_signed_von_mises_stress_type import GlobalSignedVonMisesStressType
+    from simscale_sdk_v1.models.simulation.global_temperature import GlobalTemperature
     from simscale_sdk_v1.models.simulation.global_total_equivalent_plastic_strain_type import (
         GlobalTotalEquivalentPlasticStrainType,
     )
@@ -843,6 +869,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.hysteretic_damping import HystereticDamping
     from simscale_sdk_v1.models.simulation.ilu_cp_preconditioner import ILUCpPreconditioner
     from simscale_sdk_v1.models.simulation.iram_sorensen import IRAMSorensen
+    from simscale_sdk_v1.models.simulation.imperfect_thermal_contact import ImperfectThermalContact
     from simscale_sdk_v1.models.simulation.implicit_time_integration_type import ImplicitTimeIntegrationType
     from simscale_sdk_v1.models.simulation.inactive_adjustable_timestep import InactiveAdjustableTimestep
     from simscale_sdk_v1.models.simulation.inactive_preconditioner import InactivePreconditioner
@@ -869,7 +896,6 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.inlet_outlet_tbc import InletOutletTBC
     from simscale_sdk_v1.models.simulation.inlet_outlet_tkebc import InletOutletTKEBC
     from simscale_sdk_v1.models.simulation.inlet_outlet_vbc import InletOutletVBC
-    from simscale_sdk_v1.models.simulation.inside_region_refinement_with_length import InsideRegionRefinementWithLength
     from simscale_sdk_v1.models.simulation.intensity_kinetic_energy_inlet_tkebc import IntensityKineticEnergyInletTKEBC
     from simscale_sdk_v1.models.simulation.interference_fit import InterferenceFit
     from simscale_sdk_v1.models.simulation.intern_variables_field import InternVariablesField
@@ -886,6 +912,8 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.isotropic_expansion import IsotropicExpansion
     from simscale_sdk_v1.models.simulation.isotropic_loss_tangent import IsotropicLossTangent
+    from simscale_sdk_v1.models.simulation.isotropic_marc_conductivity import IsotropicMarcConductivity
+    from simscale_sdk_v1.models.simulation.isotropic_marc_expansion import IsotropicMarcExpansion
     from simscale_sdk_v1.models.simulation.isotropic_plastic_hardening import IsotropicPlasticHardening
     from simscale_sdk_v1.models.simulation.isotropic_plastic_hardening_marc import IsotropicPlasticHardeningMarc
     from simscale_sdk_v1.models.simulation.isotropic_relative_permeability_method import (
@@ -918,7 +946,6 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.linear_sbm import LinearSBM
     from simscale_sdk_v1.models.simulation.litz_wire_coil import LitzWireCoil
     from simscale_sdk_v1.models.simulation.load_step import LoadStep
-    from simscale_sdk_v1.models.simulation.local_element_size_ebm import LocalElementSizeEBM
     from simscale_sdk_v1.models.simulation.local_euler_time_differentiation_scheme import (
         LocalEulerTimeDifferentiationScheme,
     )
@@ -935,7 +962,6 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.magnetic_flux_tangential import MagneticFluxTangential
     from simscale_sdk_v1.models.simulation.magnetostatics import Magnetostatics
-    from simscale_sdk_v1.models.simulation.manual_embedded_boundary_mesh_sizing import ManualEmbeddedBoundaryMeshSizing
     from simscale_sdk_v1.models.simulation.manual_reactualization import ManualReactualization
     from simscale_sdk_v1.models.simulation.manual_reference_length import ManualReferenceLength
     from simscale_sdk_v1.models.simulation.manual_region_sizing_pacefish import ManualRegionSizingPacefish
@@ -988,7 +1014,11 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.marc_force_field_selection import MarcForceFieldSelection
     from simscale_sdk_v1.models.simulation.marc_force_result_control_item import MarcForceResultControlItem
     from simscale_sdk_v1.models.simulation.marc_global_displacement_field_type import MarcGlobalDisplacementFieldType
+    from simscale_sdk_v1.models.simulation.marc_global_heat_flux_field_type import MarcGlobalHeatFluxFieldType
+    from simscale_sdk_v1.models.simulation.marc_global_temperature_field_type import MarcGlobalTemperatureFieldType
+    from simscale_sdk_v1.models.simulation.marc_heat_flux_field_selection import MarcHeatFluxFieldSelection
     from simscale_sdk_v1.models.simulation.marc_heat_flux_result_control_item import MarcHeatFluxResultControlItem
+    from simscale_sdk_v1.models.simulation.marc_initial_conditions import MarcInitialConditions
     from simscale_sdk_v1.models.simulation.marc_linear_solver_settings import MarcLinearSolverSettings
     from simscale_sdk_v1.models.simulation.marc_material import MarcMaterial
     from simscale_sdk_v1.models.simulation.marc_min_max_fields_calculation_result_control_item import (
@@ -1014,12 +1044,15 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.marc_sum_fields_calculation_result_control_item import (
         MarcSumFieldsCalculationResultControlItem,
     )
+    from simscale_sdk_v1.models.simulation.marc_temperature_field_selection import MarcTemperatureFieldSelection
     from simscale_sdk_v1.models.simulation.marc_temperature_result_control_item import MarcTemperatureResultControlItem
+    from simscale_sdk_v1.models.simulation.marc_thermal_properties import MarcThermalProperties
     from simscale_sdk_v1.models.simulation.marc_total_strain_type import MarcTotalStrainType
     from simscale_sdk_v1.models.simulation.marc_touching_contact_connection import MarcTouchingContactConnection
     from simscale_sdk_v1.models.simulation.marc_von_mises_stress_type import MarcVonMisesStressType
     from simscale_sdk_v1.models.simulation.marlow_hyperelastic_model_marc import MarlowHyperelasticModelMarc
     from simscale_sdk_v1.models.simulation.mass_flow import MassFlow
+    from simscale_sdk_v1.models.simulation.mass_from_density import MassFromDensity
     from simscale_sdk_v1.models.simulation.material_library_reference import MaterialLibraryReference
     from simscale_sdk_v1.models.simulation.maximum_number_iteration_control import MaximumNumberIterationControl
     from simscale_sdk_v1.models.simulation.mean_age_of_fluid_result_type import MeanAgeOfFluidResultType
@@ -1033,6 +1066,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.minimum_gap_size import MinimumGapSize
     from simscale_sdk_v1.models.simulation.mixed_timestep_calculation_type import MixedTimestepCalculationType
     from simscale_sdk_v1.models.simulation.mixing_length_inlet_ebc import MixingLengthInletEBC
+    from simscale_sdk_v1.models.simulation.mixing_plane_rotating_zone import MixingPlaneRotatingZone
     from simscale_sdk_v1.models.simulation.modal_base_control import ModalBaseControl
     from simscale_sdk_v1.models.simulation.modal_solver import ModalSolver
     from simscale_sdk_v1.models.simulation.modeled_turbulence_intensity import ModeledTurbulenceIntensity
@@ -1041,6 +1075,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.moment_field_selection import MomentFieldSelection
     from simscale_sdk_v1.models.simulation.mooney_rivlin_hyper_elastic_model import MooneyRivlinHyperElasticModel
     from simscale_sdk_v1.models.simulation.mooney_type_hyperelastic_model_marc import MooneyTypeHyperelasticModelMarc
+    from simscale_sdk_v1.models.simulation.motion_axis import MotionAxis
     from simscale_sdk_v1.models.simulation.moving_wall_vbc import MovingWallVBC
     from simscale_sdk_v1.models.simulation.mrt_solar_parameters import MrtSolarParameters
     from simscale_sdk_v1.models.simulation.multifrontal_solver import MultifrontalSolver
@@ -1084,6 +1119,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.no_slip_wall_equivalent_sand_roughness import (
         NoSlipWallEquivalentSandRoughness,
     )
+    from simscale_sdk_v1.models.simulation.no_travel_limit import NoTravelLimit
     from simscale_sdk_v1.models.simulation.no_wall_thermal import NoWallThermal
     from simscale_sdk_v1.models.simulation.nodal_force_type import NodalForceType
     from simscale_sdk_v1.models.simulation.nodal_load_bc import NodalLoadBC
@@ -1100,9 +1136,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.normalized_displacement_type import NormalizedDisplacementType
     from simscale_sdk_v1.models.simulation.norton_creep_formulation import NortonCreepFormulation
     from simscale_sdk_v1.models.simulation.number_iterations_write_control import NumberIterationsWriteControl
-    from simscale_sdk_v1.models.simulation.number_of_cells_per_direction import NumberOfCellsPerDirection
     from simscale_sdk_v1.models.simulation.oak import Oak
     from simscale_sdk_v1.models.simulation.off_position_tolerance import OffPositionTolerance
+    from simscale_sdk_v1.models.simulation.off_thermal_contact import OffThermalContact
     from simscale_sdk_v1.models.simulation.ogden_hyper_elastic_model import OgdenHyperElasticModel
     from simscale_sdk_v1.models.simulation.ogden_hyperelastic_model_marc import OgdenHyperelasticModelMarc
     from simscale_sdk_v1.models.simulation.ogden_roxburgh import OgdenRoxburgh
@@ -1141,6 +1177,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__advanced_mumps_settings_mumps_acceleration import (
         OneOf_AdvancedMUMPSSettingsMumpsAcceleration,
     )
+    from simscale_sdk_v1.models.simulation.one_of__advanced_marc_numerics_settings_marc_stabilization import (
+        OneOf_AdvancedMarcNumericsSettingsMarcStabilization,
+    )
     from simscale_sdk_v1.models.simulation.one_of__advanced_modelling_porous_objects import (
         OneOf_AdvancedModellingPorousObjects,
     )
@@ -1155,6 +1194,9 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.one_of__area_integral_result_control_write_control import (
         OneOf_AreaIntegralResultControlWriteControl,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__arruda_boyce_plastic_elastoplastic_network_chain_length_function import (
+        OneOf_ArrudaBoycePlasticElastoplasticNetworkChainLengthFunction,
     )
     from simscale_sdk_v1.models.simulation.one_of__auto_timestep_definition_retiming_event import (
         OneOf_AutoTimestepDefinitionRetimingEvent,
@@ -1183,6 +1225,24 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__bonded_contact_position_tolerance import (
         OneOf_BondedContactPositionTolerance,
     )
+    from simscale_sdk_v1.models.simulation.one_of__cartesian_component_partial_vector_function_x import (
+        OneOf_CartesianComponentPartialVectorFunctionX,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__cartesian_component_partial_vector_function_y import (
+        OneOf_CartesianComponentPartialVectorFunctionY,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__cartesian_component_partial_vector_function_z import (
+        OneOf_CartesianComponentPartialVectorFunctionZ,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__cartesian_component_vector_function_x import (
+        OneOf_CartesianComponentVectorFunctionX,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__cartesian_component_vector_function_y import (
+        OneOf_CartesianComponentVectorFunctionY,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__cartesian_component_vector_function_z import (
+        OneOf_CartesianComponentVectorFunctionZ,
+    )
     from simscale_sdk_v1.models.simulation.one_of__coil_coil_type import OneOf_CoilCoilType
     from simscale_sdk_v1.models.simulation.one_of__coil_excitation import OneOf_CoilExcitation
     from simscale_sdk_v1.models.simulation.one_of__coil_topology import OneOf_CoilTopology
@@ -1196,6 +1256,9 @@ if TYPE_CHECKING:
         OneOf_CompressibleBoundaryConditions,
     )
     from simscale_sdk_v1.models.simulation.one_of__compressible_time_dependency import OneOf_CompressibleTimeDependency
+    from simscale_sdk_v1.models.simulation.one_of__computed_translational_motion_mass_definition import (
+        OneOf_ComputedTranslationalMotionMassDefinition,
+    )
     from simscale_sdk_v1.models.simulation.one_of__computing_core_domain_decomposition import (
         OneOf_ComputingCoreDomainDecomposition,
     )
@@ -1299,6 +1362,24 @@ if TYPE_CHECKING:
         OneOf_CustomFluidBCTurbulentThermalDiffusivityCompressible,
     )
     from simscale_sdk_v1.models.simulation.one_of__custom_fluid_bc_velocity import OneOf_CustomFluidBCVelocity
+    from simscale_sdk_v1.models.simulation.one_of__cylindrical_component_partial_vector_function_axial import (
+        OneOf_CylindricalComponentPartialVectorFunctionAxial,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__cylindrical_component_partial_vector_function_radial import (
+        OneOf_CylindricalComponentPartialVectorFunctionRadial,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__cylindrical_component_partial_vector_function_tangential import (
+        OneOf_CylindricalComponentPartialVectorFunctionTangential,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__cylindrical_component_vector_function_axial import (
+        OneOf_CylindricalComponentVectorFunctionAxial,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__cylindrical_component_vector_function_radial import (
+        OneOf_CylindricalComponentVectorFunctionRadial,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__cylindrical_component_vector_function_tangential import (
+        OneOf_CylindricalComponentVectorFunctionTangential,
+    )
     from simscale_sdk_v1.models.simulation.one_of__darcy_forchheimer_medium_orientation import (
         OneOf_DarcyForchheimerMediumOrientation,
     )
@@ -1340,6 +1421,9 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.one_of__dimensional_function__electric_resistivity_value import (
         OneOf_DimensionalFunction_ElectricResistivityValue,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__dimensional_function__force_value import (
+        OneOf_DimensionalFunction_ForceValue,
     )
     from simscale_sdk_v1.models.simulation.one_of__dimensional_function__heat_flux_value import (
         OneOf_DimensionalFunction_HeatFluxValue,
@@ -1409,6 +1493,18 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.one_of__dimensional_function__volumetric_power_value import (
         OneOf_DimensionalFunction_VolumetricPowerValue,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__dimensional_partial_vector_function_with_lcs__angle_value import (
+        OneOf_DimensionalPartialVectorFunctionWithLCS_AngleValue,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__dimensional_partial_vector_function_with_lcs__length_value import (
+        OneOf_DimensionalPartialVectorFunctionWithLCS_LengthValue,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__dimensional_vector_function_with_lcs__force_value import (
+        OneOf_DimensionalVectorFunctionWithLCS_ForceValue,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__dimensional_vector_function_with_lcs__torque_value import (
+        OneOf_DimensionalVectorFunctionWithLCS_TorqueValue,
     )
     from simscale_sdk_v1.models.simulation.one_of__dimensional_vector_function__acceleration_value import (
         OneOf_DimensionalVectorFunction_AccelerationValue,
@@ -1513,6 +1609,9 @@ if TYPE_CHECKING:
         OneOf_DynamicAnalysisConnectionGroups,
     )
     from simscale_sdk_v1.models.simulation.one_of__dynamic_analysis_connectors import OneOf_DynamicAnalysisConnectors
+    from simscale_sdk_v1.models.simulation.one_of__dynamic_analysis_local_coordinate_systems import (
+        OneOf_DynamicAnalysisLocalCoordinateSystems,
+    )
     from simscale_sdk_v1.models.simulation.one_of_erp_calculation_result_control_item_field_selection import (
         OneOf_ERPCalculationResultControlItemFieldSelection,
     )
@@ -1527,6 +1626,9 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_boundary_conditions import (
         OneOf_ElectromagneticAnalysisBoundaryConditions,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_local_coordinate_systems import (
+        OneOf_ElectromagneticAnalysisLocalCoordinateSystems,
     )
     from simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_model import (
         OneOf_ElectromagneticAnalysisModel,
@@ -1549,6 +1651,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__electromagnetic_material_material_behavior import (
         OneOf_ElectromagneticMaterialMaterialBehavior,
     )
+    from simscale_sdk_v1.models.simulation.one_of__electromagnetic_motion_motion import (
+        OneOf_ElectromagneticMotionMotion,
+    )
     from simscale_sdk_v1.models.simulation.one_of__electromagnetic_result_control_probe_point_field_selection import (
         OneOf_ElectromagneticResultControlProbePointFieldSelection,
     )
@@ -1560,12 +1665,6 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.one_of__embedded_boundary_external_flow_boundary_condition import (
         OneOf_EmbeddedBoundaryExternalFlowBoundaryCondition,
-    )
-    from simscale_sdk_v1.models.simulation.one_of__embedded_boundary_meshing_refinements import (
-        OneOf_EmbeddedBoundaryMeshingRefinements,
-    )
-    from simscale_sdk_v1.models.simulation.one_of__embedded_boundary_meshing_sizing import (
-        OneOf_EmbeddedBoundaryMeshingSizing,
     )
     from simscale_sdk_v1.models.simulation.one_of__embedded_boundary_time_dependency import (
         OneOf_EmbeddedBoundaryTimeDependency,
@@ -1761,6 +1860,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__frequency_analysis_connectors import (
         OneOf_FrequencyAnalysisConnectors,
     )
+    from simscale_sdk_v1.models.simulation.one_of__frequency_analysis_local_coordinate_systems import (
+        OneOf_FrequencyAnalysisLocalCoordinateSystems,
+    )
     from simscale_sdk_v1.models.simulation.one_of__friction_contact_contact_solution_method import (
         OneOf_FrictionContactContactSolutionMethod,
     )
@@ -1824,6 +1926,9 @@ if TYPE_CHECKING:
         OneOf_HarmonicAnalysisBoundaryConditions,
     )
     from simscale_sdk_v1.models.simulation.one_of__harmonic_analysis_connectors import OneOf_HarmonicAnalysisConnectors
+    from simscale_sdk_v1.models.simulation.one_of__harmonic_analysis_local_coordinate_systems import (
+        OneOf_HarmonicAnalysisLocalCoordinateSystems,
+    )
     from simscale_sdk_v1.models.simulation.one_of__harmonic_displacement_result_control_item_harmonic_displacement_type import (
         OneOf_HarmonicDisplacementResultControlItemHarmonicDisplacementType,
     )
@@ -1841,6 +1946,9 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.one_of__heat_transfer_boundary_conditions import (
         OneOf_HeatTransferBoundaryConditions,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__heat_transfer_local_coordinate_systems import (
+        OneOf_HeatTransferLocalCoordinateSystems,
     )
     from simscale_sdk_v1.models.simulation.one_of__heat_transfer_time_dependency import OneOf_HeatTransferTimeDependency
     from simscale_sdk_v1.models.simulation.one_of__hinge_constraint_bc_axis_definition import (
@@ -2029,14 +2137,23 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__marc_analysis_boundary_conditions import (
         OneOf_MarcAnalysisBoundaryConditions,
     )
+    from simscale_sdk_v1.models.simulation.one_of__marc_analysis_local_coordinate_systems import (
+        OneOf_MarcAnalysisLocalCoordinateSystems,
+    )
     from simscale_sdk_v1.models.simulation.one_of__marc_average_fields_calculation_result_control_item_field_selection import (
         OneOf_MarcAverageFieldsCalculationResultControlItemFieldSelection,
     )
     from simscale_sdk_v1.models.simulation.one_of__marc_bonded_and_touching_contact_connection_position_tolerance import (
         OneOf_MarcBondedAndTouchingContactConnectionPositionTolerance,
     )
+    from simscale_sdk_v1.models.simulation.one_of__marc_bonded_and_touching_contact_connection_thermal_contact import (
+        OneOf_MarcBondedAndTouchingContactConnectionThermalContact,
+    )
     from simscale_sdk_v1.models.simulation.one_of__marc_bonded_contact_connection_position_tolerance import (
         OneOf_MarcBondedContactConnectionPositionTolerance,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__marc_bonded_contact_connection_thermal_contact import (
+        OneOf_MarcBondedContactConnectionThermalContact,
     )
     from simscale_sdk_v1.models.simulation.one_of__marc_connection_group_connections import (
         OneOf_MarcConnectionGroupConnections,
@@ -2101,6 +2218,12 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__marc_sum_fields_calculation_result_control_item_field_selection import (
         OneOf_MarcSumFieldsCalculationResultControlItemFieldSelection,
     )
+    from simscale_sdk_v1.models.simulation.one_of__marc_thermal_properties_conductivity import (
+        OneOf_MarcThermalPropertiesConductivity,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__marc_touching_contact_connection_thermal_contact import (
+        OneOf_MarcTouchingContactConnectionThermalContact,
+    )
     from simscale_sdk_v1.models.simulation.one_of__min_max_fields_calculation_result_control_item_field_selection import (
         OneOf_MinMaxFieldsCalculationResultControlItemFieldSelection,
     )
@@ -2112,6 +2235,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__moment_field_selection_moment_type import (
         OneOf_MomentFieldSelectionMomentType,
     )
+    from simscale_sdk_v1.models.simulation.one_of__motion_axis_travel_limit import OneOf_MotionAxisTravelLimit
     from simscale_sdk_v1.models.simulation.one_of__mrt_solar_parameters_fraction_body_surface import (
         OneOf_MrtSolarParametersFractionBodySurface,
     )
@@ -2160,6 +2284,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__ogden_hyperelastic_model_marc_number_of_terms import (
         OneOf_OgdenHyperelasticModelMarcNumberOfTerms,
     )
+    from simscale_sdk_v1.models.simulation.one_of__one_term_exponent1_function import OneOf_OneTermExponent1Function
     from simscale_sdk_v1.models.simulation.one_of__orthotropic_directional_dependency_poissons_ratio_xy import (
         OneOf_OrthotropicDirectionalDependencyPoissonsRatioXY,
     )
@@ -2286,9 +2411,6 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__region_interface_interface_thermal import (
         OneOf_RegionInterfaceInterfaceThermal,
     )
-    from simscale_sdk_v1.models.simulation.one_of__region_refinement_ebm_refinement import (
-        OneOf_RegionRefinementEBMRefinement,
-    )
     from simscale_sdk_v1.models.simulation.one_of__region_refinement_wind_comfort_new_fineness import (
         OneOf_RegionRefinementWindComfortNewFineness,
     )
@@ -2414,6 +2536,9 @@ if TYPE_CHECKING:
         OneOf_StaticAnalysisConnectionGroups,
     )
     from simscale_sdk_v1.models.simulation.one_of__static_analysis_connectors import OneOf_StaticAnalysisConnectors
+    from simscale_sdk_v1.models.simulation.one_of__static_analysis_local_coordinate_systems import (
+        OneOf_StaticAnalysisLocalCoordinateSystems,
+    )
     from simscale_sdk_v1.models.simulation.one_of__statistical_averaging_result_control_v2_sampling_interval import (
         OneOf_StatisticalAveragingResultControlV2SamplingInterval,
     )
@@ -2481,8 +2606,20 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__thermal_mechanical_connection_groups import (
         OneOf_ThermalMechanicalConnectionGroups,
     )
+    from simscale_sdk_v1.models.simulation.one_of__thermal_mechanical_local_coordinate_systems import (
+        OneOf_ThermalMechanicalLocalCoordinateSystems,
+    )
     from simscale_sdk_v1.models.simulation.one_of__thermal_mechanical_time_dependency import (
         OneOf_ThermalMechanicalTimeDependency,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__three_terms_exponent1_function import (
+        OneOf_ThreeTermsExponent1Function,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__three_terms_exponent2_function import (
+        OneOf_ThreeTermsExponent2Function,
+    )
+    from simscale_sdk_v1.models.simulation.one_of__three_terms_exponent3_function import (
+        OneOf_ThreeTermsExponent3Function,
     )
     from simscale_sdk_v1.models.simulation.one_of__time_differentiation_schemes_for_default import (
         OneOf_TimeDifferentiationSchemesForDefault,
@@ -2497,6 +2634,8 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.one_of__turbulent_heat_flux_tbc_heat_source import (
         OneOf_TurbulentHeatFluxTBCHeatSource,
     )
+    from simscale_sdk_v1.models.simulation.one_of__two_terms_exponent1_function import OneOf_TwoTermsExponent1Function
+    from simscale_sdk_v1.models.simulation.one_of__two_terms_exponent2_function import OneOf_TwoTermsExponent2Function
     from simscale_sdk_v1.models.simulation.one_of__velocity_field_selection_velocity_type import (
         OneOf_VelocityFieldSelectionVelocityType,
     )
@@ -2569,6 +2708,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.orthotropic_conductivity import OrthotropicConductivity
     from simscale_sdk_v1.models.simulation.orthotropic_directional_dependency import OrthotropicDirectionalDependency
     from simscale_sdk_v1.models.simulation.orthotropic_electric_conductivity import OrthotropicElectricConductivity
+    from simscale_sdk_v1.models.simulation.orthotropic_marc_conductivity import OrthotropicMarcConductivity
     from simscale_sdk_v1.models.simulation.orthotropic_spring_stiffness import OrthotropicSpringStiffness
     from simscale_sdk_v1.models.simulation.oscillating_linear_sbm import OscillatingLinearSBM
     from simscale_sdk_v1.models.simulation.oscillating_rotating_motion_type import OscillatingRotatingMotionType
@@ -2599,6 +2739,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.perfect_gas_equation_of_state import PerfectGasEquationOfState
     from simscale_sdk_v1.models.simulation.perfect_plasticity_model import PerfectPlasticityModel
     from simscale_sdk_v1.models.simulation.perfect_plasticity_model_marc import PerfectPlasticityModelMarc
+    from simscale_sdk_v1.models.simulation.perfect_thermal_contact import PerfectThermalContact
     from simscale_sdk_v1.models.simulation.perforated_plate import PerforatedPlate
     from simscale_sdk_v1.models.simulation.periodic_bc import PeriodicBC
     from simscale_sdk_v1.models.simulation.permanent_magnet_material import PermanentMagnetMaterial
@@ -2622,6 +2763,8 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.power_law_medium import PowerLawMedium
     from simscale_sdk_v1.models.simulation.power_law_viscosity_model import PowerLawViscosityModel
     from simscale_sdk_v1.models.simulation.prandtl_les_delta import PrandtlLesDelta
+    from simscale_sdk_v1.models.simulation.predefined_rotational_motion import PredefinedRotationalMotion
+    from simscale_sdk_v1.models.simulation.predefined_translational_motion import PredefinedTranslationalMotion
     from simscale_sdk_v1.models.simulation.prescribed_optional_function import PrescribedOptionalFunction
     from simscale_sdk_v1.models.simulation.pressure_bc import PressureBC
     from simscale_sdk_v1.models.simulation.pressure_bc_marc import PressureBCMarc
@@ -2655,11 +2798,9 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.reaction_moment_type import ReactionMomentType
     from simscale_sdk_v1.models.simulation.real_gas_equation_of_state import RealGasEquationOfState
     from simscale_sdk_v1.models.simulation.rectifying_darcy_forchheimer import RectifyingDarcyForchheimer
-    from simscale_sdk_v1.models.simulation.refinement_length import RefinementLength
     from simscale_sdk_v1.models.simulation.region import Region
     from simscale_sdk_v1.models.simulation.region_interface import RegionInterface
     from simscale_sdk_v1.models.simulation.region_of_interest import RegionOfInterest
-    from simscale_sdk_v1.models.simulation.region_refinement_ebm import RegionRefinementEBM
     from simscale_sdk_v1.models.simulation.region_refinement_pacefish import RegionRefinementPacefish
     from simscale_sdk_v1.models.simulation.region_refinement_simerics import RegionRefinementSimerics
     from simscale_sdk_v1.models.simulation.region_refinement_wind_comfort import RegionRefinementWindComfort
@@ -2765,6 +2906,8 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.specific_resistance_interface_thermal import (
         SpecificResistanceInterfaceThermal,
     )
+    from simscale_sdk_v1.models.simulation.specified_mass import SpecifiedMass
+    from simscale_sdk_v1.models.simulation.spring_damper import SpringDamper
     from simscale_sdk_v1.models.simulation.square import Square
     from simscale_sdk_v1.models.simulation.stabilization import Stabilization
     from simscale_sdk_v1.models.simulation.standard_herschel_bulkley_viscosity_model import (
@@ -2928,6 +3071,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.transient_result_control import TransientResultControl
     from simscale_sdk_v1.models.simulation.transient_time_dependency import TransientTimeDependency
     from simscale_sdk_v1.models.simulation.transparent_material import TransparentMaterial
+    from simscale_sdk_v1.models.simulation.travel_distance import TravelDistance
     from simscale_sdk_v1.models.simulation.tresca_stress_type import TrescaStressType
     from simscale_sdk_v1.models.simulation.true_change_jacobian_matrix import TrueChangeJacobianMatrix
     from simscale_sdk_v1.models.simulation.true_line_search import TrueLineSearch
@@ -2947,6 +3091,7 @@ if TYPE_CHECKING:
         UncorrectedSurfaceNormalGradientScheme,
     )
     from simscale_sdk_v1.models.simulation.unelastic_strain_type import UnelasticStrainType
+    from simscale_sdk_v1.models.simulation.unit__angle import Unit_Angle
     from simscale_sdk_v1.models.simulation.unit__dimensionless import Unit_Dimensionless
     from simscale_sdk_v1.models.simulation.unit__frequency import Unit_Frequency
     from simscale_sdk_v1.models.simulation.unit__length import Unit_Length
@@ -2968,6 +3113,7 @@ if TYPE_CHECKING:
     )
     from simscale_sdk_v1.models.simulation.variable_group_plastic_strain import VariableGroup_PLASTIC_STRAIN
     from simscale_sdk_v1.models.simulation.variable_group_relaxation_time import VariableGroup_RELAXATION_TIME
+    from simscale_sdk_v1.models.simulation.variable_group_r_phi_z_time import VariableGroup_R_PHI_Z_TIME
     from simscale_sdk_v1.models.simulation.variable_group_strain import VariableGroup_STRAIN
     from simscale_sdk_v1.models.simulation.variable_group_temp import VariableGroup_TEMP
     from simscale_sdk_v1.models.simulation.variable_group_temp_engineering_strain import (
@@ -2976,6 +3122,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.simulation.variable_group_temp_plastic_strain import VariableGroup_TEMP_PLASTIC_STRAIN
     from simscale_sdk_v1.models.simulation.variable_group_temp_pressure import VariableGroup_TEMP_PRESSURE
     from simscale_sdk_v1.models.simulation.variable_group_temp_strain import VariableGroup_TEMP_STRAIN
+    from simscale_sdk_v1.models.simulation.variable_group_theta_time import VariableGroup_THETA_TIME
     from simscale_sdk_v1.models.simulation.variable_group_time import VariableGroup_TIME
     from simscale_sdk_v1.models.simulation.variable_group_velocity import VariableGroup_VELOCITY
     from simscale_sdk_v1.models.simulation.variable_group_v_dot import VariableGroup_V_DOT
@@ -3173,6 +3320,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "AdvancedConnectorSettings",
     ),
     "AdvancedMUMPSSettings": ("simscale_sdk_v1.models.simulation.advanced_mumps_settings", "AdvancedMUMPSSettings"),
+    "AdvancedMarcNumericsSettings": (
+        "simscale_sdk_v1.models.simulation.advanced_marc_numerics_settings",
+        "AdvancedMarcNumericsSettings",
+    ),
     "AdvancedModelling": ("simscale_sdk_v1.models.simulation.advanced_modelling", "AdvancedModelling"),
     "AdvancedPETSCSettings": ("simscale_sdk_v1.models.simulation.advanced_petsc_settings", "AdvancedPETSCSettings"),
     "AdvancedROISettings": ("simscale_sdk_v1.models.simulation.advanced_roi_settings", "AdvancedROISettings"),
@@ -3228,9 +3379,13 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.automatic_element_definition_method",
         "AutomaticElementDefinitionMethod",
     ),
-    "AutomaticEmbeddedBoundaryMeshSizing": (
-        "simscale_sdk_v1.models.simulation.automatic_embedded_boundary_mesh_sizing",
-        "AutomaticEmbeddedBoundaryMeshSizing",
+    "AutomaticLoadRampingMarc": (
+        "simscale_sdk_v1.models.simulation.automatic_load_ramping_marc",
+        "AutomaticLoadRampingMarc",
+    ),
+    "AutomaticMarcStabilization": (
+        "simscale_sdk_v1.models.simulation.automatic_marc_stabilization",
+        "AutomaticMarcStabilization",
     ),
     "AutomaticMeshSizing": ("simscale_sdk_v1.models.simulation.automatic_mesh_sizing", "AutomaticMeshSizing"),
     "AutomaticOmegaDissipation": (
@@ -3272,6 +3427,11 @@ _NAMES: dict[str, tuple[str, str]] = {
     ),
     "BaseExcitationBC": ("simscale_sdk_v1.models.simulation.base_excitation_bc", "BaseExcitationBC"),
     "BatheWilson": ("simscale_sdk_v1.models.simulation.bathe_wilson", "BatheWilson"),
+    "BearingLoadBCMarc": ("simscale_sdk_v1.models.simulation.bearing_load_bc_marc", "BearingLoadBCMarc"),
+    "BearingLoadDistributionMarc": (
+        "simscale_sdk_v1.models.simulation.bearing_load_distribution_marc",
+        "BearingLoadDistributionMarc",
+    ),
     "BilinearElastoPlasticModel": (
         "simscale_sdk_v1.models.simulation.bilinear_elasto_plastic_model",
         "BilinearElastoPlasticModel",
@@ -3301,6 +3461,18 @@ _NAMES: dict[str, tuple[str, str]] = {
     "CalculatedEVCBC": ("simscale_sdk_v1.models.simulation.calculated_evcbc", "CalculatedEVCBC"),
     "CalculatedTDBC": ("simscale_sdk_v1.models.simulation.calculated_tdbc", "CalculatedTDBC"),
     "CalculatedTDCBC": ("simscale_sdk_v1.models.simulation.calculated_tdcbc", "CalculatedTDCBC"),
+    "CartesianComponentPartialVectorFunction": (
+        "simscale_sdk_v1.models.simulation.cartesian_component_partial_vector_function",
+        "CartesianComponentPartialVectorFunction",
+    ),
+    "CartesianComponentVectorFunction": (
+        "simscale_sdk_v1.models.simulation.cartesian_component_vector_function",
+        "CartesianComponentVectorFunction",
+    ),
+    "CartesianCoordinateSystem": (
+        "simscale_sdk_v1.models.simulation.cartesian_coordinate_system",
+        "CartesianCoordinateSystem",
+    ),
     "CartesianOrientation": ("simscale_sdk_v1.models.simulation.cartesian_orientation", "CartesianOrientation"),
     "CauchyStress": ("simscale_sdk_v1.models.simulation.cauchy_stress", "CauchyStress"),
     "CauchyStressTensorField": (
@@ -3334,6 +3506,7 @@ _NAMES: dict[str, tuple[str, str]] = {
     "ChargeDensity": ("simscale_sdk_v1.models.simulation.charge_density", "ChargeDensity"),
     "Chestnut": ("simscale_sdk_v1.models.simulation.chestnut", "Chestnut"),
     "ChronosSolver": ("simscale_sdk_v1.models.simulation.chronos_solver", "ChronosSolver"),
+    "CircuitExcitation": ("simscale_sdk_v1.models.simulation.circuit_excitation", "CircuitExcitation"),
     "CircularHoleShape": ("simscale_sdk_v1.models.simulation.circular_hole_shape", "CircularHoleShape"),
     "ClockTimeWriteControl": ("simscale_sdk_v1.models.simulation.clock_time_write_control", "ClockTimeWriteControl"),
     "ClosedCoil": ("simscale_sdk_v1.models.simulation.closed_coil", "ClosedCoil"),
@@ -3361,6 +3534,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "CompressibleFluidMaterials": (
         "simscale_sdk_v1.models.simulation.compressible_fluid_materials",
         "CompressibleFluidMaterials",
+    ),
+    "ComputedTranslationalMotion": (
+        "simscale_sdk_v1.models.simulation.computed_translational_motion",
+        "ComputedTranslationalMotion",
     ),
     "ComputingCore": ("simscale_sdk_v1.models.simulation.computing_core", "ComputingCore"),
     "ConductivityThicknessPair": (
@@ -3478,14 +3655,14 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.custom_element_definition_method",
         "CustomElementDefinitionMethod",
     ),
-    "CustomEmbeddedBoundaryMeshSizing": (
-        "simscale_sdk_v1.models.simulation.custom_embedded_boundary_mesh_sizing",
-        "CustomEmbeddedBoundaryMeshSizing",
-    ),
     "CustomFluidBC": ("simscale_sdk_v1.models.simulation.custom_fluid_bc", "CustomFluidBC"),
     "CustomFractionBodySurface": (
         "simscale_sdk_v1.models.simulation.custom_fraction_body_surface",
         "CustomFractionBodySurface",
+    ),
+    "CustomMarcStabilization": (
+        "simscale_sdk_v1.models.simulation.custom_marc_stabilization",
+        "CustomMarcStabilization",
     ),
     "CustomOmegaDissipation": ("simscale_sdk_v1.models.simulation.custom_omega_dissipation", "CustomOmegaDissipation"),
     "CustomOrientation": ("simscale_sdk_v1.models.simulation.custom_orientation", "CustomOrientation"),
@@ -3494,6 +3671,18 @@ _NAMES: dict[str, tuple[str, str]] = {
     "CustomSunDirection": ("simscale_sdk_v1.models.simulation.custom_sun_direction", "CustomSunDirection"),
     "CustomTree": ("simscale_sdk_v1.models.simulation.custom_tree", "CustomTree"),
     "CyclicSymmetryBC": ("simscale_sdk_v1.models.simulation.cyclic_symmetry_bc", "CyclicSymmetryBC"),
+    "CylindricalComponentPartialVectorFunction": (
+        "simscale_sdk_v1.models.simulation.cylindrical_component_partial_vector_function",
+        "CylindricalComponentPartialVectorFunction",
+    ),
+    "CylindricalComponentVectorFunction": (
+        "simscale_sdk_v1.models.simulation.cylindrical_component_vector_function",
+        "CylindricalComponentVectorFunction",
+    ),
+    "CylindricalCoordinateSystem": (
+        "simscale_sdk_v1.models.simulation.cylindrical_coordinate_system",
+        "CylindricalCoordinateSystem",
+    ),
     "DICPreconditioner": ("simscale_sdk_v1.models.simulation.dic_preconditioner", "DICPreconditioner"),
     "DILUPreconditioner": ("simscale_sdk_v1.models.simulation.dilu_preconditioner", "DILUPreconditioner"),
     "DarcyForchheimerMedium": ("simscale_sdk_v1.models.simulation.darcy_forchheimer_medium", "DarcyForchheimerMedium"),
@@ -3545,6 +3734,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "DimensionalFunction_ElectricResistivity": (
         "simscale_sdk_v1.models.simulation.dimensional_function__electric_resistivity",
         "DimensionalFunction_ElectricResistivity",
+    ),
+    "DimensionalFunction_Force": (
+        "simscale_sdk_v1.models.simulation.dimensional_function__force",
+        "DimensionalFunction_Force",
     ),
     "DimensionalFunction_HeatFlux": (
         "simscale_sdk_v1.models.simulation.dimensional_function__heat_flux",
@@ -3666,6 +3859,14 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.dimensional_initial_condition_domains__turbulent_dissipation",
         "DimensionalInitialConditionDomains_TurbulentDissipation",
     ),
+    "DimensionalPartialVectorFunctionWithLCS_Angle": (
+        "simscale_sdk_v1.models.simulation.dimensional_partial_vector_function_with_lcs__angle",
+        "DimensionalPartialVectorFunctionWithLCS_Angle",
+    ),
+    "DimensionalPartialVectorFunctionWithLCS_Length": (
+        "simscale_sdk_v1.models.simulation.dimensional_partial_vector_function_with_lcs__length",
+        "DimensionalPartialVectorFunctionWithLCS_Length",
+    ),
     "DimensionalPartialVectorFunction_Angle": (
         "simscale_sdk_v1.models.simulation.dimensional_partial_vector_function__angle",
         "DimensionalPartialVectorFunction_Angle",
@@ -3689,6 +3890,14 @@ _NAMES: dict[str, tuple[str, str]] = {
     "DimensionalVectorFunctionInitialConditionWithDomains_Speed": (
         "simscale_sdk_v1.models.simulation.dimensional_vector_function_initial_condition_with_domains__speed",
         "DimensionalVectorFunctionInitialConditionWithDomains_Speed",
+    ),
+    "DimensionalVectorFunctionWithLCS_Force": (
+        "simscale_sdk_v1.models.simulation.dimensional_vector_function_with_lcs__force",
+        "DimensionalVectorFunctionWithLCS_Force",
+    ),
+    "DimensionalVectorFunctionWithLCS_Torque": (
+        "simscale_sdk_v1.models.simulation.dimensional_vector_function_with_lcs__torque",
+        "DimensionalVectorFunctionWithLCS_Torque",
     ),
     "DimensionalVectorFunction_Acceleration": (
         "simscale_sdk_v1.models.simulation.dimensional_vector_function__acceleration",
@@ -3793,6 +4002,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.dimensional__contact_resistance",
         "Dimensional_ContactResistance",
     ),
+    "Dimensional_Damping": ("simscale_sdk_v1.models.simulation.dimensional__damping", "Dimensional_Damping"),
     "Dimensional_Density": ("simscale_sdk_v1.models.simulation.dimensional__density", "Dimensional_Density"),
     "Dimensional_Dimensionless": (
         "simscale_sdk_v1.models.simulation.dimensional__dimensionless",
@@ -3981,10 +4191,6 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.displacements_convergence_method",
         "DisplacementsConvergenceMethod",
     ),
-    "DistanceRegionRefinementWithLength": (
-        "simscale_sdk_v1.models.simulation.distance_region_refinement_with_length",
-        "DistanceRegionRefinementWithLength",
-    ),
     "DistributedIsotropicStiffnessDefinition": (
         "simscale_sdk_v1.models.simulation.distributed_isotropic_stiffness_definition",
         "DistributedIsotropicStiffnessDefinition",
@@ -4120,10 +4326,6 @@ _NAMES: dict[str, tuple[str, str]] = {
         "ElementTechnologyDefinition",
     ),
     "EmbeddedBoundary": ("simscale_sdk_v1.models.simulation.embedded_boundary", "EmbeddedBoundary"),
-    "EmbeddedBoundaryMeshing": (
-        "simscale_sdk_v1.models.simulation.embedded_boundary_meshing",
-        "EmbeddedBoundaryMeshing",
-    ),
     "Empty2DBC": ("simscale_sdk_v1.models.simulation.empty2_dbc", "Empty2DBC"),
     "EquivalentElasticStrain": (
         "simscale_sdk_v1.models.simulation.equivalent_elastic_strain",
@@ -4152,6 +4354,7 @@ _NAMES: dict[str, tuple[str, str]] = {
     ),
     "ExpressionFunction": ("simscale_sdk_v1.models.simulation.expression_function", "ExpressionFunction"),
     "ExternalForce": ("simscale_sdk_v1.models.simulation.external_force", "ExternalForce"),
+    "ExternalForces": ("simscale_sdk_v1.models.simulation.external_forces", "ExternalForces"),
     "ExternalPressure": ("simscale_sdk_v1.models.simulation.external_pressure", "ExternalPressure"),
     "ExternalWallHeatFluxTBC": (
         "simscale_sdk_v1.models.simulation.external_wall_heat_flux_tbc",
@@ -4173,10 +4376,6 @@ _NAMES: dict[str, tuple[str, str]] = {
     "FanPressureDropMomentumSource": (
         "simscale_sdk_v1.models.simulation.fan_pressure_drop_momentum_source",
         "FanPressureDropMomentumSource",
-    ),
-    "FieldCalculationsAdjointSensitivitiesResultControl": (
-        "simscale_sdk_v1.models.simulation.field_calculations_adjoint_sensitivities_result_control",
-        "FieldCalculationsAdjointSensitivitiesResultControl",
     ),
     "FieldCalculationsFrictionVelocityResultControl": (
         "simscale_sdk_v1.models.simulation.field_calculations_friction_velocity_result_control",
@@ -4490,6 +4689,7 @@ _NAMES: dict[str, tuple[str, str]] = {
     "GlobalDampingValue": ("simscale_sdk_v1.models.simulation.global_damping_value", "GlobalDampingValue"),
     "GlobalDisplacement": ("simscale_sdk_v1.models.simulation.global_displacement", "GlobalDisplacement"),
     "GlobalDisplacementType": ("simscale_sdk_v1.models.simulation.global_displacement_type", "GlobalDisplacementType"),
+    "GlobalHeatFlux": ("simscale_sdk_v1.models.simulation.global_heat_flux", "GlobalHeatFlux"),
     "GlobalMaxOverPhaseVonMisesStressType": (
         "simscale_sdk_v1.models.simulation.global_max_over_phase_von_mises_stress_type",
         "GlobalMaxOverPhaseVonMisesStressType",
@@ -4515,6 +4715,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.global_signed_von_mises_stress_type",
         "GlobalSignedVonMisesStressType",
     ),
+    "GlobalTemperature": ("simscale_sdk_v1.models.simulation.global_temperature", "GlobalTemperature"),
     "GlobalTotalEquivalentPlasticStrainType": (
         "simscale_sdk_v1.models.simulation.global_total_equivalent_plastic_strain_type",
         "GlobalTotalEquivalentPlasticStrainType",
@@ -4634,6 +4835,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "HystereticDamping": ("simscale_sdk_v1.models.simulation.hysteretic_damping", "HystereticDamping"),
     "ILUCpPreconditioner": ("simscale_sdk_v1.models.simulation.ilu_cp_preconditioner", "ILUCpPreconditioner"),
     "IRAMSorensen": ("simscale_sdk_v1.models.simulation.iram_sorensen", "IRAMSorensen"),
+    "ImperfectThermalContact": (
+        "simscale_sdk_v1.models.simulation.imperfect_thermal_contact",
+        "ImperfectThermalContact",
+    ),
     "ImplicitTimeIntegrationType": (
         "simscale_sdk_v1.models.simulation.implicit_time_integration_type",
         "ImplicitTimeIntegrationType",
@@ -4676,10 +4881,6 @@ _NAMES: dict[str, tuple[str, str]] = {
     "InletOutletTBC": ("simscale_sdk_v1.models.simulation.inlet_outlet_tbc", "InletOutletTBC"),
     "InletOutletTKEBC": ("simscale_sdk_v1.models.simulation.inlet_outlet_tkebc", "InletOutletTKEBC"),
     "InletOutletVBC": ("simscale_sdk_v1.models.simulation.inlet_outlet_vbc", "InletOutletVBC"),
-    "InsideRegionRefinementWithLength": (
-        "simscale_sdk_v1.models.simulation.inside_region_refinement_with_length",
-        "InsideRegionRefinementWithLength",
-    ),
     "IntensityKineticEnergyInletTKEBC": (
         "simscale_sdk_v1.models.simulation.intensity_kinetic_energy_inlet_tkebc",
         "IntensityKineticEnergyInletTKEBC",
@@ -4712,6 +4913,11 @@ _NAMES: dict[str, tuple[str, str]] = {
     ),
     "IsotropicExpansion": ("simscale_sdk_v1.models.simulation.isotropic_expansion", "IsotropicExpansion"),
     "IsotropicLossTangent": ("simscale_sdk_v1.models.simulation.isotropic_loss_tangent", "IsotropicLossTangent"),
+    "IsotropicMarcConductivity": (
+        "simscale_sdk_v1.models.simulation.isotropic_marc_conductivity",
+        "IsotropicMarcConductivity",
+    ),
+    "IsotropicMarcExpansion": ("simscale_sdk_v1.models.simulation.isotropic_marc_expansion", "IsotropicMarcExpansion"),
     "IsotropicPlasticHardening": (
         "simscale_sdk_v1.models.simulation.isotropic_plastic_hardening",
         "IsotropicPlasticHardening",
@@ -4784,7 +4990,6 @@ _NAMES: dict[str, tuple[str, str]] = {
     "LinearSBM": ("simscale_sdk_v1.models.simulation.linear_sbm", "LinearSBM"),
     "LitzWireCoil": ("simscale_sdk_v1.models.simulation.litz_wire_coil", "LitzWireCoil"),
     "LoadStep": ("simscale_sdk_v1.models.simulation.load_step", "LoadStep"),
-    "LocalElementSizeEBM": ("simscale_sdk_v1.models.simulation.local_element_size_ebm", "LocalElementSizeEBM"),
     "LocalEulerTimeDifferentiationScheme": (
         "simscale_sdk_v1.models.simulation.local_euler_time_differentiation_scheme",
         "LocalEulerTimeDifferentiationScheme",
@@ -4806,10 +5011,6 @@ _NAMES: dict[str, tuple[str, str]] = {
     ),
     "MagneticFluxTangential": ("simscale_sdk_v1.models.simulation.magnetic_flux_tangential", "MagneticFluxTangential"),
     "Magnetostatics": ("simscale_sdk_v1.models.simulation.magnetostatics", "Magnetostatics"),
-    "ManualEmbeddedBoundaryMeshSizing": (
-        "simscale_sdk_v1.models.simulation.manual_embedded_boundary_mesh_sizing",
-        "ManualEmbeddedBoundaryMeshSizing",
-    ),
     "ManualReactualization": ("simscale_sdk_v1.models.simulation.manual_reactualization", "ManualReactualization"),
     "ManualReferenceLength": ("simscale_sdk_v1.models.simulation.manual_reference_length", "ManualReferenceLength"),
     "ManualRegionSizingPacefish": (
@@ -4949,10 +5150,23 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.marc_global_displacement_field_type",
         "MarcGlobalDisplacementFieldType",
     ),
+    "MarcGlobalHeatFluxFieldType": (
+        "simscale_sdk_v1.models.simulation.marc_global_heat_flux_field_type",
+        "MarcGlobalHeatFluxFieldType",
+    ),
+    "MarcGlobalTemperatureFieldType": (
+        "simscale_sdk_v1.models.simulation.marc_global_temperature_field_type",
+        "MarcGlobalTemperatureFieldType",
+    ),
+    "MarcHeatFluxFieldSelection": (
+        "simscale_sdk_v1.models.simulation.marc_heat_flux_field_selection",
+        "MarcHeatFluxFieldSelection",
+    ),
     "MarcHeatFluxResultControlItem": (
         "simscale_sdk_v1.models.simulation.marc_heat_flux_result_control_item",
         "MarcHeatFluxResultControlItem",
     ),
+    "MarcInitialConditions": ("simscale_sdk_v1.models.simulation.marc_initial_conditions", "MarcInitialConditions"),
     "MarcLinearSolverSettings": (
         "simscale_sdk_v1.models.simulation.marc_linear_solver_settings",
         "MarcLinearSolverSettings",
@@ -5019,10 +5233,15 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.marc_sum_fields_calculation_result_control_item",
         "MarcSumFieldsCalculationResultControlItem",
     ),
+    "MarcTemperatureFieldSelection": (
+        "simscale_sdk_v1.models.simulation.marc_temperature_field_selection",
+        "MarcTemperatureFieldSelection",
+    ),
     "MarcTemperatureResultControlItem": (
         "simscale_sdk_v1.models.simulation.marc_temperature_result_control_item",
         "MarcTemperatureResultControlItem",
     ),
+    "MarcThermalProperties": ("simscale_sdk_v1.models.simulation.marc_thermal_properties", "MarcThermalProperties"),
     "MarcTotalStrainType": ("simscale_sdk_v1.models.simulation.marc_total_strain_type", "MarcTotalStrainType"),
     "MarcTouchingContactConnection": (
         "simscale_sdk_v1.models.simulation.marc_touching_contact_connection",
@@ -5037,6 +5256,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "MarlowHyperelasticModelMarc",
     ),
     "MassFlow": ("simscale_sdk_v1.models.simulation.mass_flow", "MassFlow"),
+    "MassFromDensity": ("simscale_sdk_v1.models.simulation.mass_from_density", "MassFromDensity"),
     "MaterialLibraryReference": (
         "simscale_sdk_v1.models.simulation.material_library_reference",
         "MaterialLibraryReference",
@@ -5066,6 +5286,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "MixedTimestepCalculationType",
     ),
     "MixingLengthInletEBC": ("simscale_sdk_v1.models.simulation.mixing_length_inlet_ebc", "MixingLengthInletEBC"),
+    "MixingPlaneRotatingZone": (
+        "simscale_sdk_v1.models.simulation.mixing_plane_rotating_zone",
+        "MixingPlaneRotatingZone",
+    ),
     "ModalBaseControl": ("simscale_sdk_v1.models.simulation.modal_base_control", "ModalBaseControl"),
     "ModalSolver": ("simscale_sdk_v1.models.simulation.modal_solver", "ModalSolver"),
     "ModeledTurbulenceIntensity": (
@@ -5086,6 +5310,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.mooney_type_hyperelastic_model_marc",
         "MooneyTypeHyperelasticModelMarc",
     ),
+    "MotionAxis": ("simscale_sdk_v1.models.simulation.motion_axis", "MotionAxis"),
     "MovingWallVBC": ("simscale_sdk_v1.models.simulation.moving_wall_vbc", "MovingWallVBC"),
     "MrtSolarParameters": ("simscale_sdk_v1.models.simulation.mrt_solar_parameters", "MrtSolarParameters"),
     "MultifrontalSolver": ("simscale_sdk_v1.models.simulation.multifrontal_solver", "MultifrontalSolver"),
@@ -5164,6 +5389,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.no_slip_wall_equivalent_sand_roughness",
         "NoSlipWallEquivalentSandRoughness",
     ),
+    "NoTravelLimit": ("simscale_sdk_v1.models.simulation.no_travel_limit", "NoTravelLimit"),
     "NoWallThermal": ("simscale_sdk_v1.models.simulation.no_wall_thermal", "NoWallThermal"),
     "NodalForceType": ("simscale_sdk_v1.models.simulation.nodal_force_type", "NodalForceType"),
     "NodalLoadBC": ("simscale_sdk_v1.models.simulation.nodal_load_bc", "NodalLoadBC"),
@@ -5191,12 +5417,9 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.number_iterations_write_control",
         "NumberIterationsWriteControl",
     ),
-    "NumberOfCellsPerDirection": (
-        "simscale_sdk_v1.models.simulation.number_of_cells_per_direction",
-        "NumberOfCellsPerDirection",
-    ),
     "Oak": ("simscale_sdk_v1.models.simulation.oak", "Oak"),
     "OffPositionTolerance": ("simscale_sdk_v1.models.simulation.off_position_tolerance", "OffPositionTolerance"),
+    "OffThermalContact": ("simscale_sdk_v1.models.simulation.off_thermal_contact", "OffThermalContact"),
     "OgdenHyperElasticModel": ("simscale_sdk_v1.models.simulation.ogden_hyper_elastic_model", "OgdenHyperElasticModel"),
     "OgdenHyperelasticModelMarc": (
         "simscale_sdk_v1.models.simulation.ogden_hyperelastic_model_marc",
@@ -5252,6 +5475,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__advanced_mumps_settings_mumps_acceleration",
         "OneOf_AdvancedMUMPSSettingsMumpsAcceleration",
     ),
+    "OneOf_AdvancedMarcNumericsSettingsMarcStabilization": (
+        "simscale_sdk_v1.models.simulation.one_of__advanced_marc_numerics_settings_marc_stabilization",
+        "OneOf_AdvancedMarcNumericsSettingsMarcStabilization",
+    ),
     "OneOf_AdvancedModellingPorousObjects": (
         "simscale_sdk_v1.models.simulation.one_of__advanced_modelling_porous_objects",
         "OneOf_AdvancedModellingPorousObjects",
@@ -5271,6 +5498,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_AreaIntegralResultControlWriteControl": (
         "simscale_sdk_v1.models.simulation.one_of__area_integral_result_control_write_control",
         "OneOf_AreaIntegralResultControlWriteControl",
+    ),
+    "OneOf_ArrudaBoycePlasticElastoplasticNetworkChainLengthFunction": (
+        "simscale_sdk_v1.models.simulation.one_of__arruda_boyce_plastic_elastoplastic_network_chain_length_function",
+        "OneOf_ArrudaBoycePlasticElastoplasticNetworkChainLengthFunction",
     ),
     "OneOf_AutoTimestepDefinitionRetimingEvent": (
         "simscale_sdk_v1.models.simulation.one_of__auto_timestep_definition_retiming_event",
@@ -5308,6 +5539,30 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__bonded_contact_position_tolerance",
         "OneOf_BondedContactPositionTolerance",
     ),
+    "OneOf_CartesianComponentPartialVectorFunctionX": (
+        "simscale_sdk_v1.models.simulation.one_of__cartesian_component_partial_vector_function_x",
+        "OneOf_CartesianComponentPartialVectorFunctionX",
+    ),
+    "OneOf_CartesianComponentPartialVectorFunctionY": (
+        "simscale_sdk_v1.models.simulation.one_of__cartesian_component_partial_vector_function_y",
+        "OneOf_CartesianComponentPartialVectorFunctionY",
+    ),
+    "OneOf_CartesianComponentPartialVectorFunctionZ": (
+        "simscale_sdk_v1.models.simulation.one_of__cartesian_component_partial_vector_function_z",
+        "OneOf_CartesianComponentPartialVectorFunctionZ",
+    ),
+    "OneOf_CartesianComponentVectorFunctionX": (
+        "simscale_sdk_v1.models.simulation.one_of__cartesian_component_vector_function_x",
+        "OneOf_CartesianComponentVectorFunctionX",
+    ),
+    "OneOf_CartesianComponentVectorFunctionY": (
+        "simscale_sdk_v1.models.simulation.one_of__cartesian_component_vector_function_y",
+        "OneOf_CartesianComponentVectorFunctionY",
+    ),
+    "OneOf_CartesianComponentVectorFunctionZ": (
+        "simscale_sdk_v1.models.simulation.one_of__cartesian_component_vector_function_z",
+        "OneOf_CartesianComponentVectorFunctionZ",
+    ),
     "OneOf_CoilCoilType": ("simscale_sdk_v1.models.simulation.one_of__coil_coil_type", "OneOf_CoilCoilType"),
     "OneOf_CoilExcitation": ("simscale_sdk_v1.models.simulation.one_of__coil_excitation", "OneOf_CoilExcitation"),
     "OneOf_CoilTopology": ("simscale_sdk_v1.models.simulation.one_of__coil_topology", "OneOf_CoilTopology"),
@@ -5334,6 +5589,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_CompressibleTimeDependency": (
         "simscale_sdk_v1.models.simulation.one_of__compressible_time_dependency",
         "OneOf_CompressibleTimeDependency",
+    ),
+    "OneOf_ComputedTranslationalMotionMassDefinition": (
+        "simscale_sdk_v1.models.simulation.one_of__computed_translational_motion_mass_definition",
+        "OneOf_ComputedTranslationalMotionMassDefinition",
     ),
     "OneOf_ComputingCoreDomainDecomposition": (
         "simscale_sdk_v1.models.simulation.one_of__computing_core_domain_decomposition",
@@ -5491,6 +5750,30 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__custom_fluid_bc_velocity",
         "OneOf_CustomFluidBCVelocity",
     ),
+    "OneOf_CylindricalComponentPartialVectorFunctionAxial": (
+        "simscale_sdk_v1.models.simulation.one_of__cylindrical_component_partial_vector_function_axial",
+        "OneOf_CylindricalComponentPartialVectorFunctionAxial",
+    ),
+    "OneOf_CylindricalComponentPartialVectorFunctionRadial": (
+        "simscale_sdk_v1.models.simulation.one_of__cylindrical_component_partial_vector_function_radial",
+        "OneOf_CylindricalComponentPartialVectorFunctionRadial",
+    ),
+    "OneOf_CylindricalComponentPartialVectorFunctionTangential": (
+        "simscale_sdk_v1.models.simulation.one_of__cylindrical_component_partial_vector_function_tangential",
+        "OneOf_CylindricalComponentPartialVectorFunctionTangential",
+    ),
+    "OneOf_CylindricalComponentVectorFunctionAxial": (
+        "simscale_sdk_v1.models.simulation.one_of__cylindrical_component_vector_function_axial",
+        "OneOf_CylindricalComponentVectorFunctionAxial",
+    ),
+    "OneOf_CylindricalComponentVectorFunctionRadial": (
+        "simscale_sdk_v1.models.simulation.one_of__cylindrical_component_vector_function_radial",
+        "OneOf_CylindricalComponentVectorFunctionRadial",
+    ),
+    "OneOf_CylindricalComponentVectorFunctionTangential": (
+        "simscale_sdk_v1.models.simulation.one_of__cylindrical_component_vector_function_tangential",
+        "OneOf_CylindricalComponentVectorFunctionTangential",
+    ),
     "OneOf_DarcyForchheimerMediumOrientation": (
         "simscale_sdk_v1.models.simulation.one_of__darcy_forchheimer_medium_orientation",
         "OneOf_DarcyForchheimerMediumOrientation",
@@ -5546,6 +5829,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_DimensionalFunction_ElectricResistivityValue": (
         "simscale_sdk_v1.models.simulation.one_of__dimensional_function__electric_resistivity_value",
         "OneOf_DimensionalFunction_ElectricResistivityValue",
+    ),
+    "OneOf_DimensionalFunction_ForceValue": (
+        "simscale_sdk_v1.models.simulation.one_of__dimensional_function__force_value",
+        "OneOf_DimensionalFunction_ForceValue",
     ),
     "OneOf_DimensionalFunction_HeatFluxValue": (
         "simscale_sdk_v1.models.simulation.one_of__dimensional_function__heat_flux_value",
@@ -5638,6 +5925,22 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_DimensionalFunction_VolumetricPowerValue": (
         "simscale_sdk_v1.models.simulation.one_of__dimensional_function__volumetric_power_value",
         "OneOf_DimensionalFunction_VolumetricPowerValue",
+    ),
+    "OneOf_DimensionalPartialVectorFunctionWithLCS_AngleValue": (
+        "simscale_sdk_v1.models.simulation.one_of__dimensional_partial_vector_function_with_lcs__angle_value",
+        "OneOf_DimensionalPartialVectorFunctionWithLCS_AngleValue",
+    ),
+    "OneOf_DimensionalPartialVectorFunctionWithLCS_LengthValue": (
+        "simscale_sdk_v1.models.simulation.one_of__dimensional_partial_vector_function_with_lcs__length_value",
+        "OneOf_DimensionalPartialVectorFunctionWithLCS_LengthValue",
+    ),
+    "OneOf_DimensionalVectorFunctionWithLCS_ForceValue": (
+        "simscale_sdk_v1.models.simulation.one_of__dimensional_vector_function_with_lcs__force_value",
+        "OneOf_DimensionalVectorFunctionWithLCS_ForceValue",
+    ),
+    "OneOf_DimensionalVectorFunctionWithLCS_TorqueValue": (
+        "simscale_sdk_v1.models.simulation.one_of__dimensional_vector_function_with_lcs__torque_value",
+        "OneOf_DimensionalVectorFunctionWithLCS_TorqueValue",
     ),
     "OneOf_DimensionalVectorFunction_AccelerationValue": (
         "simscale_sdk_v1.models.simulation.one_of__dimensional_vector_function__acceleration_value",
@@ -5787,6 +6090,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__dynamic_analysis_connectors",
         "OneOf_DynamicAnalysisConnectors",
     ),
+    "OneOf_DynamicAnalysisLocalCoordinateSystems": (
+        "simscale_sdk_v1.models.simulation.one_of__dynamic_analysis_local_coordinate_systems",
+        "OneOf_DynamicAnalysisLocalCoordinateSystems",
+    ),
     "OneOf_ERPCalculationResultControlItemFieldSelection": (
         "simscale_sdk_v1.models.simulation.one_of_erp_calculation_result_control_item_field_selection",
         "OneOf_ERPCalculationResultControlItemFieldSelection",
@@ -5806,6 +6113,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_ElectromagneticAnalysisBoundaryConditions": (
         "simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_boundary_conditions",
         "OneOf_ElectromagneticAnalysisBoundaryConditions",
+    ),
+    "OneOf_ElectromagneticAnalysisLocalCoordinateSystems": (
+        "simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_local_coordinate_systems",
+        "OneOf_ElectromagneticAnalysisLocalCoordinateSystems",
     ),
     "OneOf_ElectromagneticAnalysisModel": (
         "simscale_sdk_v1.models.simulation.one_of__electromagnetic_analysis_model",
@@ -5835,6 +6146,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__electromagnetic_material_material_behavior",
         "OneOf_ElectromagneticMaterialMaterialBehavior",
     ),
+    "OneOf_ElectromagneticMotionMotion": (
+        "simscale_sdk_v1.models.simulation.one_of__electromagnetic_motion_motion",
+        "OneOf_ElectromagneticMotionMotion",
+    ),
     "OneOf_ElectromagneticResultControlProbePointFieldSelection": (
         "simscale_sdk_v1.models.simulation.one_of__electromagnetic_result_control_probe_point_field_selection",
         "OneOf_ElectromagneticResultControlProbePointFieldSelection",
@@ -5850,14 +6165,6 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_EmbeddedBoundaryExternalFlowBoundaryCondition": (
         "simscale_sdk_v1.models.simulation.one_of__embedded_boundary_external_flow_boundary_condition",
         "OneOf_EmbeddedBoundaryExternalFlowBoundaryCondition",
-    ),
-    "OneOf_EmbeddedBoundaryMeshingRefinements": (
-        "simscale_sdk_v1.models.simulation.one_of__embedded_boundary_meshing_refinements",
-        "OneOf_EmbeddedBoundaryMeshingRefinements",
-    ),
-    "OneOf_EmbeddedBoundaryMeshingSizing": (
-        "simscale_sdk_v1.models.simulation.one_of__embedded_boundary_meshing_sizing",
-        "OneOf_EmbeddedBoundaryMeshingSizing",
     ),
     "OneOf_EmbeddedBoundaryTimeDependency": (
         "simscale_sdk_v1.models.simulation.one_of__embedded_boundary_time_dependency",
@@ -6168,6 +6475,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__frequency_analysis_connectors",
         "OneOf_FrequencyAnalysisConnectors",
     ),
+    "OneOf_FrequencyAnalysisLocalCoordinateSystems": (
+        "simscale_sdk_v1.models.simulation.one_of__frequency_analysis_local_coordinate_systems",
+        "OneOf_FrequencyAnalysisLocalCoordinateSystems",
+    ),
     "OneOf_FrictionContactContactSolutionMethod": (
         "simscale_sdk_v1.models.simulation.one_of__friction_contact_contact_solution_method",
         "OneOf_FrictionContactContactSolutionMethod",
@@ -6260,6 +6571,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__harmonic_analysis_connectors",
         "OneOf_HarmonicAnalysisConnectors",
     ),
+    "OneOf_HarmonicAnalysisLocalCoordinateSystems": (
+        "simscale_sdk_v1.models.simulation.one_of__harmonic_analysis_local_coordinate_systems",
+        "OneOf_HarmonicAnalysisLocalCoordinateSystems",
+    ),
     "OneOf_HarmonicDisplacementResultControlItemHarmonicDisplacementType": (
         "simscale_sdk_v1.models.simulation.one_of__harmonic_displacement_result_control_item_harmonic_displacement_type",
         "OneOf_HarmonicDisplacementResultControlItemHarmonicDisplacementType",
@@ -6283,6 +6598,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_HeatTransferBoundaryConditions": (
         "simscale_sdk_v1.models.simulation.one_of__heat_transfer_boundary_conditions",
         "OneOf_HeatTransferBoundaryConditions",
+    ),
+    "OneOf_HeatTransferLocalCoordinateSystems": (
+        "simscale_sdk_v1.models.simulation.one_of__heat_transfer_local_coordinate_systems",
+        "OneOf_HeatTransferLocalCoordinateSystems",
     ),
     "OneOf_HeatTransferTimeDependency": (
         "simscale_sdk_v1.models.simulation.one_of__heat_transfer_time_dependency",
@@ -6544,6 +6863,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__marc_analysis_boundary_conditions",
         "OneOf_MarcAnalysisBoundaryConditions",
     ),
+    "OneOf_MarcAnalysisLocalCoordinateSystems": (
+        "simscale_sdk_v1.models.simulation.one_of__marc_analysis_local_coordinate_systems",
+        "OneOf_MarcAnalysisLocalCoordinateSystems",
+    ),
     "OneOf_MarcAverageFieldsCalculationResultControlItemFieldSelection": (
         "simscale_sdk_v1.models.simulation.one_of__marc_average_fields_calculation_result_control_item_field_selection",
         "OneOf_MarcAverageFieldsCalculationResultControlItemFieldSelection",
@@ -6552,9 +6875,17 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__marc_bonded_and_touching_contact_connection_position_tolerance",
         "OneOf_MarcBondedAndTouchingContactConnectionPositionTolerance",
     ),
+    "OneOf_MarcBondedAndTouchingContactConnectionThermalContact": (
+        "simscale_sdk_v1.models.simulation.one_of__marc_bonded_and_touching_contact_connection_thermal_contact",
+        "OneOf_MarcBondedAndTouchingContactConnectionThermalContact",
+    ),
     "OneOf_MarcBondedContactConnectionPositionTolerance": (
         "simscale_sdk_v1.models.simulation.one_of__marc_bonded_contact_connection_position_tolerance",
         "OneOf_MarcBondedContactConnectionPositionTolerance",
+    ),
+    "OneOf_MarcBondedContactConnectionThermalContact": (
+        "simscale_sdk_v1.models.simulation.one_of__marc_bonded_contact_connection_thermal_contact",
+        "OneOf_MarcBondedContactConnectionThermalContact",
     ),
     "OneOf_MarcConnectionGroupConnections": (
         "simscale_sdk_v1.models.simulation.one_of__marc_connection_group_connections",
@@ -6640,6 +6971,14 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__marc_sum_fields_calculation_result_control_item_field_selection",
         "OneOf_MarcSumFieldsCalculationResultControlItemFieldSelection",
     ),
+    "OneOf_MarcThermalPropertiesConductivity": (
+        "simscale_sdk_v1.models.simulation.one_of__marc_thermal_properties_conductivity",
+        "OneOf_MarcThermalPropertiesConductivity",
+    ),
+    "OneOf_MarcTouchingContactConnectionThermalContact": (
+        "simscale_sdk_v1.models.simulation.one_of__marc_touching_contact_connection_thermal_contact",
+        "OneOf_MarcTouchingContactConnectionThermalContact",
+    ),
     "OneOf_MinMaxFieldsCalculationResultControlItemFieldSelection": (
         "simscale_sdk_v1.models.simulation.one_of__min_max_fields_calculation_result_control_item_field_selection",
         "OneOf_MinMaxFieldsCalculationResultControlItemFieldSelection",
@@ -6659,6 +6998,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_MomentFieldSelectionMomentType": (
         "simscale_sdk_v1.models.simulation.one_of__moment_field_selection_moment_type",
         "OneOf_MomentFieldSelectionMomentType",
+    ),
+    "OneOf_MotionAxisTravelLimit": (
+        "simscale_sdk_v1.models.simulation.one_of__motion_axis_travel_limit",
+        "OneOf_MotionAxisTravelLimit",
     ),
     "OneOf_MrtSolarParametersFractionBodySurface": (
         "simscale_sdk_v1.models.simulation.one_of__mrt_solar_parameters_fraction_body_surface",
@@ -6723,6 +7066,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_OgdenHyperelasticModelMarcNumberOfTerms": (
         "simscale_sdk_v1.models.simulation.one_of__ogden_hyperelastic_model_marc_number_of_terms",
         "OneOf_OgdenHyperelasticModelMarcNumberOfTerms",
+    ),
+    "OneOf_OneTermExponent1Function": (
+        "simscale_sdk_v1.models.simulation.one_of__one_term_exponent1_function",
+        "OneOf_OneTermExponent1Function",
     ),
     "OneOf_OrthotropicDirectionalDependencyPoissonsRatioXY": (
         "simscale_sdk_v1.models.simulation.one_of__orthotropic_directional_dependency_poissons_ratio_xy",
@@ -6924,10 +7271,6 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__region_interface_interface_thermal",
         "OneOf_RegionInterfaceInterfaceThermal",
     ),
-    "OneOf_RegionRefinementEBMRefinement": (
-        "simscale_sdk_v1.models.simulation.one_of__region_refinement_ebm_refinement",
-        "OneOf_RegionRefinementEBMRefinement",
-    ),
     "OneOf_RegionRefinementWindComfortNewFineness": (
         "simscale_sdk_v1.models.simulation.one_of__region_refinement_wind_comfort_new_fineness",
         "OneOf_RegionRefinementWindComfortNewFineness",
@@ -7116,6 +7459,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__static_analysis_connectors",
         "OneOf_StaticAnalysisConnectors",
     ),
+    "OneOf_StaticAnalysisLocalCoordinateSystems": (
+        "simscale_sdk_v1.models.simulation.one_of__static_analysis_local_coordinate_systems",
+        "OneOf_StaticAnalysisLocalCoordinateSystems",
+    ),
     "OneOf_StatisticalAveragingResultControlV2SamplingInterval": (
         "simscale_sdk_v1.models.simulation.one_of__statistical_averaging_result_control_v2_sampling_interval",
         "OneOf_StatisticalAveragingResultControlV2SamplingInterval",
@@ -7208,9 +7555,25 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.one_of__thermal_mechanical_connection_groups",
         "OneOf_ThermalMechanicalConnectionGroups",
     ),
+    "OneOf_ThermalMechanicalLocalCoordinateSystems": (
+        "simscale_sdk_v1.models.simulation.one_of__thermal_mechanical_local_coordinate_systems",
+        "OneOf_ThermalMechanicalLocalCoordinateSystems",
+    ),
     "OneOf_ThermalMechanicalTimeDependency": (
         "simscale_sdk_v1.models.simulation.one_of__thermal_mechanical_time_dependency",
         "OneOf_ThermalMechanicalTimeDependency",
+    ),
+    "OneOf_ThreeTermsExponent1Function": (
+        "simscale_sdk_v1.models.simulation.one_of__three_terms_exponent1_function",
+        "OneOf_ThreeTermsExponent1Function",
+    ),
+    "OneOf_ThreeTermsExponent2Function": (
+        "simscale_sdk_v1.models.simulation.one_of__three_terms_exponent2_function",
+        "OneOf_ThreeTermsExponent2Function",
+    ),
+    "OneOf_ThreeTermsExponent3Function": (
+        "simscale_sdk_v1.models.simulation.one_of__three_terms_exponent3_function",
+        "OneOf_ThreeTermsExponent3Function",
     ),
     "OneOf_TimeDifferentiationSchemesForDefault": (
         "simscale_sdk_v1.models.simulation.one_of__time_differentiation_schemes_for_default",
@@ -7231,6 +7594,14 @@ _NAMES: dict[str, tuple[str, str]] = {
     "OneOf_TurbulentHeatFluxTBCHeatSource": (
         "simscale_sdk_v1.models.simulation.one_of__turbulent_heat_flux_tbc_heat_source",
         "OneOf_TurbulentHeatFluxTBCHeatSource",
+    ),
+    "OneOf_TwoTermsExponent1Function": (
+        "simscale_sdk_v1.models.simulation.one_of__two_terms_exponent1_function",
+        "OneOf_TwoTermsExponent1Function",
+    ),
+    "OneOf_TwoTermsExponent2Function": (
+        "simscale_sdk_v1.models.simulation.one_of__two_terms_exponent2_function",
+        "OneOf_TwoTermsExponent2Function",
     ),
     "OneOf_VelocityFieldSelectionVelocityType": (
         "simscale_sdk_v1.models.simulation.one_of__velocity_field_selection_velocity_type",
@@ -7358,6 +7729,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.orthotropic_electric_conductivity",
         "OrthotropicElectricConductivity",
     ),
+    "OrthotropicMarcConductivity": (
+        "simscale_sdk_v1.models.simulation.orthotropic_marc_conductivity",
+        "OrthotropicMarcConductivity",
+    ),
     "OrthotropicSpringStiffness": (
         "simscale_sdk_v1.models.simulation.orthotropic_spring_stiffness",
         "OrthotropicSpringStiffness",
@@ -7427,6 +7802,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.perfect_plasticity_model_marc",
         "PerfectPlasticityModelMarc",
     ),
+    "PerfectThermalContact": ("simscale_sdk_v1.models.simulation.perfect_thermal_contact", "PerfectThermalContact"),
     "PerforatedPlate": ("simscale_sdk_v1.models.simulation.perforated_plate", "PerforatedPlate"),
     "PeriodicBC": ("simscale_sdk_v1.models.simulation.periodic_bc", "PeriodicBC"),
     "PermanentMagnetMaterial": (
@@ -7459,6 +7835,14 @@ _NAMES: dict[str, tuple[str, str]] = {
     "PowerLawMedium": ("simscale_sdk_v1.models.simulation.power_law_medium", "PowerLawMedium"),
     "PowerLawViscosityModel": ("simscale_sdk_v1.models.simulation.power_law_viscosity_model", "PowerLawViscosityModel"),
     "PrandtlLesDelta": ("simscale_sdk_v1.models.simulation.prandtl_les_delta", "PrandtlLesDelta"),
+    "PredefinedRotationalMotion": (
+        "simscale_sdk_v1.models.simulation.predefined_rotational_motion",
+        "PredefinedRotationalMotion",
+    ),
+    "PredefinedTranslationalMotion": (
+        "simscale_sdk_v1.models.simulation.predefined_translational_motion",
+        "PredefinedTranslationalMotion",
+    ),
     "PrescribedOptionalFunction": (
         "simscale_sdk_v1.models.simulation.prescribed_optional_function",
         "PrescribedOptionalFunction",
@@ -7519,11 +7903,9 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.rectifying_darcy_forchheimer",
         "RectifyingDarcyForchheimer",
     ),
-    "RefinementLength": ("simscale_sdk_v1.models.simulation.refinement_length", "RefinementLength"),
     "Region": ("simscale_sdk_v1.models.simulation.region", "Region"),
     "RegionInterface": ("simscale_sdk_v1.models.simulation.region_interface", "RegionInterface"),
     "RegionOfInterest": ("simscale_sdk_v1.models.simulation.region_of_interest", "RegionOfInterest"),
-    "RegionRefinementEBM": ("simscale_sdk_v1.models.simulation.region_refinement_ebm", "RegionRefinementEBM"),
     "RegionRefinementPacefish": (
         "simscale_sdk_v1.models.simulation.region_refinement_pacefish",
         "RegionRefinementPacefish",
@@ -7737,6 +8119,8 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.specific_resistance_interface_thermal",
         "SpecificResistanceInterfaceThermal",
     ),
+    "SpecifiedMass": ("simscale_sdk_v1.models.simulation.specified_mass", "SpecifiedMass"),
+    "SpringDamper": ("simscale_sdk_v1.models.simulation.spring_damper", "SpringDamper"),
     "Square": ("simscale_sdk_v1.models.simulation.square", "Square"),
     "Stabilization": ("simscale_sdk_v1.models.simulation.stabilization", "Stabilization"),
     "StandardHerschelBulkleyViscosityModel": (
@@ -8035,6 +8419,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "TransientTimeDependency",
     ),
     "TransparentMaterial": ("simscale_sdk_v1.models.simulation.transparent_material", "TransparentMaterial"),
+    "TravelDistance": ("simscale_sdk_v1.models.simulation.travel_distance", "TravelDistance"),
     "TrescaStressType": ("simscale_sdk_v1.models.simulation.tresca_stress_type", "TrescaStressType"),
     "TrueChangeJacobianMatrix": (
         "simscale_sdk_v1.models.simulation.true_change_jacobian_matrix",
@@ -8071,6 +8456,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "UncorrectedSurfaceNormalGradientScheme",
     ),
     "UnelasticStrainType": ("simscale_sdk_v1.models.simulation.unelastic_strain_type", "UnelasticStrainType"),
+    "Unit_Angle": ("simscale_sdk_v1.models.simulation.unit__angle", "Unit_Angle"),
     "Unit_Dimensionless": ("simscale_sdk_v1.models.simulation.unit__dimensionless", "Unit_Dimensionless"),
     "Unit_Frequency": ("simscale_sdk_v1.models.simulation.unit__frequency", "Unit_Frequency"),
     "Unit_Length": ("simscale_sdk_v1.models.simulation.unit__length", "Unit_Length"),
@@ -8114,6 +8500,10 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.simulation.variable_group_relaxation_time",
         "VariableGroup_RELAXATION_TIME",
     ),
+    "VariableGroup_R_PHI_Z_TIME": (
+        "simscale_sdk_v1.models.simulation.variable_group_r_phi_z_time",
+        "VariableGroup_R_PHI_Z_TIME",
+    ),
     "VariableGroup_STRAIN": ("simscale_sdk_v1.models.simulation.variable_group_strain", "VariableGroup_STRAIN"),
     "VariableGroup_TEMP": ("simscale_sdk_v1.models.simulation.variable_group_temp", "VariableGroup_TEMP"),
     "VariableGroup_TEMP_ENGINEERING_STRAIN": (
@@ -8131,6 +8521,10 @@ _NAMES: dict[str, tuple[str, str]] = {
     "VariableGroup_TEMP_STRAIN": (
         "simscale_sdk_v1.models.simulation.variable_group_temp_strain",
         "VariableGroup_TEMP_STRAIN",
+    ),
+    "VariableGroup_THETA_TIME": (
+        "simscale_sdk_v1.models.simulation.variable_group_theta_time",
+        "VariableGroup_THETA_TIME",
     ),
     "VariableGroup_TIME": ("simscale_sdk_v1.models.simulation.variable_group_time", "VariableGroup_TIME"),
     "VariableGroup_VELOCITY": ("simscale_sdk_v1.models.simulation.variable_group_velocity", "VariableGroup_VELOCITY"),

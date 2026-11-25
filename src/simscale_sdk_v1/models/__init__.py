@@ -74,6 +74,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.permissions import Permissions
     from simscale_sdk_v1.models.project import Project
     from simscale_sdk_v1.models.project_copy_request import ProjectCopyRequest
+    from simscale_sdk_v1.models.project_copy_response import ProjectCopyResponse
     from simscale_sdk_v1.models.project_permissions import ProjectPermissions
     from simscale_sdk_v1.models.project_visibility import ProjectVisibility
     from simscale_sdk_v1.models.rename_cad_request import RenameCadRequest
@@ -214,6 +215,7 @@ _NAMES: dict[str, tuple[str, str]] = {
     "Permissions": ("simscale_sdk_v1.models.permissions", "Permissions"),
     "Project": ("simscale_sdk_v1.models.project", "Project"),
     "ProjectCopyRequest": ("simscale_sdk_v1.models.project_copy_request", "ProjectCopyRequest"),
+    "ProjectCopyResponse": ("simscale_sdk_v1.models.project_copy_response", "ProjectCopyResponse"),
     "ProjectPermissions": ("simscale_sdk_v1.models.project_permissions", "ProjectPermissions"),
     "ProjectVisibility": ("simscale_sdk_v1.models.project_visibility", "ProjectVisibility"),
     "RenameCadRequest": ("simscale_sdk_v1.models.rename_cad_request", "RenameCadRequest"),

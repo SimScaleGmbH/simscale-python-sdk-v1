@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class Spaces:
@@ -20,7 +20,7 @@ class Spaces:
         """
         return self._client.request(
             "GET",
-            f"/spaces/{space_id}",
+            f"/spaces/{path_segment(space_id)}",
             response_type=models.Space,
         )
 
@@ -50,7 +50,7 @@ class Spaces:
         """
         return self._client.request(
             "PUT",
-            f"/spaces/{space_id}",
+            f"/spaces/{path_segment(space_id)}",
             json_body=body,
             response_type=models.Space,
         )

@@ -10,6 +10,9 @@ from simscale_sdk_v1._base import SimScaleModel
 class InitializeWorkflowRunRequest(SimScaleModel):
     """Workflow run information to be presented for the initialization."""
 
+    operation_recycling_enabled: bool | None = Field(
+        validation_alias="operationRecyclingEnabled", serialization_alias="operationRecyclingEnabled", default=None
+    )
     workflow_run_mode: Literal["DRY", "REAL"] = Field(
         validation_alias="workflowRunMode", serialization_alias="workflowRunMode"
     )

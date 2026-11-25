@@ -20,6 +20,9 @@ class LocalElementSizeCfMesh(SimScaleModel):
     max_element_size: Dimensional_Length | None = Field(
         validation_alias="maxElementSize", serialization_alias="maxElementSize", default=None
     )
+    min_element_size: Dimensional_Length | None = Field(
+        validation_alias="minElementSize", serialization_alias="minElementSize", default=None
+    )
     topological_reference: TopologicalReference | None = Field(
         validation_alias="topologicalReference", serialization_alias="topologicalReference", default=None
     )

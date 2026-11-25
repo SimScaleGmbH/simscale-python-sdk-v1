@@ -12,6 +12,9 @@ from simscale_sdk_v1.models.simulation.one_of__static_analysis_connection_groups
     OneOf_StaticAnalysisConnectionGroups,
 )
 from simscale_sdk_v1.models.simulation.one_of__static_analysis_connectors import OneOf_StaticAnalysisConnectors
+from simscale_sdk_v1.models.simulation.one_of__static_analysis_local_coordinate_systems import (
+    OneOf_StaticAnalysisLocalCoordinateSystems,
+)
 from simscale_sdk_v1.models.simulation.solid_element_technology import SolidElementTechnology
 from simscale_sdk_v1.models.simulation.solid_initial_conditions import SolidInitialConditions
 from simscale_sdk_v1.models.simulation.solid_material import SolidMaterial
@@ -33,6 +36,9 @@ class StaticAnalysis(SimScaleModel):
         serialization_alias="nonLinearAnalysis",
         default=False,
         description="Choose if your analysis should feature any kind of nonlinearity like physical contacts, nonlinear materials as hyperelasticity or plasticity or large rotations and large deformations, temperature dependant material properties or temperature dependant boundary conditions. For a linear analysis none of those nonlinearities are available.",
+    )
+    local_coordinate_systems: list[OneOf_StaticAnalysisLocalCoordinateSystems] | None = Field(
+        validation_alias="localCoordinateSystems", serialization_alias="localCoordinateSystems", default=None
     )
     connection_groups: list[OneOf_StaticAnalysisConnectionGroups] | None = Field(
         validation_alias="connectionGroups", serialization_alias="connectionGroups", default=None

@@ -8,6 +8,7 @@ from simscale_sdk_v1._base import SimScaleModel
 class OrganizationComponentGroupMetadata(SimScaleModel):
     """Metadata of an organization component group."""
 
+    has_icon: bool | None = Field(validation_alias="hasIcon", serialization_alias="hasIcon", default=None)
     name: str | None = Field(default=None)
     organization_component_group_reference: str | None = Field(
         validation_alias="organizationComponentGroupReference",

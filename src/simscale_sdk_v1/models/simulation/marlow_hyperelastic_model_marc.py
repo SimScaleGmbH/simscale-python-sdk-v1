@@ -5,7 +5,6 @@ from typing import Literal
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
-from simscale_sdk_v1.models.simulation.dimensional__pressure import Dimensional_Pressure
 from simscale_sdk_v1.models.simulation.dimensional_function__pressure import DimensionalFunction_Pressure
 
 
@@ -27,6 +26,6 @@ class MarlowHyperelasticModelMarc(SimScaleModel):
         serialization_alias="engineeringStressStrainCurve",
         default=None,
     )
-    bulk_modulus: Dimensional_Pressure | None = Field(
-        validation_alias="bulkModulus", serialization_alias="bulkModulus", default=None
+    bulk_modulus_function: DimensionalFunction_Pressure | None = Field(
+        validation_alias="bulkModulusFunction", serialization_alias="bulkModulusFunction", default=None
     )

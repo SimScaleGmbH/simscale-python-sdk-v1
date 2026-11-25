@@ -3,6 +3,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
+from simscale_sdk_v1.models.simulation.global_heat_flux import GlobalHeatFlux
 
 
 class MarcHeatFluxResultControlItem(SimScaleModel):
@@ -13,3 +14,6 @@ class MarcHeatFluxResultControlItem(SimScaleModel):
         description="Schema name: MarcHeatFluxResultControlItem",
     )
     name: str | None = Field(default=None)
+    heat_flux_type: GlobalHeatFlux | None = Field(
+        validation_alias="heatFluxType", serialization_alias="heatFluxType", default=None
+    )

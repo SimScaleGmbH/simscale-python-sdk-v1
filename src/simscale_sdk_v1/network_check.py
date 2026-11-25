@@ -55,6 +55,8 @@ _PROXY_ENV_VARS = (
     "NO_PROXY",
     "no_proxy",
 )
+# Host lists, not URLs: shown as is.
+_NO_PROXY_ENV_VARS = frozenset({"NO_PROXY", "no_proxy"})
 _PUT_TIMEOUT = httpx.Timeout(3600.0, connect=30.0)
 
 
@@ -86,6 +88,28 @@ class NetworkCheckResult:
 
     def to_dict(self) -> dict:
         return asdict(self)
+
+
+def _redact_proxy(value: str) -> str:
+    """Scheme, host and port of a proxy URL, credentials replaced by ***.
+
+    Proxy URLs often embed credentials (http://user:password@proxy:8080), and the result is meant to be
+    shared with support. Only scheme and the netloc after the last @ (where urlsplit takes host and port from)
+    are kept; a value that does not parse or has no host returns ***. Parse errors are not passed on, since their
+    message can contain the value.
+    """
+    has_scheme = "://" in value
+    try:
+        parts = urlsplit(value if has_scheme else f"http://{value}")
+        _ = parts.port  # raises ValueError on an invalid port
+        if not parts.hostname:
+            return "***"
+    except ValueError:
+        return "***"
+    netloc = parts.netloc.rsplit("@", 1)[-1]
+    if "@" in parts.netloc:
+        netloc = f"***@{netloc}"
+    return f"{parts.scheme}://{netloc}" if has_scheme else netloc
 
 
 def _synthetic(size: int) -> Iterator[bytes]:
@@ -195,7 +219,11 @@ class NetworkCheck:
         result.python_version = platform.python_version()
         result.httpx_version = httpx.__version__
         result.operating_system = f"{platform.system()} {platform.release()}"
-        result.proxy_env = {name: os.environ[name] for name in _PROXY_ENV_VARS if name in os.environ}
+        result.proxy_env = {
+            name: os.environ[name] if name in _NO_PROXY_ENV_VARS else _redact_proxy(os.environ[name])
+            for name in _PROXY_ENV_VARS
+            if name in os.environ
+        }
 
     def _api_roundtrip_ms(self) -> float:
         self._sdk.users.get_current_user()

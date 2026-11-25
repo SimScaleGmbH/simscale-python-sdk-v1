@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class MeshOperations:
@@ -16,7 +16,7 @@ class MeshOperations:
         """Cancel the mesh operation"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/meshoperations/{mesh_operation_id}/cancel",
+            f"/projects/{path_segment(project_id)}/meshoperations/{path_segment(mesh_operation_id)}/cancel",
         )
 
     def check_mesh_operation_setup(
@@ -29,7 +29,7 @@ class MeshOperations:
         """Check the mesh operation setup"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/meshoperations/{mesh_operation_id}/check",
+            f"/projects/{path_segment(project_id)}/meshoperations/{path_segment(mesh_operation_id)}/check",
             query_params={"simulationId": simulation_id},
             response_type=models.CheckResponse,
         )
@@ -42,7 +42,7 @@ class MeshOperations:
         """Create a mesh operation"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/meshoperations",
+            f"/projects/{path_segment(project_id)}/meshoperations",
             json_body=body,
             response_type=models.MeshOperation,
         )
@@ -60,7 +60,7 @@ class MeshOperations:
         """
         return self._client.request(
             "DELETE",
-            f"/projects/{project_id}/meshoperations/{mesh_operation_id}",
+            f"/projects/{path_segment(project_id)}/meshoperations/{path_segment(mesh_operation_id)}",
         )
 
     def estimate_mesh_operation(
@@ -71,7 +71,7 @@ class MeshOperations:
         """Estimate the mesh operation"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/meshoperations/{mesh_operation_id}/estimate",
+            f"/projects/{path_segment(project_id)}/meshoperations/{path_segment(mesh_operation_id)}/estimate",
             response_type=models.Estimation,
         )
 
@@ -85,7 +85,7 @@ class MeshOperations:
         """Get information about the mesh operation"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/meshoperations/{mesh_operation_id}",
+            f"/projects/{path_segment(project_id)}/meshoperations/{path_segment(mesh_operation_id)}",
             query_params={"meshingSpecSchemaVersion": meshing_spec_schema_version},
             response_type=models.MeshOperation,
         )
@@ -98,7 +98,7 @@ class MeshOperations:
         """Get the mesh operation event log"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/meshoperations/{mesh_operation_id}/eventlog",
+            f"/projects/{path_segment(project_id)}/meshoperations/{path_segment(mesh_operation_id)}/eventlog",
             response_type=models.EventLogResponse,
         )
 
@@ -112,7 +112,7 @@ class MeshOperations:
         """List mesh operations for a project"""
         data = self._client.request(
             "GET",
-            f"/projects/{project_id}/meshoperations",
+            f"/projects/{path_segment(project_id)}/meshoperations",
             query_params={"limit": limit, "page": page},
         )
         return PaginatedResponse(data, models.SlimMeshOperation)
@@ -127,7 +127,7 @@ class MeshOperations:
         """Start the mesh operation"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/meshoperations/{mesh_operation_id}/start",
+            f"/projects/{path_segment(project_id)}/meshoperations/{path_segment(mesh_operation_id)}/start",
             query_params={"simulationId": simulation_id},
         )
 
@@ -145,7 +145,7 @@ class MeshOperations:
         """
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/meshoperations/{mesh_operation_id}/swapcad",
+            f"/projects/{path_segment(project_id)}/meshoperations/{path_segment(mesh_operation_id)}/swapcad",
             json_body=body,
             response_type=models.SwapCadReport,
         )
@@ -159,6 +159,6 @@ class MeshOperations:
         """Update information about the mesh operation"""
         return self._client.request(
             "PUT",
-            f"/projects/{project_id}/meshoperations/{mesh_operation_id}",
+            f"/projects/{path_segment(project_id)}/meshoperations/{path_segment(mesh_operation_id)}",
             json_body=body,
         )

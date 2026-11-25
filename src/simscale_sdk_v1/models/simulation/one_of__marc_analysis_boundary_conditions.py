@@ -5,6 +5,7 @@ from typing import Annotated, Union
 from pydantic import BeforeValidator
 
 from simscale_sdk_v1._base import parse_discriminated_union
+from simscale_sdk_v1.models.simulation.bearing_load_bc_marc import BearingLoadBCMarc
 from simscale_sdk_v1.models.simulation.bolt_preload_bc_marc import BoltPreloadBCMarc
 from simscale_sdk_v1.models.simulation.convection_radiation_bc_marc import ConvectionRadiationBCMarc
 from simscale_sdk_v1.models.simulation.fixed_value_bc_marc import FixedValueBCMarc
@@ -27,6 +28,7 @@ _ONE_OF__MARC_ANALYSIS_BOUNDARY_CONDITIONS_VARIANTS: dict[str, type] = {
     "SURFACE_HEAT_FLUX": SurfaceHeatFluxBCMarc,
     "VOLUME_HEAT_FLUX": VolumeHeatFluxBCMarc,
     "BOLT_PRELOAD": BoltPreloadBCMarc,
+    "BEARING_LOAD": BearingLoadBCMarc,
 }
 
 OneOf_MarcAnalysisBoundaryConditions = Annotated[
@@ -41,6 +43,7 @@ OneOf_MarcAnalysisBoundaryConditions = Annotated[
         SurfaceHeatFluxBCMarc,
         VolumeHeatFluxBCMarc,
         BoltPreloadBCMarc,
+        BearingLoadBCMarc,
     ],
     BeforeValidator(
         partial(

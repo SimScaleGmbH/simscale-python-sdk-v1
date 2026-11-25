@@ -5,9 +5,6 @@ from typing import Annotated, Union
 from pydantic import BeforeValidator
 
 from simscale_sdk_v1._base import parse_discriminated_union
-from simscale_sdk_v1.models.simulation.field_calculations_adjoint_sensitivities_result_control import (
-    FieldCalculationsAdjointSensitivitiesResultControl,
-)
 from simscale_sdk_v1.models.simulation.field_calculations_friction_velocity_result_control import (
     FieldCalculationsFrictionVelocityResultControl,
 )
@@ -66,7 +63,6 @@ _ONE_OF__FLUID_RESULT_CONTROLS_FIELD_CALCULATIONS_VARIANTS: dict[str, type] = {
     "WALL_FLUXES": FieldCalculationsWallFluxesResultControl,
     "AGE_OF_FLUID": FieldCalculationsMeanAgeOfFluidResultControl,
     "THERMAL_COMFORT": FieldCalculationsThermalComfortResultControl,
-    "ADJOINT_SENSITIVITIES": FieldCalculationsAdjointSensitivitiesResultControl,
     "WALL_HEAT_FLUX": FieldCalculationsWallHeatFluxResultControl,
     "MEAN_RADIANT_TEMPERATURE": FieldCalculationsMeanRadiantTemperatureResultControl,
     "OPERATIVE_TEMPERATURE": FieldCalculationsOperativeTemperatureResultControl,
@@ -87,7 +83,6 @@ OneOf_FluidResultControlsFieldCalculations = Annotated[
         FieldCalculationsWallFluxesResultControl,
         FieldCalculationsMeanAgeOfFluidResultControl,
         FieldCalculationsThermalComfortResultControl,
-        FieldCalculationsAdjointSensitivitiesResultControl,
         FieldCalculationsWallHeatFluxResultControl,
         FieldCalculationsMeanRadiantTemperatureResultControl,
         FieldCalculationsOperativeTemperatureResultControl,

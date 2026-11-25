@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class Materials:
@@ -16,7 +16,7 @@ class Materials:
         """Create a new material"""
         return self._client.request(
             "POST",
-            f"/materialgroups/{material_group_id}/materials",
+            f"/materialgroups/{path_segment(material_group_id)}/materials",
             json_body=body,
             response_type=models.material.MaterialResponse,
         )
@@ -41,7 +41,7 @@ class Materials:
         """Create a child material group for the specified parent group"""
         return self._client.request(
             "POST",
-            f"/materialgroups/{material_group_id}/materialgroups",
+            f"/materialgroups/{path_segment(material_group_id)}/materialgroups",
             json_body=body,
             response_type=models.material.MaterialGroupResponse,
         )
@@ -54,7 +54,7 @@ class Materials:
         """Remove an existing material"""
         return self._client.request(
             "DELETE",
-            f"/materialgroups/{material_group_id}/materials/{material_id}",
+            f"/materialgroups/{path_segment(material_group_id)}/materials/{path_segment(material_id)}",
         )
 
     def delete_material_group(
@@ -64,7 +64,7 @@ class Materials:
         """Delete material group, sub-groups associated to it, and materials associated to the group and all sub-groups"""
         return self._client.request(
             "DELETE",
-            f"/materialgroups/{material_group_id}",
+            f"/materialgroups/{path_segment(material_group_id)}",
         )
 
     def get_material_data(
@@ -75,7 +75,7 @@ class Materials:
         """Get information about an existing material"""
         return self._client.request(
             "GET",
-            f"/materialgroups/{material_group_id}/materials/{material_id}",
+            f"/materialgroups/{path_segment(material_group_id)}/materials/{path_segment(material_id)}",
             response_type=models.material.MaterialResponse,
         )
 
@@ -86,7 +86,7 @@ class Materials:
         """Fetch material group information"""
         return self._client.request(
             "GET",
-            f"/materialgroups/{material_group_id}",
+            f"/materialgroups/{path_segment(material_group_id)}",
             response_type=models.material.MaterialGroupResponse,
         )
 
@@ -114,7 +114,7 @@ class Materials:
         """List materials within the material group"""
         data = self._client.request(
             "GET",
-            f"/materialgroups/{material_group_id}/materials",
+            f"/materialgroups/{path_segment(material_group_id)}/materials",
             query_params={"limit": limit, "page": page},
         )
         return PaginatedResponse(data, models.material.MaterialResponse)
@@ -129,7 +129,7 @@ class Materials:
         """List all sub-groups of the specified material group"""
         data = self._client.request(
             "GET",
-            f"/materialgroups/{material_group_id}/materialgroups",
+            f"/materialgroups/{path_segment(material_group_id)}/materialgroups",
             query_params={"limit": limit, "page": page},
         )
         return PaginatedResponse(data, models.material.MaterialGroupResponse)
@@ -143,7 +143,7 @@ class Materials:
         """Update an existing material"""
         return self._client.request(
             "PUT",
-            f"/materialgroups/{material_group_id}/materials/{material_id}",
+            f"/materialgroups/{path_segment(material_group_id)}/materials/{path_segment(material_id)}",
             json_body=body,
             response_type=models.material.MaterialResponse,
         )
@@ -156,7 +156,7 @@ class Materials:
         """Update material group information"""
         return self._client.request(
             "PUT",
-            f"/materialgroups/{material_group_id}",
+            f"/materialgroups/{path_segment(material_group_id)}",
             json_body=body,
             response_type=models.material.MaterialGroupResponse,
         )

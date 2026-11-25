@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.meshing.advanced_simmetrix_fluid_settings import AdvancedSimmetrixFluidSettings
     from simscale_sdk_v1.models.meshing.advanced_simmetrix_solid_settings import AdvancedSimmetrixSolidSettings
     from simscale_sdk_v1.models.meshing.algorithm import Algorithm
+    from simscale_sdk_v1.models.meshing.automatic_cf_mesh_sizing import AutomaticCfMeshSizing
     from simscale_sdk_v1.models.meshing.automatic_curvature import AutomaticCurvature
     from simscale_sdk_v1.models.meshing.automatic_layer_off import AutomaticLayerOff
     from simscale_sdk_v1.models.meshing.automatic_layer_on import AutomaticLayerOn
@@ -27,6 +28,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.meshing.automatic_sweep_on import AutomaticSweepOn
     from simscale_sdk_v1.models.meshing.bounding_box_layer_addition import BoundingBoxLayerAddition
     from simscale_sdk_v1.models.meshing.castellated_mesh_controls import CastellatedMeshControls
+    from simscale_sdk_v1.models.meshing.cf_mesh_zone import CfMeshZone
     from simscale_sdk_v1.models.meshing.custom_mesh_sizing_simmetrix import CustomMeshSizingSimmetrix
     from simscale_sdk_v1.models.meshing.custom_polygrid_mesh_sizing import CustomPolygridMeshSizing
     from simscale_sdk_v1.models.meshing.debug_mesh_sizing_simmetrix import DebugMeshSizingSimmetrix
@@ -52,6 +54,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.meshing.layer_adding_controls import LayerAddingControls
     from simscale_sdk_v1.models.meshing.layer_addition import LayerAddition
     from simscale_sdk_v1.models.meshing.layer_addition_hex_dominant_snappy import LayerAdditionHexDominantSnappy
+    from simscale_sdk_v1.models.meshing.layer_growth import LayerGrowth
     from simscale_sdk_v1.models.meshing.layer_refinement import LayerRefinement
     from simscale_sdk_v1.models.meshing.local_element_size_cf_mesh import LocalElementSizeCfMesh
     from simscale_sdk_v1.models.meshing.local_element_size_ebm import LocalElementSizeEBM
@@ -151,6 +154,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.meshing.outside_region_refinement_with_length import OutsideRegionRefinementWithLength
     from simscale_sdk_v1.models.meshing.outside_region_refinement_with_levels import OutsideRegionRefinementWithLevels
     from simscale_sdk_v1.models.meshing.polygrid_meshing import PolygridMeshing
+    from simscale_sdk_v1.models.meshing.preserved_cad_faces import PreservedCadFaces
     from simscale_sdk_v1.models.meshing.refinement_length import RefinementLength
     from simscale_sdk_v1.models.meshing.refinement_level import RefinementLevel
     from simscale_sdk_v1.models.meshing.region_refinement_cf_mesh import RegionRefinementCfMesh
@@ -196,6 +200,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "AdvancedSimmetrixSolidSettings",
     ),
     "Algorithm": ("simscale_sdk_v1.models.meshing.algorithm", "Algorithm"),
+    "AutomaticCfMeshSizing": ("simscale_sdk_v1.models.meshing.automatic_cf_mesh_sizing", "AutomaticCfMeshSizing"),
     "AutomaticCurvature": ("simscale_sdk_v1.models.meshing.automatic_curvature", "AutomaticCurvature"),
     "AutomaticLayerOff": ("simscale_sdk_v1.models.meshing.automatic_layer_off", "AutomaticLayerOff"),
     "AutomaticLayerOn": ("simscale_sdk_v1.models.meshing.automatic_layer_on", "AutomaticLayerOn"),
@@ -220,6 +225,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "BoundingBoxLayerAddition",
     ),
     "CastellatedMeshControls": ("simscale_sdk_v1.models.meshing.castellated_mesh_controls", "CastellatedMeshControls"),
+    "CfMeshZone": ("simscale_sdk_v1.models.meshing.cf_mesh_zone", "CfMeshZone"),
     "CustomMeshSizingSimmetrix": (
         "simscale_sdk_v1.models.meshing.custom_mesh_sizing_simmetrix",
         "CustomMeshSizingSimmetrix",
@@ -278,6 +284,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.meshing.layer_addition_hex_dominant_snappy",
         "LayerAdditionHexDominantSnappy",
     ),
+    "LayerGrowth": ("simscale_sdk_v1.models.meshing.layer_growth", "LayerGrowth"),
     "LayerRefinement": ("simscale_sdk_v1.models.meshing.layer_refinement", "LayerRefinement"),
     "LocalElementSizeCfMesh": ("simscale_sdk_v1.models.meshing.local_element_size_cf_mesh", "LocalElementSizeCfMesh"),
     "LocalElementSizeEBM": ("simscale_sdk_v1.models.meshing.local_element_size_ebm", "LocalElementSizeEBM"),
@@ -450,6 +457,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "OutsideRegionRefinementWithLevels",
     ),
     "PolygridMeshing": ("simscale_sdk_v1.models.meshing.polygrid_meshing", "PolygridMeshing"),
+    "PreservedCadFaces": ("simscale_sdk_v1.models.meshing.preserved_cad_faces", "PreservedCadFaces"),
     "RefinementLength": ("simscale_sdk_v1.models.meshing.refinement_length", "RefinementLength"),
     "RefinementLevel": ("simscale_sdk_v1.models.meshing.refinement_level", "RefinementLevel"),
     "RegionRefinementCfMesh": ("simscale_sdk_v1.models.meshing.region_refinement_cf_mesh", "RegionRefinementCfMesh"),

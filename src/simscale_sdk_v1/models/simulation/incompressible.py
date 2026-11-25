@@ -33,11 +33,6 @@ class Incompressible(SimScaleModel):
         default="KOMEGASST",
         description="Choose a turbulence model for your CFD analysis:No turbulence: LaminarRANS: k-epsilon, Realizable k-epsilon, k-omega and k-omega SSTLES: Smagorinsky, Spalart-AllmarasLearn more.",
     )
-    adjoint_turbulence_model: Literal["ADJOINT_NONE", "ADJOINT_KOMEGASST"] | None = Field(
-        validation_alias="adjointTurbulenceModel",
-        serialization_alias="adjointTurbulenceModel",
-        default="ADJOINT_KOMEGASST",
-    )
     time_dependency: OneOf_IncompressibleTimeDependency | None = Field(
         validation_alias="timeDependency", serialization_alias="timeDependency", default=None
     )
@@ -47,9 +42,6 @@ class Incompressible(SimScaleModel):
         serialization_alias="numOfPassiveSpecies",
         default=0,
         description="Select the number of passive species involved in the simulation. Passive species allow you to simulate the transport of a scalar quantity within a fluid flow without affecting it. Learn more.",
-    )
-    enable_adjoint_optimization: bool | None = Field(
-        validation_alias="enableAdjointOptimization", serialization_alias="enableAdjointOptimization", default=False
     )
     model: FluidModel | None = Field(default=None)
     materials: IncompressibleFluidMaterials | None = Field(default=None)

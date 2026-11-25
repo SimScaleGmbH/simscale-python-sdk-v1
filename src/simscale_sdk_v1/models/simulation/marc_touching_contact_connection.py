@@ -4,6 +4,9 @@ from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.simulation.interference_fit import InterferenceFit
+from simscale_sdk_v1.models.simulation.one_of__marc_touching_contact_connection_thermal_contact import (
+    OneOf_MarcTouchingContactConnectionThermalContact,
+)
 from simscale_sdk_v1.models.simulation.topological_reference import TopologicalReference
 
 
@@ -22,6 +25,9 @@ class MarcTouchingContactConnection(SimScaleModel):
         serialization_alias="frictionCoefficient",
         default=0.0,
         description="The Friction coefficient (&mu;) defines the proportionality between the normal contact force and the maximum allowable tangential resistance at the interface. A value of 0 represents a frictionless (lubricated) surface, while higher values increase the resistance to relative sliding between the two parts. For most metal-to-metal or metal-to-plastic contacts, values typically range between 0.1 and 0.4.",
+    )
+    thermal_contact: OneOf_MarcTouchingContactConnectionThermalContact | None = Field(
+        validation_alias="thermalContact", serialization_alias="thermalContact", default=None
     )
     interference_fit: InterferenceFit | None = Field(
         validation_alias="interferenceFit", serialization_alias="interferenceFit", default=None

@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import BinaryIO
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class DataRepository:
@@ -21,7 +21,7 @@ class DataRepository:
         """Cancel an append operation."""
         return self._client.request(
             "POST",
-            f"/data-repository/data/upload-sessions/{storage_id}/appends/{append_id}/cancel",
+            f"/data-repository/data/upload-sessions/{path_segment(storage_id)}/appends/{path_segment(append_id)}/cancel",
             query_params={"projectId": project_id},
         )
 
@@ -49,7 +49,7 @@ class DataRepository:
         """Delete an initialized upload session."""
         return self._client.request(
             "DELETE",
-            f"/data-repository/data/upload-sessions/{storage_id}",
+            f"/data-repository/data/upload-sessions/{path_segment(storage_id)}",
             query_params={"projectId": project_id},
         )
 
@@ -71,7 +71,7 @@ class DataRepository:
         """
         return self._client.request(
             "GET",
-            f"/data-repository/data/{data_id}/content",
+            f"/data-repository/data/{path_segment(data_id)}/content",
             query_params={"filename": filename},
             response_binary=True,
         )
@@ -85,7 +85,7 @@ class DataRepository:
         """Finalize an upload session and register it as data."""
         return self._client.request(
             "POST",
-            f"/data-repository/data/upload-sessions/{storage_id}/finalize",
+            f"/data-repository/data/upload-sessions/{path_segment(storage_id)}/finalize",
             query_params={"projectId": project_id},
             response_type=models.DataId,
         )
@@ -100,7 +100,7 @@ class DataRepository:
         """Finish an append operation after the chunk was uploaded through its pre-signed URL."""
         return self._client.request(
             "POST",
-            f"/data-repository/data/upload-sessions/{storage_id}/appends/{append_id}/finish",
+            f"/data-repository/data/upload-sessions/{path_segment(storage_id)}/appends/{path_segment(append_id)}/finish",
             query_params={"projectId": project_id},
         )
 
@@ -111,7 +111,7 @@ class DataRepository:
         """Read the metadata of a data object."""
         return self._client.request(
             "GET",
-            f"/data-repository/data/{data_id}",
+            f"/data-repository/data/{path_segment(data_id)}",
             response_type=models.data_repository.DataInfo,
         )
 
@@ -133,7 +133,7 @@ class DataRepository:
         """
         return self._client.request(
             "GET",
-            f"/data-repository/data/{data_id}/domain-specific-metadata",
+            f"/data-repository/data/{path_segment(data_id)}/domain-specific-metadata",
             response_type=models.data_repository.DomainSpecificMetadata,
         )
 
@@ -149,7 +149,7 @@ class DataRepository:
         """List data objects in a project."""
         return self._client.request(
             "GET",
-            f"/data-repository/projects/{project_id}/data",
+            f"/data-repository/projects/{path_segment(project_id)}/data",
             query_params={"origin": origin, "page": page, "size": size, "sortBy": sort_by},
             response_type=list[models.DataId],
         )
@@ -164,7 +164,7 @@ class DataRepository:
         """Start appending a chunk to an initialized upload session."""
         return self._client.request(
             "POST",
-            f"/data-repository/data/upload-sessions/{storage_id}/appends",
+            f"/data-repository/data/upload-sessions/{path_segment(storage_id)}/appends",
             json_body=body,
             query_params={"projectId": project_id},
             response_type=models.data_repository.UploadSessionAppend,
@@ -193,7 +193,7 @@ class DataRepository:
         """
         return self._client.request(
             "PUT",
-            f"/data-repository/data/{data_id}/domain-specific-metadata",
+            f"/data-repository/data/{path_segment(data_id)}/domain-specific-metadata",
             json_body=body,
         )
 

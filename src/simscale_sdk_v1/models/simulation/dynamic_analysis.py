@@ -12,6 +12,9 @@ from simscale_sdk_v1.models.simulation.one_of__dynamic_analysis_connection_group
     OneOf_DynamicAnalysisConnectionGroups,
 )
 from simscale_sdk_v1.models.simulation.one_of__dynamic_analysis_connectors import OneOf_DynamicAnalysisConnectors
+from simscale_sdk_v1.models.simulation.one_of__dynamic_analysis_local_coordinate_systems import (
+    OneOf_DynamicAnalysisLocalCoordinateSystems,
+)
 from simscale_sdk_v1.models.simulation.solid_element_technology import SolidElementTechnology
 from simscale_sdk_v1.models.simulation.solid_initial_conditions import SolidInitialConditions
 from simscale_sdk_v1.models.simulation.solid_material import SolidMaterial
@@ -27,6 +30,9 @@ class DynamicAnalysis(SimScaleModel):
         serialization_alias="type",
         default="DYNAMIC_ANALYSIS",
         description="Schema name: DynamicAnalysis",
+    )
+    local_coordinate_systems: list[OneOf_DynamicAnalysisLocalCoordinateSystems] | None = Field(
+        validation_alias="localCoordinateSystems", serialization_alias="localCoordinateSystems", default=None
     )
     connection_groups: list[OneOf_DynamicAnalysisConnectionGroups] | None = Field(
         validation_alias="connectionGroups", serialization_alias="connectionGroups", default=None

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
@@ -18,4 +20,8 @@ class MarcStressResultControlItem(SimScaleModel):
     name: str | None = Field(default=None)
     stress_type: OneOf_MarcStressResultControlItemStressType | None = Field(
         validation_alias="stressType", serialization_alias="stressType", default=None
+    )
+    location: Literal["NODES", "ELEMENTS", "NODES_AND_ELEMENTS"] | None = Field(
+        default="NODES_AND_ELEMENTS",
+        description="Choose where stress and strain results are computed and stored.Nodes: Values are extrapolated from the integration points to the mesh nodes.Elements: Values are averaged from the integration points to give a single, representative value per element.Nodes and Elements: Both representations are computed and stored.",
     )

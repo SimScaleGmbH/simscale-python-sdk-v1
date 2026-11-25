@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class Export:
@@ -16,7 +16,7 @@ class Export:
         """Trigger an export for a simulation result"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/export",
+            f"/projects/{path_segment(project_id)}/export",
             json_body=body,
             response_type=models.CreateExportResponse,
         )
@@ -29,6 +29,6 @@ class Export:
         """Get the status of the export and temporary download link to the exported object if it is done"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/export/{export_id}",
+            f"/projects/{path_segment(project_id)}/export/{path_segment(export_id)}",
             response_type=models.GetExportResponse,
         )

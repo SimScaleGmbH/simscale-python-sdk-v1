@@ -18,9 +18,6 @@ from simscale_sdk_v1.models.simulation.one_of__fluid_simulation_control_write_co
 
 class FluidSimulationControl(SimScaleModel):
     end_time: Dimensional_Time | None = Field(validation_alias="endTime", serialization_alias="endTime", default=None)
-    adjoint_end_time: Dimensional_Time | None = Field(
-        validation_alias="adjointEndTime", serialization_alias="adjointEndTime", default=None
-    )
     number_of_iterations: int | None = Field(
         validation_alias="numberOfIterations",
         serialization_alias="numberOfIterations",
@@ -30,6 +27,12 @@ class FluidSimulationControl(SimScaleModel):
     delta_t: Dimensional_Time | None = Field(validation_alias="deltaT", serialization_alias="deltaT", default=None)
     variable_delta_t: DimensionalFunction_Time | None = Field(
         validation_alias="variableDeltaT", serialization_alias="variableDeltaT", default=None
+    )
+    enable_variable_time_step_smooth_transition: bool | None = Field(
+        validation_alias="enableVariableTimeStepSmoothTransition",
+        serialization_alias="enableVariableTimeStepSmoothTransition",
+        default=False,
+        description="When the time step is defined via a table, the time step size changes abruptly at each table entry. Enabling smooth delta t transition ramps the time step gradually from the previous to the next table value over a ramp window around the entry, which improves stability and convergence across the transition.",
     )
     adjustable_timestep: OneOf_FluidSimulationControlAdjustableTimestep | None = Field(
         validation_alias="adjustableTimestep", serialization_alias="adjustableTimestep", default=None

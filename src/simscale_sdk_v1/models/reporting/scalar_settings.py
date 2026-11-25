@@ -68,3 +68,15 @@ class ScalarSettings(SimScaleModel):
     above_range_color: Color | None = Field(
         validation_alias="aboveRangeColor", serialization_alias="aboveRangeColor", default=None
     )
+    number_format: Literal["AUTOMATIC", "DECIMAL", "SCIENTIFIC"] | None = Field(
+        validation_alias="numberFormat",
+        serialization_alias="numberFormat",
+        default="AUTOMATIC",
+        description="How the numbers on the legend bar are written. AUTOMATIC, used when this field is omitted, rounds each number to a few significant digits (at most 5), drops trailing zeros, and switches to scientific notation when the plain form would need more digits; it ignores decimalPlaces. DECIMAL writes fixed-point numbers and SCIENTIFIC writes mantissa and exponent, both with exactly decimalPlaces digits after the decimal point.",
+    )
+    decimal_places: int | None = Field(
+        validation_alias="decimalPlaces",
+        serialization_alias="decimalPlaces",
+        default=2,
+        description="Digits after the decimal point on the legend bar. Used by DECIMAL and SCIENTIFIC only.",
+    )

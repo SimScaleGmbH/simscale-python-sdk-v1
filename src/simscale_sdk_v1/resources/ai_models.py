@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class AiModels:
@@ -53,7 +53,7 @@ class AiModels:
         """Get specific AI model belonging to the user"""
         return self._client.request(
             "GET",
-            f"/ai/models/{ai_model_id}",
+            f"/ai/models/{path_segment(ai_model_id)}",
             response_type=models.AiUserModel,
         )
 
@@ -86,6 +86,6 @@ class AiModels:
         """Get the status of an AI prediction, and its results if it is done"""
         return self._client.request(
             "GET",
-            f"/ai/predictions/{prediction_id}",
+            f"/ai/predictions/{path_segment(prediction_id)}",
             response_type=models.GetAiPredictionResponse,
         )

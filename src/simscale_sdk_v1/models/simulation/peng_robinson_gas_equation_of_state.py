@@ -34,7 +34,7 @@ class PengRobinsonGasEquationOfState(SimScaleModel):
         default=None,
         description="Specify the acentric factor. It is a property of the material that characterized the changes in thermodynamic properties of the fluid due to non-spherical molecules.",
     )
-    energy: Literal["SENSIBLE_ENTHALPY", "SENSIBLE_INTERNAL_ENERGY"] | None = Field(
+    energy: Literal["SENSIBLE_ENTHALPY"] | None = Field(
         default="SENSIBLE_ENTHALPY",
         description="Energy provides the methods for the form of energy to be used. The options are:Sensible enthalpy: The enthalpy form of equation is used without the heat of formation. In most cases this is the recommended choice.Sensible internal Energy: The internal energy form of equation is used without the heat of formation but also incorporates energy change due to reactions.",
     )

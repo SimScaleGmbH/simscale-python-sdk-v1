@@ -10,6 +10,9 @@ from simscale_sdk_v1.models.simulation.one_of__harmonic_analysis_boundary_condit
     OneOf_HarmonicAnalysisBoundaryConditions,
 )
 from simscale_sdk_v1.models.simulation.one_of__harmonic_analysis_connectors import OneOf_HarmonicAnalysisConnectors
+from simscale_sdk_v1.models.simulation.one_of__harmonic_analysis_local_coordinate_systems import (
+    OneOf_HarmonicAnalysisLocalCoordinateSystems,
+)
 from simscale_sdk_v1.models.simulation.solid_element_technology import SolidElementTechnology
 from simscale_sdk_v1.models.simulation.solid_global_physics import SolidGlobalPhysics
 from simscale_sdk_v1.models.simulation.solid_initial_conditions import SolidInitialConditions
@@ -26,6 +29,9 @@ class HarmonicAnalysis(SimScaleModel):
         serialization_alias="type",
         default="HARMONIC_ANALYSIS",
         description="Schema name: HarmonicAnalysis",
+    )
+    local_coordinate_systems: list[OneOf_HarmonicAnalysisLocalCoordinateSystems] | None = Field(
+        validation_alias="localCoordinateSystems", serialization_alias="localCoordinateSystems", default=None
     )
     connection_groups: list[Contact] | None = Field(
         validation_alias="connectionGroups", serialization_alias="connectionGroups", default=None

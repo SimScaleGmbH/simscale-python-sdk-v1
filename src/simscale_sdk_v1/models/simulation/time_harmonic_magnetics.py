@@ -24,3 +24,7 @@ class TimeHarmonicMagnetics(SimScaleModel):
     time_dependency: OneOf_TimeHarmonicMagneticsTimeDependency | None = Field(
         validation_alias="timeDependency", serialization_alias="timeDependency", default=None
     )
+    circuit: bool | None = Field(
+        default=False,
+        description="Once enabled, all excitation coils are driven through a user specified electric circuit.",
+    )

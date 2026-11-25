@@ -3,6 +3,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
+from simscale_sdk_v1.models.simulation.automatic_load_ramping_marc import AutomaticLoadRampingMarc
 from simscale_sdk_v1.models.simulation.dimensional_vector_function__force import DimensionalVectorFunction_Force
 from simscale_sdk_v1.models.simulation.dimensional_vector_function__torque import DimensionalVectorFunction_Torque
 
@@ -27,6 +28,9 @@ class PointLoadBCMarc(SimScaleModel):
     )
     load_step_uuids: list[str] | None = Field(
         validation_alias="loadStepUuids", serialization_alias="loadStepUuids", default=None
+    )
+    automatic_load_ramping: AutomaticLoadRampingMarc | None = Field(
+        validation_alias="automaticLoadRamping", serialization_alias="automaticLoadRamping", default=None
     )
     geometry_primitive_uuids: list[str] | None = Field(
         validation_alias="geometryPrimitiveUuids", serialization_alias="geometryPrimitiveUuids", default=None

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class Postprocessing:
@@ -15,7 +15,7 @@ class Postprocessing:
     ) -> list[models.postprocessing.StateResponse]:
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/postprocessing/results/{result_id}/automatic-postprocessor-states",
+            f"/projects/{path_segment(project_id)}/postprocessing/results/{path_segment(result_id)}/automatic-postprocessor-states",
             response_type=list[models.postprocessing.StateResponse],
         )
 
@@ -26,6 +26,6 @@ class Postprocessing:
     ) -> list[models.postprocessing.StateResponse]:
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/postprocessing/results/{result_id}/manual-postprocessor-states",
+            f"/projects/{path_segment(project_id)}/postprocessing/results/{path_segment(result_id)}/manual-postprocessor-states",
             response_type=list[models.postprocessing.StateResponse],
         )

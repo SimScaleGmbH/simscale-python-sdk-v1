@@ -6,6 +6,7 @@ from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.simulation.dimensional__time import Dimensional_Time
+from simscale_sdk_v1.models.simulation.dimensional_vector__acceleration import DimensionalVector_Acceleration
 from simscale_sdk_v1.models.simulation.electromagnetic_transient_control import ElectromagneticTransientControl
 from simscale_sdk_v1.models.simulation.time_step_write_control import TimeStepWriteControl
 
@@ -35,3 +36,4 @@ class ElectromagneticSimulationControl(SimScaleModel):
         default=False,
         description="Activate when the coil excitation is periodic to accelerate simulation. For more information, please refer to our documentation.",
     )
+    gravity: DimensionalVector_Acceleration | None = Field(default=None)

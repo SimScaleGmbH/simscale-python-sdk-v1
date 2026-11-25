@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class CadFeatures:
@@ -28,7 +28,7 @@ class CadFeatures:
         """
         return self._client.request(
             "POST",
-            f"/cads/{cad_id}/states/{cad_state_id}/features",
+            f"/cads/{path_segment(cad_id)}/states/{path_segment(cad_state_id)}/features",
             json_body=body,
             response_type=models.CadFeatureResponse,
         )
@@ -42,7 +42,7 @@ class CadFeatures:
         """Get the CAD feature event log"""
         return self._client.request(
             "GET",
-            f"/cads/{cad_id}/states/{cad_state_id}/features/{cad_feature_id}/eventlog",
+            f"/cads/{path_segment(cad_id)}/states/{path_segment(cad_state_id)}/features/{path_segment(cad_feature_id)}/eventlog",
             response_type=models.EventLogResponse,
         )
 
@@ -58,6 +58,6 @@ class CadFeatures:
         """
         return self._client.request(
             "GET",
-            f"/cads/{cad_id}/features/progress",
+            f"/cads/{path_segment(cad_id)}/features/progress",
             response_type=models.CadFeatureResponse,
         )

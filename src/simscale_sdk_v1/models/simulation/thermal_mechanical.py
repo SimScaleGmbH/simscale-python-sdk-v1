@@ -11,6 +11,9 @@ from simscale_sdk_v1.models.simulation.one_of__thermal_mechanical_boundary_condi
 from simscale_sdk_v1.models.simulation.one_of__thermal_mechanical_connection_groups import (
     OneOf_ThermalMechanicalConnectionGroups,
 )
+from simscale_sdk_v1.models.simulation.one_of__thermal_mechanical_local_coordinate_systems import (
+    OneOf_ThermalMechanicalLocalCoordinateSystems,
+)
 from simscale_sdk_v1.models.simulation.one_of__thermal_mechanical_time_dependency import (
     OneOf_ThermalMechanicalTimeDependency,
 )
@@ -30,6 +33,9 @@ class ThermalMechanical(SimScaleModel):
         serialization_alias="type",
         default="THERMAL_MECHANICAL",
         description="Schema name: ThermalMechanical",
+    )
+    local_coordinate_systems: list[OneOf_ThermalMechanicalLocalCoordinateSystems] | None = Field(
+        validation_alias="localCoordinateSystems", serialization_alias="localCoordinateSystems", default=None
     )
     time_dependency: OneOf_ThermalMechanicalTimeDependency | None = Field(
         validation_alias="timeDependency", serialization_alias="timeDependency", default=None

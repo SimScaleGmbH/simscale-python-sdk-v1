@@ -18,6 +18,7 @@ class ComponentGroupMetadata(SimScaleModel):
     )
     description: str | None = Field(default=None)
     has_children: bool | None = Field(validation_alias="hasChildren", serialization_alias="hasChildren", default=None)
+    has_icon: bool | None = Field(validation_alias="hasIcon", serialization_alias="hasIcon", default=None)
     multi_language_description: dict[str, str] | None = Field(
         validation_alias="multiLanguageDescription", serialization_alias="multiLanguageDescription", default=None
     )

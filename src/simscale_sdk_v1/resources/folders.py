@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class Folders:
@@ -21,7 +21,7 @@ class Folders:
         """
         return self._client.request(
             "POST",
-            f"/spaces/{space_id}/folders",
+            f"/spaces/{path_segment(space_id)}/folders",
             json_body=body,
             response_type=models.Folder,
         )
@@ -39,7 +39,7 @@ class Folders:
         """
         return self._client.request(
             "DELETE",
-            f"/spaces/{space_id}/folders/{folder_id}",
+            f"/spaces/{path_segment(space_id)}/folders/{path_segment(folder_id)}",
         )
 
     def get_folder_info(
@@ -55,7 +55,7 @@ class Folders:
         """
         return self._client.request(
             "GET",
-            f"/spaces/{space_id}/folders/{folder_id}",
+            f"/spaces/{path_segment(space_id)}/folders/{path_segment(folder_id)}",
             response_type=models.Folder,
         )
 
@@ -76,7 +76,7 @@ class Folders:
         """
         data = self._client.request(
             "GET",
-            f"/spaces/{space_id}/folders/{folder_id}/content/folders",
+            f"/spaces/{path_segment(space_id)}/folders/{path_segment(folder_id)}/content/folders",
             query_params={"limit": limit, "page": page, "sort": sort},
         )
         return PaginatedResponse(data, models.Folder)
@@ -97,7 +97,7 @@ class Folders:
         """
         data = self._client.request(
             "GET",
-            f"/spaces/{space_id}/content/folders",
+            f"/spaces/{path_segment(space_id)}/content/folders",
             query_params={"limit": limit, "page": page, "sort": sort},
         )
         return PaginatedResponse(data, models.Folder)
@@ -120,7 +120,7 @@ class Folders:
         """
         data = self._client.request(
             "GET",
-            f"/spaces/{space_id}/folders/{folder_id}/content/projects",
+            f"/spaces/{path_segment(space_id)}/folders/{path_segment(folder_id)}/content/projects",
             query_params={"limit": limit, "page": page, "sort": sort, "projectType": project_type},
         )
         return PaginatedResponse(data, models.Project)
@@ -142,7 +142,7 @@ class Folders:
         """
         data = self._client.request(
             "GET",
-            f"/spaces/{space_id}/content/projects",
+            f"/spaces/{path_segment(space_id)}/content/projects",
             query_params={"limit": limit, "page": page, "sort": sort, "projectType": project_type},
         )
         return PaginatedResponse(data, models.Project)
@@ -161,7 +161,7 @@ class Folders:
         """
         return self._client.request(
             "POST",
-            f"/spaces/{space_id}/folders/{folder_id}/move",
+            f"/spaces/{path_segment(space_id)}/folders/{path_segment(folder_id)}/move",
             json_body=body,
         )
 
@@ -178,7 +178,7 @@ class Folders:
         """
         return self._client.request(
             "POST",
-            f"/spaces/{space_id}/move",
+            f"/spaces/{path_segment(space_id)}/move",
             json_body=body,
         )
 
@@ -196,7 +196,7 @@ class Folders:
         """
         return self._client.request(
             "PUT",
-            f"/spaces/{space_id}/folders/{folder_id}",
+            f"/spaces/{path_segment(space_id)}/folders/{path_segment(folder_id)}",
             json_body=body,
             response_type=models.Folder,
         )

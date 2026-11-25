@@ -19,6 +19,12 @@ class MinMaxFieldsCalculationResultControlItem(SimScaleModel):
         description="Use Min-max to output the minimum and maximum nodal values of the selected result quantity on the assigned entity.  Schema name: MinMaxFieldsCalculationResultControlItem",
     )
     name: str | None = Field(default=None)
+    coordinate_system: str | None = Field(
+        validation_alias="coordinateSystem",
+        serialization_alias="coordinateSystem",
+        default=None,
+        description="The coordinate system in which the components of the selected field will be computed. Select from the available local coordinate systems or create a new one (defaults to Global).Global — Vector components are defined along the global x, y, and z axes.Add new — Creates a new local coordinate system. The following types are available:Cartesian — Vector components are defined along the local e1, e2, and e3 axes.Cylindrical — Vector components are defined as radial (ur), tangential (uΦ), and axial (uz).",
+    )
     field_selection: OneOf_MinMaxFieldsCalculationResultControlItemFieldSelection | None = Field(
         validation_alias="fieldSelection", serialization_alias="fieldSelection", default=None
     )

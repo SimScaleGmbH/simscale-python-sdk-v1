@@ -19,7 +19,7 @@ class MeshOperation(SimScaleModel):
     )
     name: str = Field(description="The name of the mesh operation.")
     version: str = Field(
-        default="10.0",
+        default="11.0",
         description="The schema version of the mesh operation. This can be either the external version like `8.0`, or the internal version like `internal:53`.",
     )
     cad_id: str = Field(

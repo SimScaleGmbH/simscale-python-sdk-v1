@@ -4,6 +4,10 @@ from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.simulation.dimensional__pressure import Dimensional_Pressure
+from simscale_sdk_v1.models.simulation.dimensional_function__pressure import DimensionalFunction_Pressure
+from simscale_sdk_v1.models.simulation.one_of__arruda_boyce_plastic_elastoplastic_network_chain_length_function import (
+    OneOf_ArrudaBoycePlasticElastoplasticNetworkChainLengthFunction,
+)
 
 
 class ArrudaBoycePlasticElastoplasticNetwork(SimScaleModel):
@@ -13,14 +17,11 @@ class ArrudaBoycePlasticElastoplasticNetwork(SimScaleModel):
         default="ARRUDA_BOYCE_PLASTIC",
         description="Schema name: ArrudaBoycePlasticElastoplasticNetwork",
     )
-    nk_theta: Dimensional_Pressure | None = Field(
-        validation_alias="nkTheta", serialization_alias="nkTheta", default=None
+    nk_theta_function: DimensionalFunction_Pressure | None = Field(
+        validation_alias="nkThetaFunction", serialization_alias="nkThetaFunction", default=None
     )
-    chain_length: float | None = Field(
-        validation_alias="chainLength",
-        serialization_alias="chainLength",
-        default=None,
-        description='Defined by the number of statistically independent links (N) in a polymer chain, this determines the material\'s extensibility. It dictates the "locking stretch" point where chains become fully extended and the stress-strain curve turns sharply upward.',
+    chain_length_function: OneOf_ArrudaBoycePlasticElastoplasticNetworkChainLengthFunction | None = Field(
+        validation_alias="chainLengthFunction", serialization_alias="chainLengthFunction", default=None
     )
     yield_stress: Dimensional_Pressure | None = Field(
         validation_alias="yieldStress", serialization_alias="yieldStress", default=None

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class Reports:
@@ -15,7 +15,7 @@ class Reports:
     ) -> None:
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/reports/{report_id}/cancel",
+            f"/projects/{path_segment(project_id)}/reports/{path_segment(report_id)}/cancel",
         )
 
     def create_report(
@@ -25,7 +25,7 @@ class Reports:
     ) -> models.reporting.ReportResponse:
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/reports",
+            f"/projects/{path_segment(project_id)}/reports",
             json_body=body,
             response_type=models.reporting.ReportResponse,
         )
@@ -37,7 +37,7 @@ class Reports:
     ) -> models.reporting.ReportResponse:
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/reports/from-state",
+            f"/projects/{path_segment(project_id)}/reports/from-state",
             json_body=body,
             response_type=models.reporting.ReportResponse,
         )
@@ -49,7 +49,7 @@ class Reports:
     ) -> None:
         return self._client.request(
             "DELETE",
-            f"/projects/{project_id}/reports/{report_id}",
+            f"/projects/{path_segment(project_id)}/reports/{path_segment(report_id)}",
         )
 
     def get_report(
@@ -59,7 +59,7 @@ class Reports:
     ) -> models.reporting.ReportResponse:
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/reports/{report_id}",
+            f"/projects/{path_segment(project_id)}/reports/{path_segment(report_id)}",
             response_type=models.reporting.ReportResponse,
         )
 
@@ -74,7 +74,7 @@ class Reports:
     ) -> PaginatedResponse[models.reporting.ReportResponse]:
         data = self._client.request(
             "GET",
-            f"/projects/{project_id}/reports",
+            f"/projects/{path_segment(project_id)}/reports",
             query_params={"simulationId": simulation_id, "runId": run_id, "limit": limit, "page": page},
         )
         return PaginatedResponse(data, models.reporting.ReportResponse)
@@ -86,7 +86,7 @@ class Reports:
     ) -> None:
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/reports/{report_id}/start",
+            f"/projects/{path_segment(project_id)}/reports/{path_segment(report_id)}/start",
         )
 
     def update_report(
@@ -97,6 +97,6 @@ class Reports:
     ) -> None:
         return self._client.request(
             "PUT",
-            f"/projects/{project_id}/reports/{report_id}",
+            f"/projects/{path_segment(project_id)}/reports/{path_segment(report_id)}",
             json_body=body,
         )

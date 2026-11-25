@@ -13,7 +13,7 @@ class SimulationSpec(SimScaleModel):
     simulation_id: str | None = Field(validation_alias="simulationId", serialization_alias="simulationId", default=None)
     name: str
     version: str = Field(
-        default="34.0",
+        default="35.0",
         description="The schema version of the simulation spec. This can be either the external version like `30.0`, or the internal version like `internal:549`.",
     )
     created_at: datetime | None = Field(validation_alias="createdAt", serialization_alias="createdAt", default=None)

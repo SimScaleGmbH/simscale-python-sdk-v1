@@ -11,18 +11,18 @@ from simscale_sdk_v1.models.simulation.topological_reference import TopologicalR
 
 
 class PinConnector(SimScaleModel):
-    """Connect multiple bodies via a virtual pin Usage: Define a separate pin connector item for each virtual pinAssign only cylindrical surfacesBehavior:Option to connect bodies to bodies or bodies to the ground via virtual pinsBodies freely rotate relative to one another about the virtual pin axisUsers have full control over axial translation and rotation of the connection with the ability to define torsional and axial spring stiffness"""
+    """Connects parts through a virtual pin, so the pin itself is not modelled. Define one pin connector per pin.Assign the cylindrical hole faces of all parts the pin goes through:all faces on one common axis: no flat faces, no holes of another pineach face in one connector onlyBehavior: the parts turn about the pin axis but cannot tilt against each other. The virtual pin is rigid in bending and has no material or diameter. Set rotation and sliding under Kinematic behavior. Learn more"""
 
     type_: str = Field(
         validation_alias="type",
         serialization_alias="type",
         default="PIN_CONNECTOR",
-        description="Connect multiple bodies via a virtual pin Usage: Define a separate pin connector item for each virtual pinAssign only cylindrical surfacesBehavior:Option to connect bodies to bodies or bodies to the ground via virtual pinsBodies freely rotate relative to one another about the virtual pin axisUsers have full control over axial translation and rotation of the connection with the ability to define torsional and axial spring stiffness  Schema name: PinConnector",
+        description="Connects parts through a virtual pin, so the pin itself is not modelled. Define one pin connector per pin.Assign the cylindrical hole faces of all parts the pin goes through:all faces on one common axis: no flat faces, no holes of another pineach face in one connector onlyBehavior: the parts turn about the pin axis but cannot tilt against each other. The virtual pin is rigid in bending and has no material or diameter. Set rotation and sliding under Kinematic behavior. Learn more  Schema name: PinConnector",
     )
     name: str | None = Field(default=None)
     interaction: Literal["BODY_TO_BODY", "BODY_TO_GROUND"] | None = Field(
         default="BODY_TO_BODY",
-        description="Select an interaction optionBody to body - Two or more bodies may be connected to each other via a single virtual pin. The pin will move with the bodies.Body to ground - Two or more bodies may be connected to the ground via a single virtual pin. The pin remains stationary.",
+        description="Choose what the pin connects:Body to body: two or more parts are connected to each other. The pin moves with the parts.Body to ground: one or more parts are connected to a pin that is fixed in space, like a hinge support.",
     )
     kinematic_behavior: PinKinematicBehavior | None = Field(
         validation_alias="kinematicBehavior", serialization_alias="kinematicBehavior", default=None

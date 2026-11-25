@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class WorkflowRunner:
@@ -15,7 +15,7 @@ class WorkflowRunner:
         """Cancel a workflow run."""
         return self._client.request(
             "POST",
-            f"/workflow-runner/runs/{workflow_run_id}/cancel",
+            f"/workflow-runner/runs/{path_segment(workflow_run_id)}/cancel",
         )
 
     def get_method_run_resource_usage_report(
@@ -25,7 +25,7 @@ class WorkflowRunner:
         """Read a method run's resource-usage report."""
         return self._client.request(
             "GET",
-            f"/workflow-runner/method-runs/{method_run_id}/resource-usage",
+            f"/workflow-runner/method-runs/{path_segment(method_run_id)}/resource-usage",
             response_type=models.workflow_runner.MethodResourceUsageReport,
         )
 
@@ -36,7 +36,7 @@ class WorkflowRunner:
         """Read an operation run."""
         return self._client.request(
             "GET",
-            f"/workflow-runner/operation-runs/{operation_run_id}",
+            f"/workflow-runner/operation-runs/{path_segment(operation_run_id)}",
             response_type=models.workflow_runner.OperationRun,
         )
 
@@ -47,7 +47,7 @@ class WorkflowRunner:
         """Read a workflow run."""
         return self._client.request(
             "GET",
-            f"/workflow-runner/runs/{workflow_run_id}",
+            f"/workflow-runner/runs/{path_segment(workflow_run_id)}",
             response_type=models.workflow_runner.PublicWorkflowRunOverview,
         )
 
@@ -58,7 +58,7 @@ class WorkflowRunner:
         """Read the progress of a workflow run."""
         return self._client.request(
             "GET",
-            f"/workflow-runner/runs/{workflow_run_id}/progress",
+            f"/workflow-runner/runs/{path_segment(workflow_run_id)}/progress",
             response_type=models.workflow_runner.WorkflowRunProgress,
         )
 
@@ -85,7 +85,7 @@ class WorkflowRunner:
         """List the workflow runs of a workflow."""
         return self._client.request(
             "GET",
-            f"/workflow-runner/workflows/{workflow_id}/runs",
+            f"/workflow-runner/workflows/{path_segment(workflow_id)}/runs",
             query_params={"page": page, "size": size, "sortBy": sort_by},
             response_type=list[models.workflow_runner.PublicWorkflowRunOverview],
         )
@@ -97,7 +97,7 @@ class WorkflowRunner:
         """Pause a running workflow run."""
         return self._client.request(
             "POST",
-            f"/workflow-runner/runs/{workflow_run_id}/pause",
+            f"/workflow-runner/runs/{path_segment(workflow_run_id)}/pause",
         )
 
     def resume_workflow_run(
@@ -107,7 +107,7 @@ class WorkflowRunner:
         """Resume a paused workflow run."""
         return self._client.request(
             "POST",
-            f"/workflow-runner/runs/{workflow_run_id}/resume",
+            f"/workflow-runner/runs/{path_segment(workflow_run_id)}/resume",
         )
 
     def start_workflow_run(
@@ -117,5 +117,5 @@ class WorkflowRunner:
         """Start a workflow run."""
         return self._client.request(
             "POST",
-            f"/workflow-runner/runs/{workflow_run_id}/start",
+            f"/workflow-runner/runs/{path_segment(workflow_run_id)}/start",
         )

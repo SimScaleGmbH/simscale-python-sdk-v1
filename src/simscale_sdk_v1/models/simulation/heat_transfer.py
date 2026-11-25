@@ -9,6 +9,9 @@ from simscale_sdk_v1.models.simulation.contact import Contact
 from simscale_sdk_v1.models.simulation.one_of__heat_transfer_boundary_conditions import (
     OneOf_HeatTransferBoundaryConditions,
 )
+from simscale_sdk_v1.models.simulation.one_of__heat_transfer_local_coordinate_systems import (
+    OneOf_HeatTransferLocalCoordinateSystems,
+)
 from simscale_sdk_v1.models.simulation.one_of__heat_transfer_time_dependency import OneOf_HeatTransferTimeDependency
 from simscale_sdk_v1.models.simulation.solid_element_technology import SolidElementTechnology
 from simscale_sdk_v1.models.simulation.solid_initial_conditions import SolidInitialConditions
@@ -25,6 +28,9 @@ class HeatTransfer(SimScaleModel):
         serialization_alias="type",
         default="HEAT_TRANSFER",
         description="Schema name: HeatTransfer",
+    )
+    local_coordinate_systems: list[OneOf_HeatTransferLocalCoordinateSystems] | None = Field(
+        validation_alias="localCoordinateSystems", serialization_alias="localCoordinateSystems", default=None
     )
     time_dependency: OneOf_HeatTransferTimeDependency | None = Field(
         validation_alias="timeDependency", serialization_alias="timeDependency", default=None

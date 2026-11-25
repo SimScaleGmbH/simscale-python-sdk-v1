@@ -4,6 +4,7 @@ from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.meshing.inside_region_refinement_with_length import InsideRegionRefinementWithLength
+from simscale_sdk_v1.models.meshing.topological_reference import TopologicalReference
 
 
 class RegionRefinementCfMesh(SimScaleModel):
@@ -17,6 +18,9 @@ class RegionRefinementCfMesh(SimScaleModel):
     )
     name: str | None = Field(default=None)
     refinement: InsideRegionRefinementWithLength | None = Field(default=None)
+    topological_reference: TopologicalReference | None = Field(
+        validation_alias="topologicalReference", serialization_alias="topologicalReference", default=None
+    )
     geometry_primitive_uuids: list[str] | None = Field(
         validation_alias="geometryPrimitiveUuids", serialization_alias="geometryPrimitiveUuids", default=None
     )

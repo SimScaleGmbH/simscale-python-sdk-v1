@@ -8,8 +8,10 @@ from typing import TYPE_CHECKING
 
 
 if TYPE_CHECKING:
+    from simscale_sdk_v1.models.cad.arrow import Arrow
     from simscale_sdk_v1.models.cad.axis import Axis
     from simscale_sdk_v1.models.cad.box import Box
+    from simscale_sdk_v1.models.cad.box_hint import BoxHint
     from simscale_sdk_v1.models.cad.box_with_unit import BoxWithUnit
     from simscale_sdk_v1.models.cad.cad_feature_request import CadFeatureRequest
     from simscale_sdk_v1.models.cad.cad_query_request import CadQueryRequest
@@ -47,6 +49,7 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.cad.length import Length
     from simscale_sdk_v1.models.cad.measure_entities_parameters import MeasureEntitiesParameters
     from simscale_sdk_v1.models.cad.measure_entities_response import MeasureEntitiesResponse
+    from simscale_sdk_v1.models.cad.measure_group import MeasureGroup
     from simscale_sdk_v1.models.cad.measured_value import MeasuredValue
     from simscale_sdk_v1.models.cad.move_faces_group_parameter import MoveFacesGroupParameter
     from simscale_sdk_v1.models.cad.move_faces_parameters import MoveFacesParameters
@@ -69,8 +72,10 @@ if TYPE_CHECKING:
     from simscale_sdk_v1.models.cad._root import Cad
 
 _NAMES: dict[str, tuple[str, str]] = {
+    "Arrow": ("simscale_sdk_v1.models.cad.arrow", "Arrow"),
     "Axis": ("simscale_sdk_v1.models.cad.axis", "Axis"),
     "Box": ("simscale_sdk_v1.models.cad.box", "Box"),
+    "BoxHint": ("simscale_sdk_v1.models.cad.box_hint", "BoxHint"),
     "BoxWithUnit": ("simscale_sdk_v1.models.cad.box_with_unit", "BoxWithUnit"),
     "CadFeatureRequest": ("simscale_sdk_v1.models.cad.cad_feature_request", "CadFeatureRequest"),
     "CadQueryRequest": ("simscale_sdk_v1.models.cad.cad_query_request", "CadQueryRequest"),
@@ -140,6 +145,7 @@ _NAMES: dict[str, tuple[str, str]] = {
         "MeasureEntitiesParameters",
     ),
     "MeasureEntitiesResponse": ("simscale_sdk_v1.models.cad.measure_entities_response", "MeasureEntitiesResponse"),
+    "MeasureGroup": ("simscale_sdk_v1.models.cad.measure_group", "MeasureGroup"),
     "MeasuredValue": ("simscale_sdk_v1.models.cad.measured_value", "MeasuredValue"),
     "MoveFacesGroupParameter": ("simscale_sdk_v1.models.cad.move_faces_group_parameter", "MoveFacesGroupParameter"),
     "MoveFacesParameters": ("simscale_sdk_v1.models.cad.move_faces_parameters", "MoveFacesParameters"),

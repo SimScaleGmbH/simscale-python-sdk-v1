@@ -9,6 +9,9 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from simscale_sdk_v1.models.workflow_repository.create_workflow_request import CreateWorkflowRequest
+    from simscale_sdk_v1.models.workflow_repository.error_details import ErrorDetails
+    from simscale_sdk_v1.models.workflow_repository.error_parameter import ErrorParameter
+    from simscale_sdk_v1.models.workflow_repository.error_response import ErrorResponse
     from simscale_sdk_v1.models.workflow_repository.read_workflow_response import ReadWorkflowResponse
     from simscale_sdk_v1.models.workflow_repository.update_workflow_request import UpdateWorkflowRequest
     from simscale_sdk_v1.models.workflow_repository.workflow_overview import WorkflowOverview
@@ -19,6 +22,9 @@ _NAMES: dict[str, tuple[str, str]] = {
         "simscale_sdk_v1.models.workflow_repository.create_workflow_request",
         "CreateWorkflowRequest",
     ),
+    "ErrorDetails": ("simscale_sdk_v1.models.workflow_repository.error_details", "ErrorDetails"),
+    "ErrorParameter": ("simscale_sdk_v1.models.workflow_repository.error_parameter", "ErrorParameter"),
+    "ErrorResponse": ("simscale_sdk_v1.models.workflow_repository.error_response", "ErrorResponse"),
     "ReadWorkflowResponse": (
         "simscale_sdk_v1.models.workflow_repository.read_workflow_response",
         "ReadWorkflowResponse",

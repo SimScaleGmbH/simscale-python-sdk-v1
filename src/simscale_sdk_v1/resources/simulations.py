@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class Simulations:
@@ -16,7 +16,7 @@ class Simulations:
         """Check the simulation setup"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/simulations/{simulation_id}/check",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/check",
             response_type=models.CheckResponse,
         )
 
@@ -28,7 +28,7 @@ class Simulations:
         """Create a geometry primitive for reference within a Simulation spec"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/geometryprimitives",
+            f"/projects/{path_segment(project_id)}/geometryprimitives",
             json_body=body,
             response_type=models.GeometryPrimitiveResponse,
         )
@@ -41,7 +41,7 @@ class Simulations:
         """Create a simulation setup"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/simulations",
+            f"/projects/{path_segment(project_id)}/simulations",
             json_body=body,
             response_type=models.simulation.Simulation,
         )
@@ -59,7 +59,7 @@ class Simulations:
         """
         return self._client.request(
             "DELETE",
-            f"/projects/{project_id}/simulations/{simulation_id}",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}",
         )
 
     def estimate_simulation_setup(
@@ -70,7 +70,7 @@ class Simulations:
         """Estimate the simulation setup"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/simulations/{simulation_id}/estimate",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/estimate",
             response_type=models.Estimation,
         )
 
@@ -84,7 +84,7 @@ class Simulations:
         """Get information about the simulation setup"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/simulations/{simulation_id}",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}",
             query_params={"simulationSpecSchemaVersion": simulation_spec_schema_version},
             response_type=models.SimulationSpec,
         )
@@ -99,7 +99,7 @@ class Simulations:
         """List simulation setups within a project"""
         data = self._client.request(
             "GET",
-            f"/projects/{project_id}/simulations",
+            f"/projects/{path_segment(project_id)}/simulations",
             query_params={"limit": limit, "page": page},
         )
         return PaginatedResponse(data, models.simulation.Simulation)
@@ -120,7 +120,7 @@ class Simulations:
         """
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/simulations/{simulation_id}/swapcad",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/swapcad",
             json_body=body,
             response_type=models.SwapCadReport,
         )
@@ -134,7 +134,7 @@ class Simulations:
         """Update information about the simulation setup"""
         return self._client.request(
             "PUT",
-            f"/projects/{project_id}/simulations/{simulation_id}",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}",
             json_body=body,
         )
 
@@ -149,7 +149,7 @@ class Simulations:
         """Update materials in the simulation setup"""
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/simulations/{simulation_id}/materials",
+            f"/projects/{path_segment(project_id)}/simulations/{path_segment(simulation_id)}/materials",
             json_body=body,
             query_params={"preview": preview},
             response_type=models.MaterialUpdateResponse,

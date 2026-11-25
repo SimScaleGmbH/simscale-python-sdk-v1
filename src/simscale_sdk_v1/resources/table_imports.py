@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class TableImports:
@@ -27,7 +27,7 @@ class TableImports:
         """
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/tableimports",
+            f"/projects/{path_segment(project_id)}/tableimports",
             json_body=body,
             response_type=models.TableImportResponse,
         )

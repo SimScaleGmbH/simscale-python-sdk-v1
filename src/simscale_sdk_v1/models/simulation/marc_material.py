@@ -4,6 +4,8 @@ from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.simulation.dimensional_function__density import DimensionalFunction_Density
+from simscale_sdk_v1.models.simulation.isotropic_marc_expansion import IsotropicMarcExpansion
+from simscale_sdk_v1.models.simulation.marc_thermal_properties import MarcThermalProperties
 from simscale_sdk_v1.models.simulation.material_library_reference import MaterialLibraryReference
 from simscale_sdk_v1.models.simulation.one_of__marc_material_marc_material_behavior import (
     OneOf_MarcMaterialMarcMaterialBehavior,
@@ -17,6 +19,10 @@ class MarcMaterial(SimScaleModel):
         validation_alias="marcMaterialBehavior", serialization_alias="marcMaterialBehavior", default=None
     )
     density: DimensionalFunction_Density | None = Field(default=None)
+    expansion: IsotropicMarcExpansion | None = Field(default=None)
+    thermal_properties: MarcThermalProperties | None = Field(
+        validation_alias="thermalProperties", serialization_alias="thermalProperties", default=None
+    )
     topological_reference: TopologicalReference | None = Field(
         validation_alias="topologicalReference", serialization_alias="topologicalReference", default=None
     )

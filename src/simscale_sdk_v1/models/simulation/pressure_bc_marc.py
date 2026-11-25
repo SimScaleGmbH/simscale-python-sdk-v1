@@ -3,6 +3,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from simscale_sdk_v1._base import SimScaleModel
+from simscale_sdk_v1.models.simulation.automatic_load_ramping_marc import AutomaticLoadRampingMarc
 from simscale_sdk_v1.models.simulation.dimensional_function__pressure import DimensionalFunction_Pressure
 from simscale_sdk_v1.models.simulation.topological_reference import TopologicalReference
 
@@ -24,6 +25,12 @@ class PressureBCMarc(SimScaleModel):
         default=True,
         description="When enabled, the direction of the pressure load is automatically updated to remain normal to the surface as it deforms and rotates throughout the analysis. This is essential for large deformation simulations where the surface orientation changes significantly.",
     )
+    suppress_load_in_contact: bool | None = Field(
+        validation_alias="suppressLoadInContact",
+        serialization_alias="suppressLoadInContact",
+        default=False,
+        description="Determines if pressure remains active on elements in contact. When Off, the pressure load is applied regardless of the contact state. When On, pressure is locally deactivated for areas of the assigned face(s) currently in an active contact state. Use this setting to more realistically model the behavior of O-rings or seals under fluid pressure.",
+    )
     activate_load_steps: bool | None = Field(
         validation_alias="activateLoadSteps",
         serialization_alias="activateLoadSteps",
@@ -32,6 +39,9 @@ class PressureBCMarc(SimScaleModel):
     )
     load_step_uuids: list[str] | None = Field(
         validation_alias="loadStepUuids", serialization_alias="loadStepUuids", default=None
+    )
+    automatic_load_ramping: AutomaticLoadRampingMarc | None = Field(
+        validation_alias="automaticLoadRamping", serialization_alias="automaticLoadRamping", default=None
     )
     topological_reference: TopologicalReference | None = Field(
         validation_alias="topologicalReference", serialization_alias="topologicalReference", default=None

@@ -6,6 +6,9 @@ from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.simulation.one_of__marc_bonded_and_touching_contact_connection_position_tolerance import (
     OneOf_MarcBondedAndTouchingContactConnectionPositionTolerance,
 )
+from simscale_sdk_v1.models.simulation.one_of__marc_bonded_and_touching_contact_connection_thermal_contact import (
+    OneOf_MarcBondedAndTouchingContactConnectionThermalContact,
+)
 from simscale_sdk_v1.models.simulation.topological_reference import TopologicalReference
 
 
@@ -27,6 +30,9 @@ class MarcBondedAndTouchingContactConnection(SimScaleModel):
         serialization_alias="frictionCoefficient",
         default=0.0,
         description="The Friction coefficient (&mu;) defines the proportionality between the normal contact force and the maximum allowable tangential resistance at the interface. A value of 0 represents a frictionless (lubricated) surface, while higher values increase the resistance to relative sliding between the two parts. For most metal-to-metal or metal-to-plastic contacts, values typically range between 0.1 and 0.4.",
+    )
+    thermal_contact: OneOf_MarcBondedAndTouchingContactConnectionThermalContact | None = Field(
+        validation_alias="thermalContact", serialization_alias="thermalContact", default=None
     )
     activate_load_steps: bool | None = Field(
         validation_alias="activateLoadSteps",

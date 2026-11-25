@@ -6,12 +6,16 @@ from simscale_sdk_v1._base import SimScaleModel
 from simscale_sdk_v1.models.simulation.load_step import LoadStep
 from simscale_sdk_v1.models.simulation.marc_connection_group import MarcConnectionGroup
 from simscale_sdk_v1.models.simulation.marc_element_technology import MarcElementTechnology
+from simscale_sdk_v1.models.simulation.marc_initial_conditions import MarcInitialConditions
 from simscale_sdk_v1.models.simulation.marc_material import MarcMaterial
 from simscale_sdk_v1.models.simulation.marc_numerics import MarcNumerics
 from simscale_sdk_v1.models.simulation.marc_result_control import MarcResultControl
 from simscale_sdk_v1.models.simulation.marc_simulation_control import MarcSimulationControl
 from simscale_sdk_v1.models.simulation.one_of__marc_analysis_boundary_conditions import (
     OneOf_MarcAnalysisBoundaryConditions,
+)
+from simscale_sdk_v1.models.simulation.one_of__marc_analysis_local_coordinate_systems import (
+    OneOf_MarcAnalysisLocalCoordinateSystems,
 )
 from simscale_sdk_v1.models.simulation.remote_point_connection_marc import RemotePointConnectionMarc
 
@@ -27,7 +31,10 @@ class MarcAnalysis(SimScaleModel):
         validation_alias="thermalEffects",
         serialization_alias="thermalEffects",
         default=False,
-        description="Choose whether thermal effects should be included in the analysis, such as heat conduction, thermal loads, temperature fields, thermal expansion, and temperature-dependent material properties. When thermal effects are disabled, the analysis is purely mechanical and assumes constant temperature.Note: Changing this setting will delete all existing material definitions.",
+        description="Choose whether thermal effects should be included in the analysis, such as heat conduction, thermal loads, temperature fields, thermal expansion, and temperature-dependent material properties. When thermal effects are disabled, the analysis is purely mechanical and assumes constant temperature.For temperature-dependent material properties given as tables, the value at the nearest end of the table is used for temperatures outside the table's range.Note: Changing this setting will delete all existing material definitions.",
+    )
+    local_coordinate_systems: list[OneOf_MarcAnalysisLocalCoordinateSystems] | None = Field(
+        validation_alias="localCoordinateSystems", serialization_alias="localCoordinateSystems", default=None
     )
     connection_groups: list[MarcConnectionGroup] | None = Field(
         validation_alias="connectionGroups", serialization_alias="connectionGroups", default=None
@@ -37,6 +44,9 @@ class MarcAnalysis(SimScaleModel):
         validation_alias="elementTechnology", serialization_alias="elementTechnology", default=None
     )
     materials: list[MarcMaterial] | None = Field(default=None)
+    initial_conditions: MarcInitialConditions | None = Field(
+        validation_alias="initialConditions", serialization_alias="initialConditions", default=None
+    )
     boundary_conditions: list[OneOf_MarcAnalysisBoundaryConditions] | None = Field(
         validation_alias="boundaryConditions", serialization_alias="boundaryConditions", default=None
     )

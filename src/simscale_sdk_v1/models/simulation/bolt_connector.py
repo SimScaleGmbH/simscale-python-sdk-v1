@@ -13,20 +13,20 @@ from simscale_sdk_v1.models.simulation.topological_reference import TopologicalR
 
 
 class BoltConnector(SimScaleModel):
-    """Connect multiple bodies via a virtual bolt Usage: Define a separate bolt connector item for each virtual boltAssign entities must be coaxialBehavior:Bolt connectors mimic physical bolts using beam formulations. Relative translations and rotations of the connected entities are computed based on the defined bolt mechanical propertiesAbility to apply preload"""
+    """Connects parts through a virtual bolt, so the bolt and nut are not part of the CAD model. Define one bolt connector per bolt.Assign, all centred on one axis:Bolt head assignment: the faces or edges where the head sits, all on one partNut assignment: the faces or edges where the nut sits, all on one part (for a Screw, the threaded hole instead, see Bolt type)The virtual bolt is a beam between the centres of the two assignments, with the Shank diameter and Mechanical properties you enter. It can carry a preload. Learn more"""
 
     type_: str = Field(
         validation_alias="type",
         serialization_alias="type",
         default="BOLT_CONNECTOR",
-        description="Connect multiple bodies via a virtual bolt Usage: Define a separate bolt connector item for each virtual boltAssign entities must be coaxialBehavior:Bolt connectors mimic physical bolts using beam formulations. Relative translations and rotations of the connected entities are computed based on the defined bolt mechanical propertiesAbility to apply preload  Schema name: BoltConnector",
+        description="Connects parts through a virtual bolt, so the bolt and nut are not part of the CAD model. Define one bolt connector per bolt.Assign, all centred on one axis:Bolt head assignment: the faces or edges where the head sits, all on one partNut assignment: the faces or edges where the nut sits, all on one part (for a Screw, the threaded hole instead, see Bolt type)The virtual bolt is a beam between the centres of the two assignments, with the Shank diameter and Mechanical properties you enter. It can carry a preload. Learn more  Schema name: BoltConnector",
     )
     name: str | None = Field(default=None)
     bolt_type: Literal["BOLT_AND_NUT", "SCREW"] | None = Field(
         validation_alias="boltType",
         serialization_alias="boltType",
         default="BOLT_AND_NUT",
-        description="Select your desired type of fastenerBolt and nut - a virtual connection between a bolt head and nut locationScrew - a virtual connection between a screw head location and a cylindrical surface representing a threaded section",
+        description="Select the type of fastener:Bolt and nut: the bolt goes through all parts. Assign where the head sits and where the nut sits.Screw: the screw ends in a threaded hole. Assign where the head sits and, as Threaded section assignment, the cylindrical face of the threaded hole.",
     )
     shank_diameter: Dimensional_Length | None = Field(
         validation_alias="shankDiameter", serialization_alias="shankDiameter", default=None
@@ -38,7 +38,7 @@ class BoltConnector(SimScaleModel):
         validation_alias="enableBoltPreload",
         serialization_alias="enableBoltPreload",
         default=False,
-        description="Enable the definition of pretension within the virtual bolt.",
+        description="Tightens the virtual bolt with a Pretension force before the loads are applied.",
     )
     preload: ForcePreload | None = Field(default=None)
     advanced_bolt_settings: AdvancedConnectorSettings | None = Field(

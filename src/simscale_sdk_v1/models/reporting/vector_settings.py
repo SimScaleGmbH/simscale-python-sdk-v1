@@ -38,3 +38,9 @@ class VectorSettings(SimScaleModel):
         default=None,
         description="The required maximum length of the vectors in order to be drawn. Must not be smaller than minimumFilteringRange. Default value is the maximum length of the specified vector field.",
     )
+    draw_skip_by: int | None = Field(
+        validation_alias="drawSkipBy",
+        serialization_alias="drawSkipBy",
+        default=0,
+        description="Number of vector arrows skipped after each one drawn, so 3 draws one arrow in four. 0, used when this field is omitted, draws every arrow. Even distribution not guaranteed.",
+    )

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class ProjectPermissions:
@@ -20,6 +20,6 @@ class ProjectPermissions:
         """
         return self._client.request(
             "GET",
-            f"/permissions/projects/{project_id}/requester",
+            f"/permissions/projects/{path_segment(project_id)}/requester",
             response_type=models.ProjectPermissions,
         )

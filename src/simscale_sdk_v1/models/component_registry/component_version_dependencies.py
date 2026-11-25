@@ -22,8 +22,8 @@ class ComponentVersionDependencies(SimScaleModel):
     method_dependencies: list[str] | None = Field(
         validation_alias="methodDependencies", serialization_alias="methodDependencies", default=None
     )
-    physics_ai_model_dependencies: list[str] | None = Field(
-        validation_alias="physicsAiModelDependencies", serialization_alias="physicsAiModelDependencies", default=None
+    migration_source_dependencies: list[str] | None = Field(
+        validation_alias="migrationSourceDependencies", serialization_alias="migrationSourceDependencies", default=None
     )
     workflow_type_dependencies: list[str] | None = Field(
         validation_alias="workflowTypeDependencies", serialization_alias="workflowTypeDependencies", default=None

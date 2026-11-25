@@ -32,6 +32,27 @@ class SimmetrixExtrusionMeshRefinement(SimScaleModel):
     max_element_size: Dimensional_Length | None = Field(
         validation_alias="maxElementSize", serialization_alias="maxElementSize", default=None
     )
+    enable_grading: bool | None = Field(
+        validation_alias="enableGrading",
+        serialization_alias="enableGrading",
+        default=False,
+        description="Enables the grading of the extrusion elements, starting from either side of the extrusion. The first layer has to be the smallest. The growth rate must be greater than 1. The elements stop growing once they reach the value defined through Thickness or Number of elements",
+    )
+    first_element_thickness: Dimensional_Length | None = Field(
+        validation_alias="firstElementThickness", serialization_alias="firstElementThickness", default=None
+    )
+    growth_rate: float | None = Field(
+        validation_alias="growthRate",
+        serialization_alias="growthRate",
+        default=1.2,
+        description="The Growth rate defines the thickness ratio between adjacent boundary layer cells. It needs to be always greater than 1 such that the layer thickness increases towards the interior of the mesh. For the same number of layers and overall thickness the larger the growth rate is inversely proportional to the first cell thickness. Example of each cell being 1.5 times thicker than its adjacent.",
+    )
+    grading_side: Literal["START_FACE", "END_FACE", "BOTH"] | None = Field(
+        validation_alias="gradingSide",
+        serialization_alias="gradingSide",
+        default="BOTH",
+        description="Side defines which side of the extrusion will have the specified First layer thickness. The options are Start face, End face and Both.",
+    )
     source_topological_reference: TopologicalReference | None = Field(
         validation_alias="sourceTopologicalReference", serialization_alias="sourceTopologicalReference", default=None
     )

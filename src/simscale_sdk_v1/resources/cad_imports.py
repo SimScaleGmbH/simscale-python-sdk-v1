@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class CadImports:
@@ -16,7 +16,7 @@ class CadImports:
         """Get the CAD import event log"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/cadimports/{cad_id}/eventlog",
+            f"/projects/{path_segment(project_id)}/cadimports/{path_segment(cad_id)}/eventlog",
             response_type=models.EventLogResponse,
         )
 
@@ -28,7 +28,7 @@ class CadImports:
         """Get information about the imported CAD"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/cadimports/{cad_id}",
+            f"/projects/{path_segment(project_id)}/cadimports/{path_segment(cad_id)}",
             response_type=models.CadImportResponse,
         )
 
@@ -53,7 +53,7 @@ class CadImports:
         """
         return self._client.request(
             "POST",
-            f"/projects/{project_id}/cadimports",
+            f"/projects/{path_segment(project_id)}/cadimports",
             json_body=body,
             response_type=models.CadImportResponse,
         )

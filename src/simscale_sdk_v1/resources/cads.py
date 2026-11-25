@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class Cads:
@@ -22,7 +22,7 @@ class Cads:
         """
         return self._client.request(
             "POST",
-            f"/cads/{cad_id}/states/{cad_state_id}/savedselections",
+            f"/cads/{path_segment(cad_id)}/states/{path_segment(cad_state_id)}/savedselections",
             json_body=body,
             response_type=models.CreateSavedSelectionResponse,
         )
@@ -40,7 +40,7 @@ class Cads:
         """
         return self._client.request(
             "DELETE",
-            f"/projects/{project_id}/cads/{cad_id}",
+            f"/projects/{path_segment(project_id)}/cads/{path_segment(cad_id)}",
         )
 
     def download_original_cad(
@@ -56,7 +56,7 @@ class Cads:
         """
         return self._client.request(
             "GET",
-            f"/cads/{cad_id}/states/{cad_state_id}/downloadoriginal",
+            f"/cads/{path_segment(cad_id)}/states/{path_segment(cad_state_id)}/downloadoriginal",
             response_type=models.DownloadOriginalCadResponse,
         )
 
@@ -68,7 +68,7 @@ class Cads:
         """Get information about the CAD"""
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/cads/{cad_id}",
+            f"/projects/{path_segment(project_id)}/cads/{path_segment(cad_id)}",
             response_type=models.cad.Cad,
         )
 
@@ -80,7 +80,7 @@ class Cads:
         """Get detailed information about the CAD state"""
         return self._client.request(
             "GET",
-            f"/cads/{cad_id}/states/{cad_state_id}",
+            f"/cads/{path_segment(cad_id)}/states/{path_segment(cad_state_id)}",
             response_type=models.CadState,
         )
 
@@ -133,7 +133,7 @@ class Cads:
         """
         return self._client.request(
             "GET",
-            f"/cads/{cad_id}/states/{cad_state_id}/topology",
+            f"/cads/{path_segment(cad_id)}/states/{path_segment(cad_state_id)}/topology",
             query_params={
                 "limit": limit,
                 "page": page,
@@ -161,7 +161,7 @@ class Cads:
         """
         return self._client.request(
             "GET",
-            f"/projects/{project_id}/cads",
+            f"/projects/{path_segment(project_id)}/cads",
             query_params={"limit": limit, "page": page},
             response_type=models.Cads,
         )
@@ -186,7 +186,7 @@ class Cads:
         """
         return self._client.request(
             "POST",
-            f"/cads/{cad_id}/states/{cad_state_id}/query",
+            f"/cads/{path_segment(cad_id)}/states/{path_segment(cad_state_id)}/query",
             json_body=body,
             response_type=models.CadQueryResponse,
         )
@@ -205,7 +205,7 @@ class Cads:
         """
         return self._client.request(
             "POST",
-            f"/cads/{cad_id}/states/{cad_state_id}/rename",
+            f"/cads/{path_segment(cad_id)}/states/{path_segment(cad_state_id)}/rename",
             json_body=body,
             response_type=models.RenameCadResponse,
         )

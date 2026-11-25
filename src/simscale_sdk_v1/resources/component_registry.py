@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from simscale_sdk_v1 import models
-from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient
+from simscale_sdk_v1.client import PaginatedResponse, SimScaleClient, path_segment
 
 
 class ComponentRegistry:
@@ -17,7 +17,7 @@ class ComponentRegistry:
         """Read the metadata of a component group."""
         return self._client.request(
             "GET",
-            f"/component-registry/component-groups/{component_group_reference}",
+            f"/component-registry/component-groups/{path_segment(component_group_reference)}",
             query_params={"language": language},
             response_type=models.component_registry.ComponentGroupMetadata,
         )
@@ -31,7 +31,7 @@ class ComponentRegistry:
         """Read an overview of a component."""
         return self._client.request(
             "GET",
-            f"/component-registry/components/{component_reference}",
+            f"/component-registry/components/{path_segment(component_reference)}",
             query_params={"language": language},
             response_type=models.component_registry.ComponentOverview,
         )
@@ -43,7 +43,7 @@ class ComponentRegistry:
         """List the dependencies of a component version."""
         return self._client.request(
             "GET",
-            f"/component-registry/component-versions/{component_version_reference}/dependencies",
+            f"/component-registry/component-versions/{path_segment(component_version_reference)}/dependencies",
             response_type=models.component_registry.ComponentVersionDependencies,
         )
 
@@ -54,7 +54,7 @@ class ComponentRegistry:
         """List the dependents of a component version."""
         return self._client.request(
             "GET",
-            f"/component-registry/component-versions/{component_version_reference}/dependents",
+            f"/component-registry/component-versions/{path_segment(component_version_reference)}/dependents",
             response_type=models.component_registry.ComponentVersionDependents,
         )
 
@@ -65,7 +65,7 @@ class ComponentRegistry:
         """Read the metadata of a component version."""
         return self._client.request(
             "GET",
-            f"/component-registry/component-versions/{component_version_reference}",
+            f"/component-registry/component-versions/{path_segment(component_version_reference)}",
             response_type=models.component_registry.ComponentVersionMetadata,
         )
 
@@ -76,7 +76,7 @@ class ComponentRegistry:
         """Read the file-operations description of a data type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/data-types/{component_version_reference}/file-operations",
+            f"/component-registry/data-types/{path_segment(component_version_reference)}/file-operations",
             response_type=models.component_registry.DataTypeFileOperationsDescription,
         )
 
@@ -89,7 +89,7 @@ class ComponentRegistry:
         """Read the metadata schema of a data type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/data-types/{component_version_reference}/metadata-schema",
+            f"/component-registry/data-types/{path_segment(component_version_reference)}/metadata-schema",
             query_params={"resolveDependencies": resolve_dependencies},
             response_type=models.workflows.SchemaDefinition,
         )
@@ -101,7 +101,7 @@ class ComponentRegistry:
         """Read the metadata schema validation rules of a data type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/data-types/{component_version_reference}/metadata-schema-validation-rules",
+            f"/component-registry/data-types/{path_segment(component_version_reference)}/metadata-schema-validation-rules",
             response_type=models.workflows.ValidationRuleSet,
         )
 
@@ -114,7 +114,7 @@ class ComponentRegistry:
         """Read the data schema of a data type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/data-types/{component_version_reference}/schema",
+            f"/component-registry/data-types/{path_segment(component_version_reference)}/schema",
             query_params={"resolveDependencies": resolve_dependencies},
             response_type=models.workflows.SchemaDefinition,
         )
@@ -126,7 +126,7 @@ class ComponentRegistry:
         """Read the data schema validation rules of a data type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/data-types/{component_version_reference}/schema-validation-rules",
+            f"/component-registry/data-types/{path_segment(component_version_reference)}/schema-validation-rules",
             response_type=models.workflows.ValidationRuleSet,
         )
 
@@ -137,7 +137,7 @@ class ComponentRegistry:
         """Read the UI schema of a data type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/data-types/{component_version_reference}/ui-schema",
+            f"/component-registry/data-types/{path_segment(component_version_reference)}/ui-schema",
             response_type=models.workflows.SchemaDefinition,
         )
 
@@ -150,7 +150,7 @@ class ComponentRegistry:
         """Read the configuration schema of a method version."""
         return self._client.request(
             "GET",
-            f"/component-registry/methods/{component_version_reference}/configuration-schema",
+            f"/component-registry/methods/{path_segment(component_version_reference)}/configuration-schema",
             query_params={"resolveDependencies": resolve_dependencies},
             response_type=models.workflows.SchemaDefinition,
         )
@@ -162,7 +162,7 @@ class ComponentRegistry:
         """Read the configuration schema validation rules of a method version."""
         return self._client.request(
             "GET",
-            f"/component-registry/methods/{component_version_reference}/configuration-schema-validation-rules",
+            f"/component-registry/methods/{path_segment(component_version_reference)}/configuration-schema-validation-rules",
             response_type=models.workflows.ValidationRuleSet,
         )
 
@@ -173,7 +173,7 @@ class ComponentRegistry:
         """Read the data interface of a method version."""
         return self._client.request(
             "GET",
-            f"/component-registry/methods/{component_version_reference}/data-interface",
+            f"/component-registry/methods/{path_segment(component_version_reference)}/data-interface",
             response_type=models.component_registry.DataInterface,
         )
 
@@ -184,7 +184,7 @@ class ComponentRegistry:
         """Read the resource estimation model of a method version."""
         return self._client.request(
             "GET",
-            f"/component-registry/methods/{component_version_reference}/resource-estimation",
+            f"/component-registry/methods/{path_segment(component_version_reference)}/resource-estimation",
             response_type=models.workflows.MethodResourceEstimationValueModel,
         )
 
@@ -195,7 +195,7 @@ class ComponentRegistry:
         """Read the metadata of the organization component group."""
         return self._client.request(
             "GET",
-            f"/component-registry/organization-component-groups/{organization_reference}",
+            f"/component-registry/organization-component-groups/{path_segment(organization_reference)}",
             response_type=models.component_registry.OrganizationComponentGroupMetadata,
         )
 
@@ -208,7 +208,7 @@ class ComponentRegistry:
         """Read the configuration schema of a workflow type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/workflow-types/{component_version_reference}/configuration-schema",
+            f"/component-registry/workflow-types/{path_segment(component_version_reference)}/configuration-schema",
             query_params={"resolveDependencies": resolve_dependencies},
             response_type=models.workflows.SchemaDefinition,
         )
@@ -220,7 +220,7 @@ class ComponentRegistry:
         """Read the configuration schema validation rules of a workflow type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/workflow-types/{component_version_reference}/configuration-schema-validation-rules",
+            f"/component-registry/workflow-types/{path_segment(component_version_reference)}/configuration-schema-validation-rules",
             response_type=models.workflows.ValidationRuleSet,
         )
 
@@ -231,7 +231,7 @@ class ComponentRegistry:
         """Read the data interface of a workflow type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/workflow-types/{component_version_reference}/data-interface",
+            f"/component-registry/workflow-types/{path_segment(component_version_reference)}/data-interface",
             response_type=models.component_registry.DataInterface,
         )
 
@@ -242,7 +242,7 @@ class ComponentRegistry:
         """Read the UI configuration of a workflow type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/workflow-types/{component_version_reference}/ui-configuration",
+            f"/component-registry/workflow-types/{path_segment(component_version_reference)}/ui-configuration",
             response_type=models.component_registry.UiConfiguration,
         )
 
@@ -253,7 +253,7 @@ class ComponentRegistry:
         """Read the workflow definition of a workflow type version."""
         return self._client.request(
             "GET",
-            f"/component-registry/workflow-types/{component_version_reference}/workflow-definition",
+            f"/component-registry/workflow-types/{path_segment(component_version_reference)}/workflow-definition",
             response_type=models.component_registry.WorkflowDefinition,
         )
 
@@ -267,7 +267,7 @@ class ComponentRegistry:
         """List the subgroups of a component group."""
         return self._client.request(
             "GET",
-            f"/component-registry/component-groups/{component_group_reference}/subgroups",
+            f"/component-registry/component-groups/{path_segment(component_group_reference)}/subgroups",
             query_params={"page": page, "size": size},
             response_type=list[models.component_registry.ComponentGroupMetadata],
         )
@@ -282,7 +282,7 @@ class ComponentRegistry:
         """List the versions of a component."""
         return self._client.request(
             "GET",
-            f"/component-registry/components/{component_reference}/versions",
+            f"/component-registry/components/{path_segment(component_reference)}/versions",
             query_params={"page": page, "size": size},
             response_type=list[models.component_registry.ComponentVersionMetadata],
         )
@@ -298,7 +298,7 @@ class ComponentRegistry:
         """List the components in a component group."""
         return self._client.request(
             "GET",
-            f"/component-registry/component-groups/{component_group_reference}/components",
+            f"/component-registry/component-groups/{path_segment(component_group_reference)}/components",
             query_params={"page": page, "size": size, "language": language},
             response_type=list[models.component_registry.ComponentOverview],
         )

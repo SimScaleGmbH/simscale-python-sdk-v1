@@ -5,6 +5,7 @@ from typing import Annotated, Union
 from pydantic import BeforeValidator
 
 from simscale_sdk_v1._base import parse_discriminated_union
+from simscale_sdk_v1.models.simulation.circuit_excitation import CircuitExcitation
 from simscale_sdk_v1.models.simulation.current_excitation import CurrentExcitation
 from simscale_sdk_v1.models.simulation.voltage_excitation import VoltageExcitation
 
@@ -12,10 +13,11 @@ from simscale_sdk_v1.models.simulation.voltage_excitation import VoltageExcitati
 _ONE_OF__COIL_EXCITATION_VARIANTS: dict[str, type] = {
     "CURRENT_EXCITATION": CurrentExcitation,
     "VOLTAGE_EXCITATION": VoltageExcitation,
+    "CIRCUIT_EXCITATION": CircuitExcitation,
 }
 
 OneOf_CoilExcitation = Annotated[
-    Union[CurrentExcitation, VoltageExcitation],
+    Union[CurrentExcitation, VoltageExcitation, CircuitExcitation],
     BeforeValidator(
         partial(
             parse_discriminated_union,

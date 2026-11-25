@@ -15,6 +15,6 @@ class BoltMechanicalProperties(SimScaleModel):
         validation_alias="poissonsRatio",
         serialization_alias="poissonsRatio",
         default=0.28,
-        description="Provide the Poisson's ratio value which describes the compression or elongation of the bolt material transverse to axial strain. Poisson's ratio can have a value within range from -1 to 0.5.",
+        description="Poisson's ratio of the bolt material. It must be greater than -1 and less than 0.5.",
     )
     density: Dimensional_Density | None = Field(default=None)
